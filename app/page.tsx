@@ -1,14 +1,14 @@
 "use client"
 
-import { AppSidebar } from "@/components/app-sidebar"
-import { SiteHeader } from "@/components/site-header"
-import { RightSidebar } from "@/components/right-sidebar"
+import { AppSidebar } from "@/components/panel/app-sidebar"
+import { SiteHeader } from "@/components/panel/site-header"
+import { RightSidebar } from "@/components/panel/right-sidebar"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { SelectedCategoryProvider } from "@/context/selected-category-context"
 import { ViewConfigProvider } from "@/context/view-config-context"
 import { RightSidebarProvider } from "@/context/right-sidebar-context"
 import { useSelectedCategory } from "@/context/selected-category-context"
-import { ControlPanel } from "@/components/control-panel"
+import { ControlPanel } from "@/components/panel/control-panel"
 function MainContent() {
   const { selectedCategory } = useSelectedCategory()
 
