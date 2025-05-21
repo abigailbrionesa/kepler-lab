@@ -8,7 +8,7 @@ import { SelectedCategoryProvider } from "@/context/selected-category-context"
 import { ViewConfigProvider } from "@/context/view-config-context"
 import { RightSidebarProvider } from "@/context/right-sidebar-context"
 import { useSelectedCategory } from "@/context/selected-category-context"
-
+import { ControlPanel } from "@/components/control-panel"
 function MainContent() {
   const { selectedCategory } = useSelectedCategory()
 
@@ -16,7 +16,7 @@ function MainContent() {
     <div className="flex flex-1 flex-col">
       <SiteHeader />
       <div className="flex flex-1 relative">
-        {selectedCategory && <div>control panel</div>}
+        {selectedCategory && <ControlPanel />}
         <div className="flex flex-1">
           <div className="flex h-[calc(100vh-80px)] w-full items-center justify-center rounded-lg border border-dashed">
             <p className="text-lg text-muted-foreground">
