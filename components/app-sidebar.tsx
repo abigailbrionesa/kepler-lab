@@ -1,6 +1,7 @@
 "use client"
 
 import type * as React from "react"
+import { useState } from "react"
 import {
   SettingsIcon,
   BookOpenIcon,
@@ -151,6 +152,7 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { isMobile } = useSidebar()
   const { setSelectedCategory } = useSelectedCategory()
+  const [dropdownOpen, setDropdownOpen] = useState(false)
 
   const handleCategorySelect = (
     item: NonNullable<(typeof data.navMain)[number]["submenu"]>[number]
@@ -160,6 +162,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       title: item.title,
       icon: item.icon,
     })
+    setDropdownOpen(false)
+
   }
 
   return (
@@ -184,7 +188,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               {data.navMain.map((item) =>
                 item.isDropdown ? (
                   <SidebarMenuItem key={item.title}>
-                    <DropdownMenu>
+                      <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
                       <DropdownMenuTrigger asChild>
                         <SidebarMenuButton className="w-full justify-between">
                           <div className="flex items-center">
