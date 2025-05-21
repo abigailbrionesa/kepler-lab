@@ -46,6 +46,7 @@ function useDebounce<T>(value: T, delay: number): T {
 export function ControlPanel() {
   const { selectedCategory } = useSelectedCategory();
   const [date, setDate] = useState<Date>(new Date());
+  const [calendarOpen, setCalendarOpen] = useState(false);
 
   const [yearUI, setYearUI] = useState<number>(new Date().getFullYear());
   const [dayOfYearUI, setDayOfYearUI] = useState<number>(
@@ -102,7 +103,6 @@ export function ControlPanel() {
       magnitude: debouncedMagnitude,
       diameter: debouncedDiameter,
     });
-
   }, [
     debouncedSemiMajorAxis,
     debouncedEccentricity,
@@ -150,10 +150,9 @@ export function ControlPanel() {
           </AccordionTrigger>
           <AccordionContent>
             <div className="space-y-4 pt-2">
-
               <div className="space-y-2">
                 <Label htmlFor="date">Select Date</Label>
-                <Popover>
+                <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
                   <PopoverTrigger asChild>
                     <Button
                       id="date"
@@ -167,14 +166,19 @@ export function ControlPanel() {
                       {date ? format(date, "PPP") : <span>Pick a date</span>}
                     </Button>
                   </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
+                  <PopoverContent className=" p-0" align="start">
                     <Calendar
                       mode="single"
                       selected={date}
-                      onSelect={(newDate) => newDate && setDate(newDate)}
-                      initialFocus
-                      fromYear={1850}
-                      toYear={2090}
+                      onSelect={(newDate) => {
+                        if (newDate) {
+                          setDate(newDate);
+                          setCalendarOpen(false);
+                        }
+                      }}
+                      defaultMonth={date}
+                      startMonth={new Date(1850, 0)}
+                      endMonth={new Date(2090, 11)}
                     />
                   </PopoverContent>
                 </Popover>
@@ -198,7 +202,6 @@ export function ControlPanel() {
                 />
               </div>
 
-              {/* Day of Year Slider */}
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <Label htmlFor="day">Day: {dayOfYearUI}</Label>

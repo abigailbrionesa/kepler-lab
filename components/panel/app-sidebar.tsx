@@ -188,7 +188,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               {data.navMain.map((item) =>
                 item.isDropdown ? (
                   <SidebarMenuItem key={item.title}>
-                      <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
+                    <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
                       <DropdownMenuTrigger asChild>
                         <SidebarMenuButton className="w-full justify-between">
                           <div className="flex items-center">
