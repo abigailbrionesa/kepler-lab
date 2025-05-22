@@ -2,7 +2,7 @@ import { useGLTF } from '@react-three/drei';
 import { Mesh } from 'three';
 
 const EarthModel = (props) => {
-  const { nodes, materials } = useGLTF('/NASAmodels/earth.glb') as unknown as GLTFResult;
+  const { nodes, materials } = useGLTF('/models/earth.glb') as unknown as GLTFResult;
   const mesh = nodes.Cube001;
 
   return (
@@ -12,6 +12,6 @@ const EarthModel = (props) => {
   );
 };
 
-useGLTF.preload('/NASAmodels/earth.glb');
+useGLTF.preload('/models/earth.glb');
 
 export default EarthModel;
