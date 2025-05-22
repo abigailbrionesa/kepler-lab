@@ -22,6 +22,6 @@ const SaturnModel = (props) => {
   );
 };
 
-useGLTF.preload('/NASAmodels/saturn.glb');
+useGLTF.preload('/models/saturn.glb');
 
 export default SaturnModel;

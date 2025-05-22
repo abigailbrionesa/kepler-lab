@@ -15,6 +15,6 @@ const UranusModel = (props) => {
   );
 };
 
-useGLTF.preload('/NASAmodels/uranus.glb');
+useGLTF.preload('/models/uranus.glb');
 
 export default UranusModel;

@@ -12,6 +12,6 @@ const VenusModel = (props) => {
   );
 };
 
-useGLTF.preload('/NASAmodels/venus.glb');
+useGLTF.preload('/models/venus.glb');
 
 export default VenusModel;

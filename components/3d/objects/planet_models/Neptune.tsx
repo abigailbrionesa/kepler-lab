@@ -14,6 +14,6 @@ const NeptuneModel = (props) => {
   );
 };
 
-useGLTF.preload('/NASAmodels/neptune.glb');
+useGLTF.preload('/models/neptune.glb');
 
 export default NeptuneModel;

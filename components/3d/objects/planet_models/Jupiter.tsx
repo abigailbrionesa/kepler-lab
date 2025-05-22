@@ -14,6 +14,6 @@ const JupiterModel = (props) => {
   );
 };
 
-useGLTF.preload('/NASAmodels/jupiter.glb');
+useGLTF.preload('/models/jupiter.glb');
 
 export default JupiterModel;

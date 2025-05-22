@@ -14,6 +14,6 @@ const MarsModel = (props) => {
   );
 };
 
-useGLTF.preload('/NASAmodels/mars.glb');
+useGLTF.preload('/models/mars.glb');
 
 export default MarsModel;

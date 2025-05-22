@@ -13,6 +13,6 @@ const MercuryModel = (props) => {
   );
 };
 
-useGLTF.preload('/NASAmodels/mercury.glb');
+useGLTF.preload('/models/mercury.glb');
 
 export default MercuryModel;
