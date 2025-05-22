@@ -1,38 +1,15 @@
-"use client"
-
+import MainContent from "./main-content"
 import { AppSidebar } from "@/components/panel/app-sidebar"
-import { SiteHeader } from "@/components/panel/site-header"
 import { RightSidebar } from "@/components/panel/right-sidebar"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { SelectedCategoryProvider } from "@/context/selected-category-context"
 import { ViewConfigProvider } from "@/context/view-config-context"
 import { RightSidebarProvider } from "@/context/right-sidebar-context"
-import { useSelectedCategory } from "@/context/selected-category-context"
-import { ControlPanel } from "@/components/panel/control-panel"
-import SolarSystem from "@/components/3d/solar-system"
-function MainContent() {
-  const { selectedCategory } = useSelectedCategory()
+import { getPlanets } from "./actions/getPlanets"
 
-  return (
-    <div className="flex flex-1 flex-col">
-      <SiteHeader />
-      <div className="flex flex-1 relative">
-        {selectedCategory && <ControlPanel />}
-        <div className="flex flex-1">
-          <div className="flex h-[calc(100vh-80px)] w-full items-center justify-center rounded-lg border border-dashed">
-            <SolarSystem /> {/*  <p className="text-lg text-muted-foreground">
-              {selectedCategory ? `Viewing ${selectedCategory.title} in 3D` : "Main content area"}
-              
-            </p>*/}
-          </div>
-         
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export default function Page() {
+export default async function Page() {
+  const planets_data = await getPlanets()
+  if (!planets_data) return null
   return (
     <SelectedCategoryProvider>
       <ViewConfigProvider>
@@ -40,7 +17,7 @@ export default function Page() {
           <SidebarProvider>
             <AppSidebar variant="inset" />
             <SidebarInset>
-              <MainContent />
+              <MainContent {...planets_data} />
             </SidebarInset>
             <RightSidebar />
           </SidebarProvider>
