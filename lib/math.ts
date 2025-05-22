@@ -8,17 +8,25 @@ export function gregorian_to_julian(selected_date: Date): number {
     return selected_date.getTime() / 86400000 + 2440587.5;
 }
 
+export function normalize_radians(angle: number): number {
+    let normalized = angle % (2 * pi);
+    if (normalized < 0) normalized += (2 * pi);
+    return normalized;
+}
+
+//radians
 export function kepler_solve(eccentricity: number, mean_anomaly_at_selected_date: number, decimals: number): number {
     const maxIter = 30;
     let i = 0;
     const delta = Math.pow(10, -decimals);
+    let normalized_mean_anomaly = normalize_radians(mean_anomaly_at_selected_date)
     let eccentric_anomaly: number, F: number;
-    if (eccentricity < 0.8) eccentric_anomaly = mean_anomaly_at_selected_date;
+    if (eccentricity < 0.8) eccentric_anomaly = normalized_mean_anomaly;
     else eccentric_anomaly = pi;
-    F = eccentric_anomaly - eccentricity * Math.sin(mean_anomaly_at_selected_date) - mean_anomaly_at_selected_date;
+    F = eccentric_anomaly - eccentricity * Math.sin(normalized_mean_anomaly) - normalized_mean_anomaly;
     while (Math.abs(F) > delta && i < maxIter) {
         eccentric_anomaly = eccentric_anomaly - F / (1.0 - eccentricity * Math.cos(eccentric_anomaly));
-        F = eccentric_anomaly - eccentricity * Math.sin(eccentric_anomaly) - mean_anomaly_at_selected_date;
+        F = eccentric_anomaly - eccentricity * Math.sin(eccentric_anomaly) - normalized_mean_anomaly;
         i = i + 1;
     }
     return eccentric_anomaly
@@ -45,7 +53,7 @@ export function get_position_at_selected_date(
 ): Vector3 {
     const time_since_epoch = gregorian_to_julian(selected_date) - epoch;
     const mean_anomaly_at_selected_date = mean_anomaly + (mean_motion * time_since_epoch)
-    const eccentric_anomaly_at_selected_date = -kepler_solve(eccentricity, mean_anomaly_at_selected_date, 5);
+    const eccentric_anomaly_at_selected_date = -kepler_solve(eccentricity, mean_anomaly_at_selected_date, 4);
     const true_anomaly_at_selected_date = get_true_anom(eccentricity, eccentric_anomaly_at_selected_date, 5);
     const coordinates = keplerian_to_cartesian_coords(distance_from_sun, eccentricity, inclination, argument_of_periapsis, longitude_of_ascending_node, true_anomaly_at_selected_date)
     return coordinates
