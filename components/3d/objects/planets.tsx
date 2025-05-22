@@ -1,4 +1,5 @@
 import { PLANET_DATA } from '@/lib/planet-data';
+import Planet from './planet';
 
 const Planets = () => {
   return (
