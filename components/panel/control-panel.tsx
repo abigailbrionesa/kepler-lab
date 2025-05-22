@@ -132,7 +132,7 @@ export function ControlPanel() {
   if (!selectedCategory) return null;
 
   return (
-    <div className="w-64 absolute border  border-border p-4 space-y-4 overflow-y-auto h-min max-h-[calc(100vh-80px)]">
+    <div className="w-64 absolute border z-10 bg-background  border-border p-4 space-y-4 overflow-y-auto h-min max-h-[calc(100vh-80px)]">
       <Accordion
         type="single"
         collapsible
