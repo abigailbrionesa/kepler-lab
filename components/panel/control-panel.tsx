@@ -21,7 +21,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Checkbox } from "@/components/ui/checkbox";
-
+import { useSelectedDate } from "@/context/view-selected-date";
 function isEqual(arr1: any[], arr2: any[]): boolean {
   if (arr1.length !== arr2.length) return false;
   return arr1.every((val, idx) => val === arr2[idx]);
@@ -45,9 +45,8 @@ function useDebounce<T>(value: T, delay: number): T {
 
 export function ControlPanel() {
   const { selectedCategory } = useSelectedCategory();
-  const [date, setDate] = useState<Date>(new Date());
   const [calendarOpen, setCalendarOpen] = useState(false);
-
+  const { selectedDate, setSelectedDate } = useSelectedDate()
   const [yearUI, setYearUI] = useState<number>(new Date().getFullYear());
   const [dayOfYearUI, setDayOfYearUI] = useState<number>(
     Math.floor(
@@ -65,9 +64,8 @@ export function ControlPanel() {
   const [diameterUI, setDiameterUI] = useState<number[]>([0.1, 10]);
   const [showOnlyHazardous, setShowOnlyHazardous] = useState<boolean>(false);
 
-  const debouncedYear = useDebounce(yearUI, 800);
-  const debouncedDayOfYear = useDebounce(dayOfYearUI, 800);
-
+  const debouncedYear = useDebounce(yearUI, 100);
+  const debouncedDayOfYear = useDebounce(dayOfYearUI, 100);
   const debouncedSemiMajorAxis = useDebounce(semiMajorAxisUI, 1500);
   const debouncedEccentricity = useDebounce(eccentricityUI, 1500);
   const debouncedOrbitalPeriod = useDebounce(orbitalPeriodUI, 1500);
@@ -80,19 +78,19 @@ export function ControlPanel() {
       startOfYear(new Date(debouncedYear, 0, 1)),
       debouncedDayOfYear - 1
     );
-    setDate(newDate);
+    setSelectedDate(newDate);
   }, [debouncedYear, debouncedDayOfYear]);
 
   useEffect(() => {
-    const year = date.getFullYear();
-    const start = new Date(date.getFullYear(), 0, 0);
-    const diff = date.getTime() - start.getTime();
+    const year = selectedDate.getFullYear();
+    const start = new Date(selectedDate.getFullYear(), 0, 0);
+    const diff = selectedDate.getTime() - start.getTime();
     const oneDay = 1000 * 60 * 60 * 24;
     const day = Math.floor(diff / oneDay);
 
     setYearUI(year);
     setDayOfYearUI(day);
-  }, [date]);
+  }, [selectedDate]);
 
   useEffect(() => {
     console.log("Filters updated:", {
@@ -144,7 +142,7 @@ export function ControlPanel() {
             <div className="flex flex-col items-start">
               <h3 className="text-sm font-medium">Date Controls</h3>
               <p className="text-xs text-muted-foreground text-left">
-                {format(date, "MMMM d, yyyy")}
+                {format(selectedDate, "MMMM d, yyyy")}
               </p>
             </div>
           </AccordionTrigger>
@@ -159,24 +157,24 @@ export function ControlPanel() {
                       variant="outline"
                       className={cn(
                         "w-full justify-start text-left font-normal",
-                        !date && "text-muted-foreground"
+                        !selectedDate && "text-muted-foreground"
                       )}
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
-                      {date ? format(date, "PPP") : <span>Pick a date</span>}
+                      {selectedDate ? format(selectedDate, "PPP") : <span>Pick a date</span>}
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className=" p-0" align="start">
                     <Calendar
                       mode="single"
-                      selected={date}
+                      selected={selectedDate}
                       onSelect={(newDate) => {
                         if (newDate) {
-                          setDate(newDate);
+                          setSelectedDate(newDate);
                           setCalendarOpen(false);
                         }
                       }}
-                      defaultMonth={date}
+                      defaultMonth={selectedDate}
                       startMonth={new Date(1850, 0)}
                       endMonth={new Date(2090, 11)}
                     />
