@@ -9,6 +9,7 @@ import { ViewConfigProvider } from "@/context/view-config-context"
 import { RightSidebarProvider } from "@/context/right-sidebar-context"
 import { useSelectedCategory } from "@/context/selected-category-context"
 import { ControlPanel } from "@/components/panel/control-panel"
+import SolarSystem from "@/components/3d/solar-system"
 function MainContent() {
   const { selectedCategory } = useSelectedCategory()
 
@@ -19,10 +20,12 @@ function MainContent() {
         {selectedCategory && <ControlPanel />}
         <div className="flex flex-1">
           <div className="flex h-[calc(100vh-80px)] w-full items-center justify-center rounded-lg border border-dashed">
-            <p className="text-lg text-muted-foreground">
+            <SolarSystem /> {/*  <p className="text-lg text-muted-foreground">
               {selectedCategory ? `Viewing ${selectedCategory.title} in 3D` : "Main content area"}
-            </p>
+              
+            </p>*/}
           </div>
+         
         </div>
       </div>
     </div>
