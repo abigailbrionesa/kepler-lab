@@ -1,11 +1,11 @@
 import { useMemo } from "react";
-import EarthModel from "../../../public/planet_models/Earth";
-import MarsModel from "../../../public/planet_models/Mars";
-import JupiterModel from "../../../public/planet_models/Jupiter";
-import MercuryModel from "../../../public/planet_models/Mercury";
-import NeptuneModel from "../../../public/planet_models/Neptune";
-import SaturnModel from "../../../public/planet_models/Saturn";
-import UranusModel from "../../../public/planet_models/Uranus";
+import EarthModel from "./planet_models/Earth";
+import MarsModel from "./planet_models/Mars";
+import JupiterModel from "./planet_models/Jupiter";
+import MercuryModel from "./planet_models/Mercury";
+import NeptuneModel from "./planet_models/Neptune";
+import SaturnModel from "./planet_models/Saturn";
+import UranusModel from "./planet_models/Uranus";
 import { SCALE_FACTOR_ORBIT } from "@/lib/constants";
 import { Html } from "@react-three/drei";
 import { get_position_at_selected_date } from "@/lib/math";
