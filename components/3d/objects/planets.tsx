@@ -1,10 +1,9 @@
-import { PLANET_DATA } from '@/lib/planet-data';
-import Planet from './planet';
 
-const Planets = () => {
+export function Planets(planets_data) {
+  console.log(planets_data)
   return (
     <>
-      {PLANET_DATA.map((planet, index) => (
+       {/* {planets.map((planet, index) => (
         <Planet
           key={index}
           model = {planet.name + "Model"}
@@ -21,8 +20,8 @@ const Planets = () => {
           meanAnomaly={planet.meanLongitude - planet.longitudePerihelion}
           orbitalPeriod={planet.orbitalPeriod}
           epoch={planet.epoch}
-        />
-))}
+        /> */}
+
     </>
   );
 };
