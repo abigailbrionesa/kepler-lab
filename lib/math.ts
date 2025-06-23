@@ -19,7 +19,7 @@ export function kepler_solve(eccentricity: number, mean_anomaly_at_selected_date
     const maxIter = 30;
     let i = 0;
     const delta = Math.pow(10, -decimals);
-    let normalized_mean_anomaly = normalize_radians(mean_anomaly_at_selected_date)
+    const normalized_mean_anomaly = normalize_radians(mean_anomaly_at_selected_date)
     let eccentric_anomaly: number, F: number;
     if (eccentricity < 0.8) eccentric_anomaly = normalized_mean_anomaly;
     else eccentric_anomaly = pi;
