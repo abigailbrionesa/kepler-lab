@@ -6,11 +6,13 @@ interface OrbitProps {
 }
 
 export const Orbit: React.FC<OrbitProps> = ({ points }) => {
+
+
   return (
     <Line
       points={points}
       color="white"
-      lineWidth={2}
+      lineWidth={1}
       dashed={false}
     />
   );
