@@ -46,7 +46,7 @@ export function Planets({planets_data, selected_date}: {planets_data : PlanetDat
   
   return (
     <>
-       {planets_data.map((planet, index) => (
+       {planets_data.map((planet, ) => (
         <Planet
           key={planet.index}
           name={planet.name}
