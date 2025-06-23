@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/3d/objects/planet_models/Earth.jsx", "components/3d/objects/planet_models/Jupiter.jsx", "components/3d/objects/planet_models/Mars.jsx", "components/3d/objects/planet_models/Mercury.jsx", "components/3d/objects/planet_models/Neptune.jsx", "components/3d/objects/planet_models/Saturn.jsx", "components/3d/objects/planet_models/Uranus.jsx", "components/3d/objects/planet_models/Venus.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/3d/objects/planet_models/Earth.jsx", "components/3d/objects/planet_models/Jupiter.jsx", "components/3d/objects/planet_models/Mars.jsx", "components/3d/objects/planet_models/Mercury.jsx", "components/3d/objects/planet_models/Neptune.tsx", "components/3d/objects/planet_models/Saturn.jsx", "components/3d/objects/planet_models/Uranus.jsx", "components/3d/objects/planet_models/Venus.jsx"],
   "exclude": ["node_modules"]
 }
