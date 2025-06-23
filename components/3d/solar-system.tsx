@@ -1,34 +1,33 @@
-"use client"
+"use client";
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import Sun from "./objects/sun";
 import Stars from "./objects/stars";
 import Light from "./effects/light";
-import type { PlanetData } from "./objects/planets";
 import Planets from "./objects/planets";
 import { SpaceControls } from "./effects/orbit-controls";
 import { useSelectedDate } from "@/context/view-selected-date";
 import { useSelectedPlanet } from "@/context/view-selected-planet";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
+import SelectedPlanetHeader from "../panel/selected-planet-header";
+import planets_json from "../../lib/data/planets.json";
+import type { PlanetData } from "./objects/planets";
 
-export default function SolarSystem({ planets_data }: { planets_data: PlanetData[] }) {
+export default function SolarSystem() {
+  const planets_data = planets_json as PlanetData[];
 
   const { selectedDate } = useSelectedDate();
   const { selectedPlanet, setSelectedPlanet } = useSelectedPlanet();
 
   return (
     <Suspense fallback={<div>Loading solar system...</div>}>
-      <div className={cn("w-full h-full text-white custom-border relative bg-black z-0", selectedPlanet ? "" : "")}>
-
-        {selectedPlanet && (
-          <div className="w-full absolute z-10 p-2 shadow-lg">
-            <div className="w-full flex justify-between p-1 custom-border items-center">
-            {selectedPlanet}
-            <Button variant={"ghost"} onClick={() => setSelectedPlanet(undefined)} className="float-right">Cerrar</Button>
-            </div>
-          </div>
+      <div
+        className={cn(
+          "w-full h-full text-white custom-border relative bg-black z-0",
+          selectedPlanet ? "" : ""
         )}
+      >
+        {selectedPlanet && <SelectedPlanetHeader />}
 
         <Canvas
           gl={{ antialias: false }}
@@ -47,14 +46,17 @@ export default function SolarSystem({ planets_data }: { planets_data: PlanetData
         </Canvas>
       </div>
     </Suspense>
-  )
+  );
 }
 
-{/*   */ }
+{
+  /*   */
+}
 
-
-{/* <Grid />
+{
+  /* <Grid />
             <Sun />
             <Planets />
             <Stars number={80000} size={3} />
-            <Light />*/} 
+            <Light />*/
+}
