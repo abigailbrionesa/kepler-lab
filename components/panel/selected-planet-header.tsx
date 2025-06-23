@@ -9,16 +9,16 @@ function SelectedPlanetHeader() {
     <div className="w-full absolute z-10 p-2 shadow-lg">
     
       <div className="w-full flex justify-between p-1 custom-border items-center">
-
+      <div>hola</div>
        
 
-        {selectedPlanet}
+        <div className="bg-orange-600 text-white p-5 py-3">{selectedPlanet} </div>
         <Button
           variant={"ghost"}
           onClick={() => setSelectedPlanet(undefined)}
           className="float-right"
         >
-          Cerrar
+          Cerrar X
         </Button>
 
           <Button
