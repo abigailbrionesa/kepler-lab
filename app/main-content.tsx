@@ -14,7 +14,7 @@ export default function MainContent({planets_data}: {planets_data: Planet[]}) {
       <div className="flex flex-1 relative">
         {selectedCategory && <ControlPanel />}
         <div className="flex flex-1">
-          <div className="flex h-[calc(100vh-80px)] w-full items-center justify-center rounded-lg border border-dashed">
+          <div className="flex h-[calc(100vh-80px)] w-full items-center justify-center rounded-lg">
             <SolarSystem planets_data={planets_data} />
           </div>
         </div>
