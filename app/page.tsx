@@ -8,12 +8,13 @@ import { RightSidebarProvider } from "@/context/right-sidebar-context";
 import { SelectedDateProvider } from "@/context/view-selected-date";
 import { SelectedPlanetProvider } from "@/context/view-selected-planet";
 import { IsObjectPivotProvider } from "@/context/view-is-object-pivot";
-
+import { OccludableRefsProvider } from "@/context/occludable-refs-context";
 export default function Page() {
   return (
     <SidebarProvider>
       <RightSidebarProvider>
         <ViewConfigProvider>
+          <OccludableRefsProvider> 
           <SelectedCategoryProvider>
             <SelectedDateProvider>
               <SelectedPlanetProvider>
@@ -27,6 +28,7 @@ export default function Page() {
               </SelectedPlanetProvider>
             </SelectedDateProvider>
           </SelectedCategoryProvider>
+          </OccludableRefsProvider>
         </ViewConfigProvider>
       </RightSidebarProvider>
     </SidebarProvider>
