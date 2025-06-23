@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useMemo } from "react";
 import PlanetModel from "./planet_models/PlanetModel";
 import { Badge } from "@/components/ui/badge";
@@ -8,8 +8,6 @@ import { Orbit } from "./orbit";
 import { useSelectedPlanet } from "@/context/view-selected-planet";
 import type { PlanetType } from "@/context/view-selected-planet";
 import { useEffect } from "react";
-import VenusModel from "./planet_models/Venus";
-import { SCALE_FACTOR_OBJECT } from "@/lib/constants";
 
 type PlanetProps = {
   name: PlanetType;
@@ -65,9 +63,7 @@ export default function Planet(planet: PlanetProps) {
   return (
     <>
       <group position={planet_position}>
-
-
-        <PlanetModel name={planet.name} scale={0.0002 * planet.radius}/>
+        <PlanetModel name={planet.name} scale={0.0002 * planet.radius} />
 
         <Html
           center
