@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { IBM_Plex_Mono } from "next/font/google"
-import { ThemeProvider } from "@/components/panel/theme-provider"
+// import { ThemeProvider } from "@/components/panel/theme-provider"
 
 import "./globals.css";
 
