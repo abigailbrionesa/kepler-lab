@@ -2,12 +2,12 @@ import { useGLTF } from '@react-three/drei';
 import { Mesh } from 'three';
 
 const MarsModel = (props) => {
-  const { nodes, materials } = useGLTF('/NASAmodels/mars.glb');
+  const { nodes, materials } = useGLTF('/models/mars.glb');
 
   return (
     <group {...props} dispose={null}>
       <mesh
-        geometry={(nodes.Cube008 as Mesh).geometry}
+        geometry={(nodes.Cube008).geometry}
         material={materials['Default OBJ.005']}
       />
     </group>

@@ -2,8 +2,8 @@ import { useGLTF } from '@react-three/drei';
 import { Mesh } from 'three';
 
 const VenusModel = (props) => {
-  const { nodes, materials } = useGLTF('/NASAmodels/venus.glb');
-  const mesh = nodes.cylindrically_mapped_sphereMesh as Mesh;
+  const { nodes, materials } = useGLTF('/models/venus.glb');
+  const mesh = nodes.cylindrically_mapped_sphereMesh;
 
   return (
     <group {...props} dispose={null}>

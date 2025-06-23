@@ -2,12 +2,12 @@ import { useGLTF } from '@react-three/drei';
 import { Mesh } from 'three';
 
 const JupiterModel = (props) => {
-  const { nodes, materials } = useGLTF('/NASAmodels/jupiter.glb');
+  const { nodes, materials } = useGLTF('/models/jupiter.glb');
 
   return (
     <group {...props} dispose={null}>
       <mesh
-        geometry={(nodes.cubemap as Mesh).geometry}
+        geometry={(nodes.cubemap).geometry}
         material={materials.None}
       />
     </group>

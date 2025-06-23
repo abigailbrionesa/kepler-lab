@@ -2,11 +2,11 @@ import { useGLTF } from '@react-three/drei';
 import { Mesh } from 'three';
 
 const NeptuneModel = (props) => {
-  const { nodes, materials } = useGLTF('/NASAmodels/neptune.glb');
+  const { nodes, materials } = useGLTF('/models/neptune.glb');
   return (
     <group {...props} dispose={null}>
       <mesh
-        geometry={(nodes.Neptune as Mesh).geometry}
+        geometry={(nodes.Neptune).geometry}
         material={materials['Default OBJ.001']}
         rotation={[Math.PI / 2, 0, 0]}
       />
