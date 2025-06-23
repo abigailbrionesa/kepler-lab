@@ -1,10 +1,8 @@
-import React, { memo } from 'react';
-import { Bloom, EffectComposer, Noise } from '@react-three/postprocessing';
-import { N8AO } from '@react-three/postprocessing';
+import { Bloom, EffectComposer } from '@react-three/postprocessing';
 import { TiltShift2 } from '@react-three/postprocessing';
 import { ToneMapping } from '@react-three/postprocessing';
 
-const Light: React.FC = memo(() => {
+export const Light = () => {
   return (
     <>
       <ambientLight intensity={1.4} />
@@ -22,6 +20,4 @@ const Light: React.FC = memo(() => {
       </EffectComposer>
     </>
   );
-});
-
-export default Light;
+};
