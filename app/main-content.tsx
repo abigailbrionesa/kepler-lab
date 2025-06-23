@@ -1,12 +1,11 @@
-"use client"
-import { useSelectedCategory } from "@/context/selected-category-context"
-import SolarSystem from "@/components/3d/solar-system"
-import { ControlPanel } from "@/components/panel/control-panel"
-import { SiteHeader } from "@/components/panel/site-header"
-import type { Planet } from "@prisma/client"
+"use client";
+import { useSelectedCategory } from "@/context/selected-category-context";
+import SolarSystem from "@/components/3d/solar-system";
+import { ControlPanel } from "@/components/panel/control-panel";
+import { SiteHeader } from "@/components/panel/site-header";
 
-export default function MainContent({planets_data}: {planets_data: Planet[]}) {
-  const { selectedCategory } = useSelectedCategory()
+export default function MainContent() {
+  const { selectedCategory } = useSelectedCategory();
 
   return (
     <div className="flex flex-1 flex-col">
@@ -15,10 +14,10 @@ export default function MainContent({planets_data}: {planets_data: Planet[]}) {
         {selectedCategory && <ControlPanel />}
         <div className="flex flex-1">
           <div className="flex h-[calc(100vh-80px)] w-full items-center justify-center rounded-lg">
-            <SolarSystem planets_data={planets_data} />
+            <SolarSystem />
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
