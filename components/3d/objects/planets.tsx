@@ -42,7 +42,7 @@ export type PlanetData = {
   index: number;
 };
 
-export function Planets({planets_data, selected_date}: {planets_data : PlanetData[]; selected_date: Date} ) {
+export function Planets({planets_data}: {planets_data : PlanetData[]} ) {
   
   return (
     <>
@@ -60,7 +60,6 @@ export function Planets({planets_data, selected_date}: {planets_data : PlanetDat
           mean_anomaly={planet.mean_anomaly_rad}
           mean_motion={planet.mean_motion_rad}
           epoch={planet.epoch}
-          selected_date={selected_date} 
         />
        ))}
     </>
