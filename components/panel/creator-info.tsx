@@ -8,7 +8,7 @@ export function CreatorInfo() {
       <div className="flex flex-col space-y-2">
         <div>
           <h4 className="font-medium">Created by Abigail Briones</h4>
-          <p className="text-muted-foreground">Computer Science Student</p>
+          <p className="text-muted-foreground"></p>
         </div>
         <Separator className="my-1" />
         <div className="flex items-center justify-between">
