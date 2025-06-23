@@ -9,6 +9,13 @@ import { useSelectedPlanet } from "@/context/view-selected-planet";
 import type { PlanetType } from "@/context/view-selected-planet";
 import { useEffect } from "react";
 import { useSelectedDate } from "@/context/view-selected-date";
+import { useRef } from "react";
+import { forwardRef } from "react";
+import type { Object3D } from "three";
+import { useOccludableRefs } from "@/context/occludable-refs-context";
+import { useLayoutEffect } from "react";
+
+import { Group } from "three";
 
 type PlanetProps = {
   name: PlanetType;
@@ -27,6 +34,19 @@ type PlanetProps = {
 export default function Planet(planet: PlanetProps) {
   const { selectedPlanet, setSelectedPlanet } = useSelectedPlanet();
   const { selectedDate } = useSelectedDate();
+  const planetRef = useRef<any>(null);
+  const { refs, registerRef, unregisterRef } = useOccludableRefs();
+
+  const isSelected = selectedPlanet === planet.name;
+
+useEffect(() => {
+  if (isSelected && planetRef.current) {
+    registerRef(planetRef);
+  } else {
+    unregisterRef(planetRef);
+
+  }
+}, [isSelected]);
 
   const planet_position = useMemo(() => {
     return get_position_at_selected_date(
@@ -54,22 +74,37 @@ export default function Planet(planet: PlanetProps) {
 
   const handlePlanetClick = () => {
     setSelectedPlanet(planet.name);
-    console.log(`${planet.name} was clicked`);
   };
 
-  useEffect(() => {
-    console.log(selectedPlanet, "is selected planet");
-  }, [selectedPlanet]);
-
+const occludeRefs = refs.current;
+ 
   return (
     <>
+      {isSelected && (
+  <mesh
+    ref={el => {
+      planetRef.current = el;
+      if (el) {
+        registerRef(planetRef);
+      } else {
+        unregisterRef(planetRef);
+      }
+    }}
+    onClick={handlePlanetClick}
+    position={planet_position}
+  >
+    <sphereGeometry args={[100, 32, 32]} />
+    <meshStandardMaterial color={"red"} />
+  </mesh>
+)}
+      {/* 
+       */}
       <group position={planet_position}>
-        <PlanetModel name={planet.name} scale={0.0002 * planet.radius} />
-
         <Html
           center
-          zIndexRange={[0, 0]}
-          className="group relative transition-all cursor-pointer z-50 "
+          zIndexRange={[2, 2]}   
+occlude={occludeRefs as React.RefObject<Object3D>[]}
+          className=" transition-all  cursor-pointer z-50 "
         >
           <div onClick={handlePlanetClick}>
             <Badge className="absolute -translate-x-1/2 bottom-3 ">
@@ -82,7 +117,26 @@ export default function Planet(planet: PlanetProps) {
           </div>
         </Html>
       </group>
+
       <Orbit points={orbit_points} />
     </>
   );
+}
+
+{
+  /*
+        <PlanetModel
+          name={planet.name}
+          ref={planetRef}
+          scale={0.1}
+        />*/
+}
+
+{
+  /* 
+      <mesh onClick={handlePlanetClick}>
+        <sphereGeometry args={[100, 32, 32]} />
+        <meshStandardMaterial color={"red"} />
+      </mesh>
+*/
 }
