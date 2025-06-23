@@ -5,7 +5,6 @@ import { useIsObjectPivot } from "@/context/view-is-object-pivot";
 function SelectedPlanetHeader() {
   const { selectedPlanet, setSelectedPlanet } = useSelectedPlanet();
   const { isObjectPivot, togglePivot } = useIsObjectPivot();
-    console.log(isObjectPivot)
   return (
     <div className="w-full absolute z-10 p-2 shadow-lg">
     
