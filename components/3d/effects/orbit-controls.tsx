@@ -11,21 +11,20 @@ import { useEffect } from "react";
 import { useState } from "react";
 import * as THREE from "three";
 import { useIsObjectPivot } from "@/context/view-is-object-pivot";
+import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 
 export const SpaceControls = () => {
   const { selectedPlanet } = useSelectedPlanet();
   const { selectedDate } = useSelectedDate();
   const { isObjectPivot } = useIsObjectPivot();
 
-  const controlsRef = useRef<any>(null);
-  const lastCameraPositionRef = useRef<any>(null);
+  const controlsRef = useRef<OrbitControlsImpl>(null);
+
+  const lastCameraPositionRef = useRef<THREE.Vector3 | null>(null);
   const [movingToTarget, setMovingToTarget] = useState(false);
   const [targetDestination, setTargetDestination] = useState<THREE.Vector3>(
     new THREE.Vector3(0, 0, 0)
   );
-
-  const [destinationVector, setDestinationVector] =
-    useState<THREE.Vector3 | null>(null);
 
   const planet = planets_data.find((p) => p.name === selectedPlanet);
 
@@ -43,18 +42,19 @@ export const SpaceControls = () => {
       planet.epoch,
       selectedDate
     );
-  }, [selectedPlanet, selectedDate]);
+  }, [selectedPlanet, selectedDate, planet]);
 
   const targetCameraPosition = useMemo(() => {
     if (!planetPosition) return null;
+    if (!planet) return null;
 
     const direction = planetPosition.clone().normalize();
     const distanceToPlanet = planetPosition.length();
-    const cameraDistance = distanceToPlanet + planet?.radius_km * 0.2;
+    const cameraDistance = distanceToPlanet + planet.radius_km * 0.2;
     const offsetPosition = direction.clone().multiplyScalar(cameraDistance);
 
     return offsetPosition;
-  }, [planetPosition, isObjectPivot]);
+  }, [planetPosition, planet]);
 
   useEffect(() => {
     if (selectedPlanet && controlsRef.current) {
@@ -72,7 +72,7 @@ export const SpaceControls = () => {
     ) {
       setMovingToTarget(true);
     }
-  }, [selectedPlanet]);
+  }, [selectedPlanet, planet]);
 
   useEffect(() => {
     const newTarget =
@@ -84,11 +84,13 @@ export const SpaceControls = () => {
   }, [isObjectPivot, planetPosition]);
 
   useFrame(() => {
+    if (!controlsRef.current) return;
+
     const camera = controlsRef.current.object;
 
     if (controlsRef.current) {
       if (movingToTarget) {
-        let destination =
+        const destination =
           selectedPlanet && targetCameraPosition
             ? targetCameraPosition
             : lastCameraPositionRef.current;
@@ -98,7 +100,6 @@ export const SpaceControls = () => {
 
           if (camera.position.distanceTo(destination) < 0.1) {
             camera.position.copy(destination);
-            setDestinationVector(destination);
             setMovingToTarget(false);
           }
 
@@ -122,12 +123,7 @@ export const SpaceControls = () => {
     <>
       <OrbitControls ref={controlsRef} enableZoom={true} />
 
-      {destinationVector && (
-        <mesh position={destinationVector}>
-          <sphereGeometry args={[100, 16, 16]} />
-          <meshBasicMaterial color="red" />
-        </mesh>
-      )}
+  
     </>
   );
 };
