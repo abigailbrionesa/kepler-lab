@@ -50,7 +50,7 @@ export function Planets({planets_data}: {planets_data : PlanetData[]} ) {
         <Planet
           key={planet.index}
           name={planet.name}
-          radius={planet.radius_km * 0.009}
+          radius={planet.radius_km}
           distance_from_sun={planet.distance_from_sun_km}
           color={planet.color}
           eccentricity={planet.eccentricity}
