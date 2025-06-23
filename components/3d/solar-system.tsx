@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import Sun from "./objects/sun";
 import Stars from "./objects/stars";
-import Light from "./effects/light";
+import { Light } from "./effects/light";
 import Planets from "./objects/planets";
 import { SpaceControls } from "./effects/orbit-controls";
 import { useSelectedDate } from "@/context/view-selected-date";
@@ -17,7 +17,7 @@ export default function SolarSystem() {
   const planets_data = planets_json as PlanetData[];
 
   const { selectedDate } = useSelectedDate();
-  const { selectedPlanet, setSelectedPlanet } = useSelectedPlanet();
+  const { selectedPlanet,  } = useSelectedPlanet();
 
   return (
     <Suspense fallback={<div>Loading solar system...</div>}>
