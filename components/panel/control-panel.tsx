@@ -22,10 +22,7 @@ import {
 } from "@/components/ui/accordion";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useSelectedDate } from "@/context/view-selected-date";
-function isEqual(arr1: any[], arr2: any[]): boolean {
-  if (arr1.length !== arr2.length) return false;
-  return arr1.every((val, idx) => val === arr2[idx]);
-}
+import isEqual from "lodash/isEqual";
 
 function useDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
@@ -46,7 +43,7 @@ function useDebounce<T>(value: T, delay: number): T {
 export function ControlPanel() {
   const { selectedCategory } = useSelectedCategory();
   const [calendarOpen, setCalendarOpen] = useState(false);
-  const { selectedDate, setSelectedDate } = useSelectedDate()
+  const { selectedDate, setSelectedDate } = useSelectedDate();
   const [yearUI, setYearUI] = useState<number>(new Date().getFullYear());
   const [dayOfYearUI, setDayOfYearUI] = useState<number>(
     Math.floor(
@@ -79,7 +76,7 @@ export function ControlPanel() {
       debouncedDayOfYear - 1
     );
     setSelectedDate(newDate);
-  }, [debouncedYear, debouncedDayOfYear]);
+  }, [debouncedYear, debouncedDayOfYear, setSelectedDate]);
 
   useEffect(() => {
     const year = selectedDate.getFullYear();
@@ -161,7 +158,11 @@ export function ControlPanel() {
                       )}
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
-                      {selectedDate ? format(selectedDate, "PPP") : <span>Pick a date</span>}
+                      {selectedDate ? (
+                        format(selectedDate, "PPP")
+                      ) : (
+                        <span>Pick a date</span>
+                      )}
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className=" p-0" align="start">
