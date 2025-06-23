@@ -8,6 +8,7 @@ import { Orbit } from "./orbit";
 import { useSelectedPlanet } from "@/context/view-selected-planet";
 import type { PlanetType } from "@/context/view-selected-planet";
 import { useEffect } from "react";
+import { useSelectedDate } from "@/context/view-selected-date";
 
 type PlanetProps = {
   name: PlanetType;
@@ -21,11 +22,11 @@ type PlanetProps = {
   mean_anomaly: number;
   mean_motion: number;
   epoch: number;
-  selected_date: Date;
 };
 
 export default function Planet(planet: PlanetProps) {
   const { selectedPlanet, setSelectedPlanet } = useSelectedPlanet();
+  const { selectedDate } = useSelectedDate();
 
   const planet_position = useMemo(() => {
     return get_position_at_selected_date(
@@ -37,9 +38,9 @@ export default function Planet(planet: PlanetProps) {
       planet.longitude_of_ascending_node,
       planet.mean_anomaly,
       planet.epoch,
-      planet.selected_date
+      selectedDate
     );
-  }, [planet.selected_date]);
+  }, [selectedDate]);
 
   const orbit_points = useMemo(() => {
     return get_orbit_points(
@@ -84,28 +85,4 @@ export default function Planet(planet: PlanetProps) {
       <Orbit points={orbit_points} />
     </>
   );
-}
-{
-  /*
-
-      <mesh>
-        <sphereGeometry
-          args={[
-            planet.radius * SCALE_FACTOR_OBJECT,
-            16,
-            16,
-          ]}
-        />
-        <meshStandardMaterial color={planet.color || "orange"} />
-      </mesh>
-
-
-
-        <EarthModel
-          scale={[
-            planet.radius * SCALE_FACTOR_ORBIT,
-            planet.radius * SCALE_FACTOR_ORBIT,
-            planet.radius * SCALE_FACTOR_ORBIT,
-          ]}
-        /> */
 }
