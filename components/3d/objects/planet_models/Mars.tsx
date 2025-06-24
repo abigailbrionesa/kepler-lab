@@ -2,13 +2,25 @@
 import { useGLTF } from "@react-three/drei";
 import { Mesh } from "three";
 import { useImperativeHandle, useRef, forwardRef } from "react";
+import * as THREE from 'three'
+import { GLTF } from 'three-stdlib'
+import type { Group } from "three";
 
 interface MarsModelProps extends React.ComponentProps<"group"> {
   scale: number;
 }
 
-export const MarsModel = forwardRef<Mesh, MarsModelProps>((props, ref) => {
-  const { nodes, materials } = useGLTF("/models/mars.glb") as any;
+type GLTFResult = GLTF & {
+  nodes: {
+    Cube008: THREE.Mesh
+  }
+  materials: {
+    ['Default OBJ.005']: THREE.MeshStandardMaterial
+  }
+}
+
+export const MarsModel = forwardRef<Mesh | Group, MarsModelProps>((props, ref) => {
+  const { nodes, materials } = useGLTF("/models/mars.glb") as unknown as GLTFResult;
   const meshRef = useRef<Mesh>(null);
 
   useImperativeHandle(ref, () => meshRef.current!, []);

@@ -2,13 +2,26 @@
 import { useGLTF } from "@react-three/drei";
 import { Mesh } from "three";
 import { useImperativeHandle, useRef, forwardRef } from "react";
+import * as THREE from 'three'
+import { GLTF } from 'three-stdlib'
+import type { Group } from "three";
 
 interface VenusModelProps extends React.ComponentProps<"group"> {
   scale: number;
 }
 
-export const VenusModel = forwardRef<Mesh, VenusModelProps>((props, ref) => {
-  const { nodes, materials } = useGLTF("/models/venus.glb") as any;
+type GLTFResult = GLTF & {
+  nodes: {
+    cylindrically_mapped_sphereMesh: THREE.Mesh
+  }
+  materials: {
+    ['Default OBJ']: THREE.MeshStandardMaterial
+  }
+}
+
+
+export const VenusModel = forwardRef<Mesh | Group, VenusModelProps>((props, ref) => {
+  const { nodes, materials } = useGLTF("/models/venus.glb") as unknown as GLTFResult;
   const meshRef = useRef<Mesh>(null);
 
   useImperativeHandle(ref, () => meshRef.current!, []);

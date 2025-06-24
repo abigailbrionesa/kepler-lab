@@ -2,13 +2,26 @@
 import React, { forwardRef, useRef, useImperativeHandle } from "react";
 import { useGLTF } from "@react-three/drei";
 import { Mesh } from "three";
+import * as THREE from 'three'
+import { GLTF } from 'three-stdlib'
+import type { Group } from "three";
 
 interface JupiterModelProps extends React.ComponentProps<"group"> {
   scale: number;
 }
 
-export const JupiterModel = forwardRef<Mesh, JupiterModelProps>((props, ref) => {
-  const { nodes, materials } = useGLTF("/models/jupiter.glb") as any;
+type GLTFResult = GLTF & {
+  nodes: {
+    cubemap: THREE.Mesh
+  }
+  materials: {
+    None: THREE.MeshStandardMaterial
+  }
+}
+
+
+export const JupiterModel = forwardRef<Mesh | Group, JupiterModelProps>((props, ref) => {
+  const { nodes, materials } = useGLTF("/models/jupiter.glb") as unknown as GLTFResult;
   const meshRef = useRef<Mesh>(null);
 
   useImperativeHandle(ref, () => meshRef.current!, []);
@@ -21,7 +34,7 @@ export const JupiterModel = forwardRef<Mesh, JupiterModelProps>((props, ref) => 
         ref={meshRef}
         castShadow
         receiveShadow
-        geometry={nodes["Node_#0"].geometry}
+        geometry={nodes.cubemap.geometry}
         material={materials.None}
         scale={scale}
       />

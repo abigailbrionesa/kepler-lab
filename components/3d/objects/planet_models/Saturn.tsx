@@ -1,39 +1,52 @@
 "use client";
 import React, { forwardRef, useRef, useImperativeHandle } from "react";
 import { useGLTF } from "@react-three/drei";
-import { Mesh } from "three";
+import * as THREE from "three";
+import { GLTF } from "three-stdlib";
+import type { Group } from "three";
+import type { Mesh } from "three";
 
 interface SaturnModelProps extends React.ComponentProps<"group"> {
   scale: number;
 }
 
-export const SaturnModel = forwardRef<Mesh, SaturnModelProps>((props, ref) => {
-  const { nodes, materials } = useGLTF("/models/saturn.glb") as any;
-  const meshRef = useRef<Mesh>(null);
+type GLTFResult = GLTF & {
+  nodes: {
+    Saturn001: THREE.Mesh;
+    RingsTop: THREE.Mesh;
+    RingsBottom: THREE.Mesh;
+  };
+  materials: {
+    None: THREE.MeshStandardMaterial;
+    SaturnRings: THREE.MeshStandardMaterial;
+  };
+};
 
-  useImperativeHandle(ref, () => meshRef.current!, []);
+export const SaturnModel = forwardRef<Group | Mesh, SaturnModelProps>((props, ref) => {
+  const { nodes, materials } = useGLTF("/models/saturn.glb") as unknown as GLTFResult;
+  const groupRef = useRef<Group>(null);
+
+  useImperativeHandle(ref, () => groupRef.current!, []);
 
   const { scale, ...rest } = props;
 
   return (
-    <group {...rest} dispose={null}>
-
-        <mesh
-          ref={meshRef}
-          castShadow
-          scale={scale}
-          receiveShadow
-          geometry={nodes.mesh_0.geometry}
-          material={materials.None}
-        />
-        <mesh
-          castShadow
-          scale={scale}
-          receiveShadow
-          geometry={nodes.mesh_0_1.geometry}
-          material={materials.None}
-        />
-     
+    <group ref={groupRef} {...rest} dispose={null}>
+      <mesh
+        geometry={nodes.Saturn001.geometry}
+        scale={scale}
+        material={materials.None}
+      />
+      <mesh
+        geometry={nodes.RingsTop.geometry}
+        scale={scale}
+        material={materials.SaturnRings}
+      />
+      <mesh
+        geometry={nodes.RingsBottom.geometry}
+        scale={scale}
+        material={materials.SaturnRings}
+      />
     </group>
   );
 });
