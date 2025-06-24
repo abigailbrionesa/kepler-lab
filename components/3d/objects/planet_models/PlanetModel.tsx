@@ -10,13 +10,14 @@ import { UranusModel } from "./Uranus";
 import { VenusModel } from "./Venus";
 import { forwardRef } from "react";
 import type { Mesh } from "three";
+import type { Group } from "three";
 
 type PlanetModelProps = {
   name: PlanetType;
   scale: number;
 } & React.ComponentProps<'group'>;  
 
-const PlanetModel = forwardRef<Mesh, PlanetModelProps>((props, ref) => {
+const PlanetModel = forwardRef<Mesh | Group, PlanetModelProps>((props, ref) => {
   const { name, scale, ...rest } = props;
 
   switch (name) {
