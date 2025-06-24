@@ -12,7 +12,9 @@ import { useRef } from "react";
 import type { Object3D } from "three";
 import { useOccludableRefs } from "@/context/occludable-refs-context";
 import { useCallback } from "react";
+import { cn } from "@/lib/utils";
 import type { Mesh } from "three";
+import { useState } from "react";
 
 type PlanetProps = {
   name: PlanetType;
@@ -33,6 +35,7 @@ export default function Planet(planet: PlanetProps) {
   const { selectedDate } = useSelectedDate();
   const planetRef = useRef<any>(null);
   const { refs, registerRef, unregisterRef } = useOccludableRefs();
+  const [hidden, set] = useState<boolean>(false);
 
   const isSelected = selectedPlanet === planet.name;
 
@@ -83,7 +86,7 @@ export default function Planet(planet: PlanetProps) {
         <PlanetModel
           ref={refCallback}
           name={planet.name}
-          scale={0.1} //radius?
+          scale={planet.radius * 0.0003}
           position={planet_position}
           onClick={handlePlanetClick}
         />
@@ -93,8 +96,12 @@ export default function Planet(planet: PlanetProps) {
         <Html
           center
           zIndexRange={[2, 2]}
+          onOcclude={set}
           occlude={occludeRefs as React.RefObject<Object3D>[]}
-          className=" transition-all  cursor-pointer z-50 "
+          className={cn(
+            "transition-all duration-200 cursor-pointer z-50",
+            hidden ? "opacity-0 scale-90" : "opacity-100 scale-100"
+          )}
         >
           <div onClick={handlePlanetClick}>
             <Badge className="absolute -translate-x-1/2 bottom-3 ">
