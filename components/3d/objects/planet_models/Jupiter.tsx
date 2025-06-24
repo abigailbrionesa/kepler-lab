@@ -23,7 +23,6 @@ export const JupiterModel = forwardRef<Mesh, JupiterModelProps>((props, ref) => 
         receiveShadow
         geometry={nodes["Node_#0"].geometry}
         material={materials.None}
-        position={[-500, -467.563, -500]}
         scale={scale}
       />
     </group>
