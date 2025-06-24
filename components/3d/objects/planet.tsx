@@ -83,7 +83,7 @@ export default function Planet(planet: PlanetProps) {
         <PlanetModel
           ref={refCallback}
           name={planet.name}
-          scale={0.00009 * planet.radius}
+          scale={0.1} //radius?
           position={planet_position}
           onClick={handlePlanetClick}
         />
