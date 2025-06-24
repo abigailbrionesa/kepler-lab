@@ -48,7 +48,7 @@ export const SpaceControls = () => {
 
     const cameraDistance = distanceToPlanet + planet.radius_km;
 
-    const fixedCameraDistance = 1000;
+    // const fixedCameraDistance = 1000;
 
     return direction.clone().multiplyScalar(cameraDistance);
   }, [planetPosition, planet]);
