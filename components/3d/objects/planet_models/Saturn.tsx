@@ -17,21 +17,23 @@ export const SaturnModel = forwardRef<Mesh, SaturnModelProps>((props, ref) => {
 
   return (
     <group {...rest} dispose={null}>
-      <group position={[-1165.45, -451.019, -1165.45]} scale={scale}>
+
         <mesh
           ref={meshRef}
           castShadow
+          scale={scale}
           receiveShadow
           geometry={nodes.mesh_0.geometry}
           material={materials.None}
         />
         <mesh
           castShadow
+          scale={scale}
           receiveShadow
           geometry={nodes.mesh_0_1.geometry}
           material={materials.None}
         />
-      </group>
+     
     </group>
   );
 });
