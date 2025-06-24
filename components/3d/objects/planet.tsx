@@ -15,7 +15,7 @@ import { useCallback } from "react";
 import { cn } from "@/lib/utils";
 import type { Mesh } from "three";
 import { useState } from "react";
-
+import type { Group } from "three";
 type PlanetProps = {
   name: PlanetType;
   radius: number;
@@ -33,7 +33,7 @@ type PlanetProps = {
 export default function Planet(planet: PlanetProps) {
   const { selectedPlanet, setSelectedPlanet } = useSelectedPlanet();
   const { selectedDate } = useSelectedDate();
-  const planetRef = useRef<any>(null);
+  const planetRef = useRef<Mesh |Group>(null);
   const { refs, registerRef, unregisterRef } = useOccludableRefs();
   const [hidden, set] = useState<boolean>(false);
 
