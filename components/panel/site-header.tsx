@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "./theme-toggle"
+import CameraControlsMenu from "./camera-controls-menu"
 
 const CustomOrbitIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -61,9 +62,12 @@ export function SiteHeader() {
           </h1>
         </div>
 
+       
+
         <div className="flex items-center gap-2">
-          {/* Theme Toggle */}
-          <ThemeToggle />
+           <CameraControlsMenu/>
+           
+           <ThemeToggle />
 
           {selectedCategory && (
             <>
