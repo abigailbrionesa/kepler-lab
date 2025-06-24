@@ -15,34 +15,33 @@ import type { PlanetData } from "./objects/planets";
 export default function SolarSystem() {
   const planets_data = planets_json as PlanetData[];
 
-  const { selectedPlanet,  } = useSelectedPlanet();
+  const { selectedPlanet } = useSelectedPlanet();
 
   return (
-    <Suspense fallback={<div>Loading solar system...</div>}>
-      <div
-        className={cn(
-          "w-full h-full text-white custom-border relative bg-black z-0",
-          selectedPlanet ? "" : ""
-        )}
+    <div
+      className={cn(
+        "w-full h-full text-white custom-border relative bg-black z-0",
+        selectedPlanet ? "" : ""
+      )}
+    >
+      {selectedPlanet && <SelectedPlanetHeader />}
+      <Canvas
+        gl={{ antialias: false }}
+        camera={{
+          position: [-1000, 500, 1000],
+          near: 100,
+          far: 100_000,
+          fov: 45,
+        }}
       >
-        {selectedPlanet && <SelectedPlanetHeader />}
-
-        <Canvas
-          gl={{ antialias: false }}
-          camera={{
-            position: [-1000, 500, 1000],
-            near: 100,
-            far: 100_000,
-            fov: 45,
-          }}
-        >
+        <Suspense fallback={null}>
           <Sun />
           <SpaceControls />
           <Stars number={80000} size={3} />
           <Planets planets_data={planets_data} />
           <Light />
-        </Canvas>
-      </div>
-    </Suspense>
+        </Suspense>
+      </Canvas>
+    </div>
   );
 }
