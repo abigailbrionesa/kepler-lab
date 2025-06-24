@@ -1,28 +1,32 @@
-import React, { forwardRef } from 'react';
-import { useGLTF } from '@react-three/drei';
-import { Mesh } from 'three';
+"use client"
+import { useGLTF } from "@react-three/drei";
+import { Mesh } from "three";
+import { useImperativeHandle, useRef, forwardRef } from "react";
 
-interface NeptuneModelProps extends React.ComponentProps<'group'> {
+interface NeptuneModelProps extends React.ComponentProps<"group"> {
   scale: number;
-  visible?: boolean;
 }
 
+export const NeptuneModel = forwardRef<Mesh, NeptuneModelProps>(
+  (props, ref) => {
+    const { nodes, materials } = useGLTF("/models/neptune.glb") as any;
+    const meshRef = useRef<Mesh>(null);
 
-export const NeptuneModel = forwardRef<Mesh, NeptuneModelProps>((props, ref) => {
-  const { nodes, materials } = useGLTF('/models/neptune.glb') as any;
+    useImperativeHandle(ref, () => meshRef.current!, []);
 
-  const { scale, visible = true, ...rest } = props;
+    const { ...rest } = props;
 
-  return (
-    <group {...rest} dispose={null}>
-      <mesh
-        ref={ref}
-        geometry={nodes.Neptune.geometry}
-        material={materials['Default OBJ.001']}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={scale}
-        visible={visible} 
-      />
-    </group>
-  );
-});
+    return (
+      <group {...rest} dispose={null}>
+        <mesh
+          ref={meshRef}
+          geometry={nodes.Neptune.geometry}
+          material={materials["Default OBJ.001"]}
+          scale={props.scale}
+        />
+      </group>
+    );
+  }
+);
+
+NeptuneModel.displayName = "NeptuneModel";
