@@ -9,30 +9,31 @@ import { SelectedDateProvider } from "@/context/view-selected-date";
 import { SelectedPlanetProvider } from "@/context/view-selected-planet";
 import { IsObjectPivotProvider } from "@/context/view-is-object-pivot";
 import { OccludableRefsProvider } from "@/context/occludable-refs-context";
+import { CameraControlProvider } from "@/context/camera-control-context";
 export default function Page() {
   return (
     <SidebarProvider>
       <RightSidebarProvider>
         <ViewConfigProvider>
-          <OccludableRefsProvider> 
-          <SelectedCategoryProvider>
-            <SelectedDateProvider>
-              <SelectedPlanetProvider>
-                <IsObjectPivotProvider> 
-                <AppSidebar variant="inset" />
-                <SidebarInset>
-                  <MainContent/>
-                </SidebarInset>
-                <RightSidebar />
-                </IsObjectPivotProvider>
-              </SelectedPlanetProvider>
-            </SelectedDateProvider>
-          </SelectedCategoryProvider>
+          <OccludableRefsProvider>
+            <SelectedCategoryProvider>
+              <SelectedDateProvider>
+                <SelectedPlanetProvider>
+                  <IsObjectPivotProvider>
+                    <CameraControlProvider>
+                      <AppSidebar variant="inset" />
+                      <SidebarInset>
+                        <MainContent />
+                      </SidebarInset>
+                      <RightSidebar />
+                    </CameraControlProvider>
+                  </IsObjectPivotProvider>
+                </SelectedPlanetProvider>
+              </SelectedDateProvider>
+            </SelectedCategoryProvider>
           </OccludableRefsProvider>
         </ViewConfigProvider>
       </RightSidebarProvider>
     </SidebarProvider>
-
-
   );
 }
