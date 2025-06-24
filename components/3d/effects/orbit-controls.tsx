@@ -12,20 +12,19 @@ import { useState } from "react";
 import * as THREE from "three";
 import { useIsObjectPivot } from "@/context/view-is-object-pivot";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
+import { CameraControls } from "@react-three/drei";
+import type CameraControlsImpl from 'camera-controls';
+
+const ORIGIN = new THREE.Vector3(0, 0, 0);
 
 export const SpaceControls = () => {
   const { selectedPlanet } = useSelectedPlanet();
   const { selectedDate } = useSelectedDate();
   const { isObjectPivot } = useIsObjectPivot();
 
-  const controlsRef = useRef<OrbitControlsImpl>(null);
-
+  const controlsRef = useRef<CameraControlsImpl | null>(null);
   const lastCameraPositionRef = useRef<THREE.Vector3 | null>(null);
-  const [movingToTarget, setMovingToTarget] = useState(false);
-  const [targetDestination, setTargetDestination] = useState<THREE.Vector3>(
-    new THREE.Vector3(0, 0, 0)
-  );
-
+  
   const planet = planets_data.find((p) => p.name === selectedPlanet);
 
   const planetPosition = useMemo(() => {
@@ -45,85 +44,60 @@ export const SpaceControls = () => {
   }, [selectedPlanet, selectedDate, planet]);
 
   const targetCameraPosition = useMemo(() => {
-    if (!planetPosition) return null;
-    if (!planet) return null;
+    if (!planetPosition || !planet) return null;
 
     const direction = planetPosition.clone().normalize();
     const distanceToPlanet = planetPosition.length();
     const cameraDistance = distanceToPlanet + planet.radius_km * 0.2;
-    const offsetPosition = direction.clone().multiplyScalar(cameraDistance);
 
-    return offsetPosition;
+    return direction.clone().multiplyScalar(cameraDistance);
   }, [planetPosition, planet]);
 
   useEffect(() => {
-    if (selectedPlanet && controlsRef.current) {
-      const camera = controlsRef.current.object;
-
-      lastCameraPositionRef.current = camera.position.clone();
-
-      setMovingToTarget(true);
-    }
-
-    if (
-      !selectedPlanet &&
-      lastCameraPositionRef.current &&
-      controlsRef.current
-    ) {
-      setMovingToTarget(true);
-    }
-  }, [selectedPlanet, planet]);
-
-  useEffect(() => {
-    const newTarget =
-      isObjectPivot && planetPosition
-        ? planetPosition
-        : new THREE.Vector3(0, 0, 0);
-
-    setTargetDestination(newTarget);
-  }, [isObjectPivot, planetPosition]);
-
-  useFrame(() => {
     if (!controlsRef.current) return;
 
-    const camera = controlsRef.current.object;
+    const controls = controlsRef.current;
 
-    if (controlsRef.current) {
-      if (movingToTarget) {
-        const destination =
-          selectedPlanet && targetCameraPosition
-            ? targetCameraPosition
-            : lastCameraPositionRef.current;
-
-        if (destination) {
-          camera.position.lerp(destination, 0.1);
-
-          if (camera.position.distanceTo(destination) < 0.1) {
-            camera.position.copy(destination);
-            setMovingToTarget(false);
-          }
-
-          controlsRef.current.update();
-        }
-      }
-
-      if (targetDestination) {
-        controlsRef.current.target.lerp(targetDestination, 0.1);
-
-        if (controlsRef.current.target.distanceTo(targetDestination) < 0.01) {
-          controlsRef.current.target.copy(targetDestination);
-        }
-
-        controlsRef.current.update();
-      }
+    if (selectedPlanet && planetPosition && targetCameraPosition) {
+      lastCameraPositionRef.current = controls.camera.position.clone();
+      controls.setLookAt(
+        targetCameraPosition.x,
+        targetCameraPosition.y,
+        targetCameraPosition.z,
+        planetPosition.x,
+        planetPosition.y,
+        planetPosition.z,
+        true
+      );
     }
-  });
+
+    if (!selectedPlanet && lastCameraPositionRef.current) {
+      const lastPos = lastCameraPositionRef.current;
+      controls.setLookAt(
+        lastPos.x,
+        lastPos.y,
+        lastPos.z,
+        ORIGIN.x,
+        ORIGIN.y,
+        ORIGIN.z,
+        true
+      );
+    }
+  }, [selectedPlanet, planetPosition, targetCameraPosition]);
+
+  useEffect(() => {
+    if (!controlsRef.current) return;
+
+    const controls = controlsRef.current;
+
+    const newTarget = isObjectPivot && planetPosition ? planetPosition : ORIGIN;
+
+    controls.setTarget(newTarget.x, newTarget.y, newTarget.z, true);
+  }, [isObjectPivot, planetPosition]);
 
   return (
     <>
-      <OrbitControls ref={controlsRef} enableZoom={true} />
-
-  
+      <CameraControls ref={controlsRef} />
     </>
   );
 };
