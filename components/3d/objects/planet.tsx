@@ -15,7 +15,9 @@ import { useCallback } from "react";
 import { cn } from "@/lib/utils";
 import type { Mesh } from "three";
 import { useState } from "react";
+import { useTransition, animated as a3 } from "@react-spring/three";
 import type { Group } from "three";
+import { useViewConfig } from "@/context/view-config-context";
 type PlanetProps = {
   name: PlanetType;
   radius: number;
@@ -33,9 +35,10 @@ type PlanetProps = {
 export default function Planet(planet: PlanetProps) {
   const { selectedPlanet, setSelectedPlanet } = useSelectedPlanet();
   const { selectedDate } = useSelectedDate();
-  const planetRef = useRef<Mesh |Group>(null);
+  const planetRef = useRef<Mesh | Group>(null);
   const { refs, registerRef, unregisterRef } = useOccludableRefs();
   const [hidden, set] = useState<boolean>(false);
+  const { viewConfig } = useViewConfig();
 
   const isSelected = selectedPlanet === planet.name;
 
@@ -80,16 +83,26 @@ export default function Planet(planet: PlanetProps) {
     },
     [registerRef, unregisterRef]
   );
+
+  const transitions = useTransition(isSelected, {
+    from: { scale: 0, opacity: 0 },
+    enter: { scale: 0.3 + planet.radius * 0.00001, opacity: 1 },
+    leave: { scale: 0, opacity: 0 },
+    config: { tension: 300, friction: 30 },
+  });
+
   return (
     <>
-      {isSelected && (
-        <PlanetModel
-          ref={refCallback}
-          name={planet.name}
-          scale={planet.radius * 0.0003}
-          position={planet_position}
-          onClick={handlePlanetClick}
-        />
+      {transitions((style, item) =>
+        item ? (
+          <a3.group
+            scale={style.scale}
+            position={planet_position}
+            onClick={handlePlanetClick}
+          >
+            <PlanetModel ref={refCallback} name={planet.name} scale={1} />
+          </a3.group>
+        ) : null
       )}
 
       <group position={planet_position}>
@@ -99,23 +112,29 @@ export default function Planet(planet: PlanetProps) {
           onOcclude={set}
           occlude={occludeRefs as React.RefObject<Object3D>[]}
           className={cn(
-            "transition-all duration-200 cursor-pointer z-50",
+            "transition-all duration-200 cursor-pointer z-50 group ",
             hidden ? "opacity-0 scale-90" : "opacity-100 scale-100"
           )}
         >
           <div onClick={handlePlanetClick}>
-            <Badge className="absolute -translate-x-1/2 bottom-3 ">
-              {planet.name}
-            </Badge>
+            {viewConfig.labels && (
+              <Badge
+                variant={"outline"}
+                className="absolute group-hover:-translate-y-1 transition-all -translate-x-1/2
+             bottom-3  backdrop-blur- bg-background/85"
+              >
+                {planet.name}
+              </Badge>
+            )}
             <span
-              className="absolute border-2 border-white w-4 h-4 group-hover:w-6 group-hover:h-6 rounded-full -translate-x-1/2 -translate-y-1/2 transition-all"
+              className="absolute border-2 border-white w-4 h-4 group-hover:w-5 group-hover:h-5 rounded-full -translate-x-1/2 -translate-y-1/2 transition-all"
               style={{ backgroundColor: planet.color }}
             ></span>
           </div>
         </Html>
       </group>
 
-      <Orbit points={orbit_points} />
+      {viewConfig.orbits && <Orbit points={orbit_points} />}
     </>
   );
 }
