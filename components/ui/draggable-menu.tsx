@@ -6,14 +6,18 @@ import { CardTitle } from "../ui/card";
 import { motion, useDragControls } from "framer-motion";
 import { GripVertical, X, Minimize2 } from "lucide-react";
 import type { RefObject } from "react";
+import { cn } from "@/lib/utils";
+import { AnimatePresence } from "framer-motion";
 export default function DraggablePanel({
   dragConstraints,
   title,
   children,
+  position
 }: {
   dragConstraints: RefObject<HTMLDivElement | null>;
   title: string;
   children: React.ReactNode;
+  position?: string;
 }) {
   const dragControls = useDragControls();
   const [isMinimized, setIsMinimized] = useState(false);
@@ -26,7 +30,7 @@ export default function DraggablePanel({
       dragMomentum={false}
       dragConstraints={dragConstraints.current ? dragConstraints : undefined}
       dragElastic={0}
-      className="absolute left-5 top-5 z-10"
+      className={cn("absolute z-10", position)}
     >
       <div
         className="w-64 
@@ -59,11 +63,20 @@ export default function DraggablePanel({
           </div>
         </div>
 
-        {!isMinimized && (
-          <div className="px-4 py-1 backdrop-blur-sm rounded-xl border-1 border-secondary">
-            {children}
-          </div>
-        )}
+       <AnimatePresence initial={false}>
+          {!isMinimized && (
+            <motion.div
+              key="panel-content"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="px-4 py-1 backdrop-blur-sm rounded-xl border-1 border-secondary overflow-hidden"
+            >
+              {children}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   );
