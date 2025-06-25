@@ -1,19 +1,24 @@
 "use client";
 import { useSelectedCategory } from "@/context/selected-category-context";
 import SolarSystem from "@/components/3d/solar-system";
-import { ControlPanel } from "@/components/panel/control-panel";
+import ControlPanel from "@/components/panel/control-panel";
 import { SiteHeader } from "@/components/panel/site-header";
-
+import { useRef } from "react";
+import { useSelectedPlanet } from "@/context/view-selected-planet";
+import SelectedPlanetHeader from "@/components/panel/selected-planet-header";
 export default function MainContent() {
   const { selectedCategory } = useSelectedCategory();
-
+  const { selectedPlanet } = useSelectedPlanet();
+  const containerRef = useRef<HTMLDivElement>(null);
   return (
     <div className="flex flex-1 flex-col border-secondary border-1  rounded-2xl">
       <SiteHeader />
-      <div className="flex flex-1 relative">
-        {selectedCategory && <ControlPanel />}
-        <div className="flex flex-1">
-          <div className="flex h-[calc(100vh-80px)] w-full items-center justify-center rounded-lg">
+<div ref={containerRef} className="relative flex flex-1 flex-col">
+        <div className="@container/main flex flex-1 flex-col">
+
+          {selectedCategory && <ControlPanel dragConstraints={containerRef} />}
+          {selectedPlanet && <SelectedPlanetHeader />}
+          <div className="flex flex-1">
             <SolarSystem />
           </div>
         </div>
