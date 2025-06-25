@@ -26,7 +26,7 @@ import { useSelectedDate } from "@/context/view-selected-date";
 import isEqual from "lodash/isEqual";
 import { motion, useDragControls } from "framer-motion";
 import { GripVertical, X, Minimize2 } from "lucide-react";
-
+import type { RefObject } from "react";
 function useDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
@@ -43,7 +43,11 @@ function useDebounce<T>(value: T, delay: number): T {
   return debouncedValue;
 }
 
-export function ControlPanel() {
+export default function ControlPanel({
+  dragConstraints,
+}: {
+  dragConstraints: RefObject<HTMLDivElement | null>;
+}) {
   const dragControls = useDragControls();
   const [isMinimized, setIsMinimized] = useState(false);
 
@@ -138,12 +142,13 @@ export function ControlPanel() {
       dragControls={dragControls}
       dragListener={false}
       dragMomentum={false}
+      dragConstraints={dragConstraints.current ? dragConstraints : undefined}
       dragElastic={0}
       className="absolute left-20 top-20 z-10"
     >
       <div
         className="w-64 
-    absolute  z-10 
+      z-10 
        select-none
       space-y-4 overflow-y-auto h-min 
     max-h-[calc(100vh-80px)] "
