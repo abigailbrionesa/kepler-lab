@@ -6,42 +6,29 @@ import Stars from "./objects/stars";
 import { Light } from "./effects/light";
 import Planets from "./objects/planets";
 import { SpaceControls } from "./effects/orbit-controls";
-import { useSelectedPlanet } from "@/context/view-selected-planet";
-import { cn } from "@/lib/utils";
-import SelectedPlanetHeader from "../panel/selected-planet-header";
 import planets_json from "../../lib/data/planets.json";
 import type { PlanetData } from "./objects/planets";
 
 export default function SolarSystem() {
   const planets_data = planets_json as PlanetData[];
 
-  const { selectedPlanet } = useSelectedPlanet();
-
   return (
-    <div
-      className={cn(
-        "w-full h-full text-white custom-border relative bg-black z-0",
-        selectedPlanet ? "" : ""
-      )}
+    <Canvas
+      gl={{ antialias: false }}
+      camera={{
+        position: [-1000, 500, 1000],
+        near: 100,
+        far: 100_000,
+        fov: 45,
+      }}
     >
-      {selectedPlanet && <SelectedPlanetHeader />}
-      <Canvas
-        gl={{ antialias: false }}
-        camera={{
-          position: [-1000, 500, 1000],
-          near: 100,
-          far: 100_000,
-          fov: 45,
-        }}
-      >
-        <Suspense fallback={null}>
-          <Sun />
-          <SpaceControls />
-          <Stars number={80000} size={3} />
-          <Planets planets_data={planets_data} />
-          <Light />
-        </Suspense>
-      </Canvas>
-    </div>
+      <Suspense fallback={null}>
+        <Sun />
+        <SpaceControls />
+        <Stars number={80000} size={3} />
+        <Planets planets_data={planets_data} />
+        <Light />
+      </Suspense>
+    </Canvas>
   );
 }
