@@ -120,11 +120,6 @@ const data = {
       icon: BookOpenIcon,
     },
     {
-      title: "Storyline",
-      url: "#",
-      icon: BookOpenIcon,
-    },
-    {
       title: "Saved Objects",
       url: "#",
       icon: StarIcon,
