@@ -132,7 +132,7 @@ export default function ControlsPanel({
 
   return (
     <>
-      <DraggablePanel dragConstraints={dragConstraints} title="Controls">
+      <DraggablePanel position="left-5 top-5" dragConstraints={dragConstraints} title="Controls">
         <Accordion
           type="single"
           collapsible
@@ -232,14 +232,14 @@ export default function ControlsPanel({
             <DraggableMenuItem
               accordionValue="filters"
               title={
-                <h3 className="text-sm font-medium">
+                <>
                   Filters
                   {isUpdatingFilters && (
                     <span className="ml-2 text-xs text-muted-foreground italic">
                       (updating...)
                     </span>
                   )}
-                </h3>
+                </>
               }
               subtitle="Orbital & physical parameters"
             >
