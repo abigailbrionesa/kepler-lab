@@ -82,15 +82,15 @@ html {
 }
 
 .dark {
-  --background: oklch(0.18 0.0846 266.3);
-  --foreground: oklch(0.96 0.0028 128.49);
+  --background: oklch(16.932% 0.03326 44.084);
+  --foreground: oklch(90.696% 0.01315 71.175);
   --card:  oklch(0.3 0.0206 257.27);
   --card-foreground: oklch(1 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.72 0.0911 69.95);
-  --primary-foreground: oklch(0.18 0.0846 266.3);
-  --secondary: oklch(0.27 0 none);
+  --primary: oklch(77.67% 0.13082 69.227);
+  --primary-foreground: oklch(16.932% 0.03326 44.084);
+  --secondary: oklch(58.119% 0.13689 59.531);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
@@ -123,7 +123,7 @@ html {
 
 @layer components {
   .custom-border {
-    @apply border-3 border-orange-400
+    @apply border-1 border-secondary
 }
 }
 
