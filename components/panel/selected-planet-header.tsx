@@ -1,36 +1,51 @@
 import { useSelectedPlanet } from "@/context/view-selected-planet";
 import { Button } from "../ui/button";
 import { useIsObjectPivot } from "@/context/view-is-object-pivot";
+import { X } from "lucide-react";
+import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
+import { useEffect } from "react";
+import { useViewConfig } from "@/context/view-config-context";
 
 function SelectedPlanetHeader() {
   const { selectedPlanet, setSelectedPlanet } = useSelectedPlanet();
-  const { isObjectPivot, togglePivot } = useIsObjectPivot();
-  return (
-    <div className="w-full absolute z-10 p-2 shadow-lg">
-    
-      <div className="w-full flex justify-between p-1 custom-border items-center">
-      <div>hola</div>
-       
+  const { isObjectPivot, setIsObjectPivot } = useIsObjectPivot();
 
-        <div className="bg-orange-600 text-white p-5 py-3">{selectedPlanet} </div>
-        <Button
-          variant={"ghost"}
-          onClick={() => setSelectedPlanet(undefined)}
-          className="float-right"
-        >
-          Cerrar X
-        </Button>
+  return (
+    <div className="w-full absolute z-10 border-b-1  border-secondary backdrop-blur-sm  ">
+      <div className="flex justify-between items-center">
+        <h1 className="uppercase tracking-widest px-l-4 lg:px-6">
+          {selectedPlanet}
+        </h1>
+
+        <div className="gap-4 flex items-center">
+          <span className="text-xs">Rotate around</span>
+          <ToggleGroup
+            type="single"
+            variant="outline"
+            value={isObjectPivot ? "planet" : "sun"}
+            onValueChange={(val) => {
+              if (val) setIsObjectPivot(val === "planet");
+            }}
+          >
+            <ToggleGroupItem
+              value="planet"
+              className="px-4"
+              aria-label="Rotate around planet"
+            >
+              Planet
+            </ToggleGroupItem>
+            <ToggleGroupItem value="sun" aria-label="Rotate around sun">
+              Sun
+            </ToggleGroupItem>
+          </ToggleGroup>
 
           <Button
-          variant="ghost"
-          size="sm"
-          className="gap-1.5"
-          onClick={togglePivot}
-        >
-          <span className="ml-2">
-            {isObjectPivot ? "Rotating around object" : "Rotating around sun"}
-          </span>
-        </Button>
+            onClick={() => setSelectedPlanet(undefined)}
+            className="rounded-none "
+          >
+            <X />
+          </Button>
+        </div>
       </div>
     </div>
   );
