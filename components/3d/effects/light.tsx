@@ -1,7 +1,5 @@
-import { Bloom, EffectComposer } from '@react-three/postprocessing';
-import { TiltShift2 } from '@react-three/postprocessing';
-import { ToneMapping } from '@react-three/postprocessing';
-
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
+import { ToneMapping } from "@react-three/postprocessing";
 export const Light = () => {
   return (
     <>
@@ -14,10 +12,13 @@ export const Light = () => {
           intensity={0.3}
           luminanceSmoothing={1}
         />
-
-      <TiltShift2 samples={4} blur={0.04} />
-      <ToneMapping />
+        <ToneMapping />
       </EffectComposer>
     </>
   );
 };
+{
+  /*  import { TiltShift2 } from '@react-three/postprocessing';
+import { ToneMapping } from '@react-three/postprocessing';
+<TiltShift2 samples={4} blur={0.04} />   */
+}
