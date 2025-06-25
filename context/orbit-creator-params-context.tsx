@@ -23,7 +23,7 @@ const OrbitalParamsContext = createContext<OrbitalParams | null>(null);
 
 export function OrbitCreatorParamsProvider({ children }: { children: React.ReactNode }) {
   const [params, setParamsState] = useState<Omit<OrbitalParams, "setParams">>({
-    name: "Custom Planet",
+    name: "Custom",
     color: "red",
     semiMajorAxis: 0.47,
     eccentricity: 0.2,
