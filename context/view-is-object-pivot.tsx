@@ -10,7 +10,7 @@ interface PivotContextType {
 }
 
 const defaultContext: PivotContextType = {
-  isObjectPivot: false,
+  isObjectPivot: true,
   setIsObjectPivot: () => {},
   togglePivot: () => {},
 }
