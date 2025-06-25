@@ -80,14 +80,6 @@ export function SiteHeader() {
                 <DropdownMenuContent align="end" className="w-56">
                   <DropdownMenuLabel>Display Options</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuCheckboxItem checked={viewConfig.grid} onCheckedChange={() => toggleOption("grid")}>
-                    <GridIcon className="mr-2 h-4 w-4" />
-                    <span>Show Grid</span>
-                  </DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem checked={viewConfig.lines} onCheckedChange={() => toggleOption("lines")}>
-                    <LinesIcon className="mr-2 h-4 w-4" />
-                    <span>Show Lines</span>
-                  </DropdownMenuCheckboxItem>
                   <DropdownMenuCheckboxItem checked={viewConfig.labels} onCheckedChange={() => toggleOption("labels")}>
                     <TagIcon className="mr-2 h-4 w-4" />
                     <span>Show Labels</span>
