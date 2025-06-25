@@ -22,7 +22,7 @@ type GLTFResult = GLTF & {
 };
 
 export const EarthModel = forwardRef<Mesh | Group, EarthModelProps>((props, ref) => {
-  const { nodes, materials } = useGLTF("/models/earth2.glb") as unknown as GLTFResult;
+  const { nodes, materials } = useGLTF("/models/earth.glb") as unknown as GLTFResult;
   const meshRef = useRef<Mesh>(null);
 
   useImperativeHandle(ref, () => meshRef.current!, []);
@@ -45,4 +45,4 @@ export const EarthModel = forwardRef<Mesh | Group, EarthModelProps>((props, ref)
 
 EarthModel.displayName = "EarthModel";
 
-useGLTF.preload("/models/earth2.glb");
+useGLTF.preload("/models/earth.glb");
