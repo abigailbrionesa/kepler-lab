@@ -8,7 +8,7 @@ export default function MainContent() {
   const { selectedCategory } = useSelectedCategory();
 
   return (
-    <div className="flex flex-1 flex-col">
+    <div className="flex flex-1 flex-col border-secondary border-1  rounded-2xl">
       <SiteHeader />
       <div className="flex flex-1 relative">
         {selectedCategory && <ControlPanel />}
