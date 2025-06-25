@@ -251,7 +251,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       <SidebarFooter className="flex flex-col">
         <CreatorInfo />
-        <NavUser user={data.user} />
       </SidebarFooter>
     </Sidebar>
   )
