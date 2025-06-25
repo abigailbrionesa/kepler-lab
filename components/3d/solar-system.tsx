@@ -8,6 +8,7 @@ import Planets from "./objects/planets";
 import { SpaceControls } from "./effects/orbit-controls";
 import planets_json from "../../lib/data/planets.json";
 import type { PlanetData } from "./objects/planets";
+import OrbitCreator from "./orbit-creator";
 
 export default function SolarSystem() {
   const planets_data = planets_json as PlanetData[];
@@ -23,6 +24,7 @@ export default function SolarSystem() {
       }}
     >
       <Suspense fallback={null}>
+        <OrbitCreator/>
         <Sun />
         <SpaceControls />
         <Stars number={80000} size={3} />
