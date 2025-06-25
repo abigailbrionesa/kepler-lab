@@ -46,7 +46,7 @@ export const SpaceControls = () => {
 
     const distanceToPlanet = planetPosition.length();
 
-    const cameraDistance = distanceToPlanet + planet.radius_km;
+    const cameraDistance = distanceToPlanet *0.7 + planet.radius_km * 0.2;
 
     // const fixedCameraDistance = 1000;
 
@@ -93,11 +93,12 @@ export const SpaceControls = () => {
     const newTarget = isObjectPivot && planetPosition ? planetPosition : ORIGIN;
 
     controls.setTarget(newTarget.x, newTarget.y, newTarget.z, true);
-  }, [selectedPlanet]);
+  }, [isObjectPivot, planetPosition]);
+
 
   return (
     <>
-      <CameraControls ref={cameraControlsRef} enabled />
+      <CameraControls ref={cameraControlsRef} enabled minDistance={900} maxDistance={50000} />
     </>
   );
 };
