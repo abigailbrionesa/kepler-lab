@@ -56,8 +56,9 @@ export function OrbitalControlsPanel({
     <DraggablePanel
       dragConstraints={dragConstraints}
       title="Orbital Controls"
+      position="left-80 top-5"
     >
-      <Accordion type="multiple" className="w-full">
+      <Accordion type="single" collapsible  className="w-full">
         <DraggableMenuItem
           accordionValue="orbital-params"
           title="Orbital Parameters"
