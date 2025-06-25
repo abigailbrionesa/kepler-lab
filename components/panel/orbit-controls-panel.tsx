@@ -55,18 +55,13 @@ export function OrbitalControlsPanel({
   return (
     <DraggablePanel
       dragConstraints={dragConstraints}
-      title="Orbital Parameters"
+      title="Orbital Controls"
     >
-      <Accordion
-        type="single"
-        collapsible
-        defaultValue="orbital-params"
-        className="w-full"
-      >
+      <Accordion type="multiple" className="w-full">
         <DraggableMenuItem
           accordionValue="orbital-params"
           title="Orbital Parameters"
-          subtitle="Set values manually"
+          subtitle="Set orbital values"
         >
           <div className="space-y-4 pt-2">
             <ParamSlider
@@ -95,33 +90,6 @@ export function OrbitalControlsPanel({
               step={0.1}
               value={localParams.orbitalPeriod}
               onChange={(val) => handleChange("orbitalPeriod", val)}
-            />
-            <ParamSlider
-              label="Albedo"
-              id="albedo"
-              min={0}
-              max={1}
-              step={0.01}
-              value={localParams.albedo}
-              onChange={(val) => handleChange("albedo", val)}
-            />
-            <ParamSlider
-              label="Magnitude"
-              id="magnitude"
-              min={0}
-              max={30}
-              step={0.1}
-              value={localParams.magnitude}
-              onChange={(val) => handleChange("magnitude", val)}
-            />
-            <ParamSlider
-              label="Diameter (km)"
-              id="diameter"
-              min={0.01}
-              max={20000}
-              step={1}
-              value={localParams.diameter}
-              onChange={(val) => handleChange("diameter", val)}
             />
             <ParamSlider
               label="Inclination (rad)"
@@ -179,11 +147,47 @@ export function OrbitalControlsPanel({
               value={localParams.epoch}
               onChange={(val) => handleChange("epoch", val)}
             />
+          </div>
+        </DraggableMenuItem>
+
+        <DraggableMenuItem
+          accordionValue="physical-params"
+          title="Physical Parameters"
+          subtitle="Set physical values"
+        >
+          <div className="space-y-4 pt-2">
+            <ParamSlider
+              label="Albedo"
+              id="albedo"
+              min={0}
+              max={1}
+              step={0.01}
+              value={localParams.albedo}
+              onChange={(val) => handleChange("albedo", val)}
+            />
+            <ParamSlider
+              label="Magnitude"
+              id="magnitude"
+              min={0}
+              max={30}
+              step={0.1}
+              value={localParams.magnitude}
+              onChange={(val) => handleChange("magnitude", val)}
+            />
+            <ParamSlider
+              label="Diameter (km)"
+              id="diameter"
+              min={0.01}
+              max={20000}
+              step={1}
+              value={localParams.diameter}
+              onChange={(val) => handleChange("diameter", val)}
+            />
 
             <Button
               variant="outline"
               size="sm"
-              className="w-full"
+              className="w-full mt-4"
               onClick={() =>
                 setLocalParams({
                   semiMajorAxis: 1,
