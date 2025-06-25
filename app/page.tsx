@@ -10,6 +10,7 @@ import { SelectedPlanetProvider } from "@/context/view-selected-planet";
 import { IsObjectPivotProvider } from "@/context/view-is-object-pivot";
 import { OccludableRefsProvider } from "@/context/occludable-refs-context";
 import { CameraControlProvider } from "@/context/camera-control-context";
+import { OrbitCreatorParamsProvider } from "@/context/orbit-creator-params-context";
 export default function Page() {
   return (
     <SidebarProvider>
@@ -17,6 +18,7 @@ export default function Page() {
         <ViewConfigProvider>
           <OccludableRefsProvider>
             <SelectedCategoryProvider>
+              <OrbitCreatorParamsProvider>
               <SelectedDateProvider>
                 <SelectedPlanetProvider>
                   <IsObjectPivotProvider>
@@ -30,6 +32,7 @@ export default function Page() {
                   </IsObjectPivotProvider>
                 </SelectedPlanetProvider>
               </SelectedDateProvider>
+              </OrbitCreatorParamsProvider>
             </SelectedCategoryProvider>
           </OccludableRefsProvider>
         </ViewConfigProvider>
