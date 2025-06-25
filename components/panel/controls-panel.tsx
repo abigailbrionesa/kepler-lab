@@ -39,7 +39,7 @@ export function useDebounce<T>(value: T, delay: number): T {
     };
   }, [value, delay]);
 
-  return debouncedValue;
+  return debouncedValue; 
 }
 
 export default function ControlsPanel({
@@ -129,8 +129,6 @@ export default function ControlsPanel({
     !isEqual(albedoUI, debouncedAlbedo) ||
     !isEqual(magnitudeUI, debouncedMagnitude) ||
     !isEqual(diameterUI, debouncedDiameter);
-
-  if (!selectedCategory) return null;
 
   return (
     <>
