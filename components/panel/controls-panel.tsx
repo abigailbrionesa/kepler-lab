@@ -26,6 +26,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useSelectedDate } from "@/context/view-selected-date";
 import isEqual from "lodash/isEqual";
 import type { RefObject } from "react";
+import { AsteroidSelector } from "../ui/name-selector";
+
 export function useDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
@@ -145,6 +147,7 @@ export default function ControlsPanel({
             subtitle={format(selectedDate, "MMMM d, yyyy")}
           >
             <div className="space-y-4 pt-2">
+              <AsteroidSelector/>
               <div className="space-y-2">
                 <Label htmlFor="date">Select Date</Label>
                 <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
