@@ -26,7 +26,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useSelectedDate } from "@/context/view-selected-date";
 import isEqual from "lodash/isEqual";
 import type { RefObject } from "react";
-import { AsteroidSelector } from "../ui/name-selector";
+import { AsteroidSelector } from "../ui/asteroid-selector";
 
 export function useDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
