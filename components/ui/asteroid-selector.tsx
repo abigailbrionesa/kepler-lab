@@ -16,7 +16,46 @@ type AsteroidOption = { spkid: number; full_name: string };
 
 const supabase = createClient();
 
-function formatAsteroid(data: any) {
+type AsteroidRow = {
+  spkid: number;
+  full_name: string;
+  pha: string;
+  sats: string;
+  H: number;
+  orbit_id: string;
+  epoch_mjd: number;
+  e: number;
+  a: number;
+  q: number;
+  i: number;
+  om: number;
+  w: number;
+  ma: number;
+  n: number;
+  ad: number;
+  per_y: number;
+  data_arc: string;
+  condition_code: string;
+  n_obs_used: number;
+  epoch: number;
+  epoch_cal: string;
+  equinox: string;
+  tp: number;
+  per: string;
+  moid: number;
+  moid_ld: number;
+  moid_jup: number;
+  t_jup: number;
+  class: string;
+  producer: string;
+  first_obs: string;
+  last_obs: string;
+  rms: number;
+  albedo: number;
+  diameter: number;
+};
+
+function formatAsteroid(data: AsteroidRow) {
   return {
     spkid: String(data.spkid),
     full_name: data.full_name.trim(),
