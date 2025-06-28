@@ -11,16 +11,23 @@ import { Plus } from "lucide-react";
 import { useCustomObjects } from "@/context/custom-objects-context";
 import { Trash2 } from "lucide-react";
 
-export function OrbitalControlsPanel({ dragConstraints }: { dragConstraints: React.RefObject<HTMLDivElement | null> }) {
+export function OrbitalControlsPanel({
+  dragConstraints,
+}: {
+  dragConstraints: React.RefObject<HTMLDivElement | null>;
+}) {
   const { objects, addObject, updateObject, removeObject } = useCustomObjects();
 
-  const handleChange = (id: string, field: keyof typeof objects[0], value: number) => {
+  const handleChange = (
+    id: string,
+    field: keyof (typeof objects)[0],
+    value: number
+  ) => {
     updateObject(id, field, value);
   };
 
   return (
-
-<DraggablePanel
+    <DraggablePanel
       dragConstraints={dragConstraints}
       title="Orbit Creator"
       position="left-80 top-5"
@@ -29,7 +36,12 @@ export function OrbitalControlsPanel({ dragConstraints }: { dragConstraints: Rea
         <h2 className="text-sm font-medium text-muted-foreground">
           Create Object
         </h2>
-        <Button variant="ghost" size="icon" className="h-6 w-6" onClick={addObject}>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-6 w-6"
+          onClick={addObject}
+        >
           <Plus className="h-4 w-4" />
         </Button>
       </div>
@@ -39,7 +51,7 @@ export function OrbitalControlsPanel({ dragConstraints }: { dragConstraints: Rea
           <DraggableMenuItem
             key={obj.id}
             accordionValue={obj.id}
-            title={`${obj.name} ${index + 1}`}
+            title={`${obj.name}`}
             subtitle="Category"
           >
             <div className="pl-4">
@@ -56,7 +68,9 @@ export function OrbitalControlsPanel({ dragConstraints }: { dragConstraints: Rea
                     max={4515000000}
                     step={100000}
                     value={obj.semiMajorAxis}
-                    onChange={(val) => handleChange(obj.id, "semiMajorAxis", val)}
+                    onChange={(val) =>
+                      handleChange(obj.id, "semiMajorAxis", val)
+                    }
                   />
                   <ParamSlider
                     label="Eccentricity"
@@ -65,7 +79,9 @@ export function OrbitalControlsPanel({ dragConstraints }: { dragConstraints: Rea
                     max={1}
                     step={0.01}
                     value={obj.eccentricity}
-                    onChange={(val) => handleChange(obj.id, "eccentricity", val)}
+                    onChange={(val) =>
+                      handleChange(obj.id, "eccentricity", val)
+                    }
                   />
                   <ParamSlider
                     label="Inclination (rad)"
@@ -116,9 +132,7 @@ export function OrbitalControlsPanel({ dragConstraints }: { dragConstraints: Rea
                     max={1}
                     step={0.001}
                     value={obj.mean_motion}
-                    onChange={(val) =>
-                      handleChange(obj.id, "mean_motion", val)
-                    }
+                    onChange={(val) => handleChange(obj.id, "mean_motion", val)}
                   />
                   <ParamSlider
                     label="Epoch (JD)"
@@ -154,9 +168,7 @@ export function OrbitalControlsPanel({ dragConstraints }: { dragConstraints: Rea
                     max={30}
                     step={0.1}
                     value={obj.magnitude}
-                    onChange={(val) =>
-                      handleChange(obj.id, "magnitude", val)
-                    }
+                    onChange={(val) => handleChange(obj.id, "magnitude", val)}
                   />
                   <ParamSlider
                     label="Diameter (km)"
@@ -165,23 +177,19 @@ export function OrbitalControlsPanel({ dragConstraints }: { dragConstraints: Rea
                     max={20000}
                     step={1}
                     value={obj.diameter}
-                    onChange={(val) =>
-                      handleChange(obj.id, "diameter", val)
-                    }
+                    onChange={(val) => handleChange(obj.id, "diameter", val)}
                   />
-
                 </div>
-                
               </DraggableMenuItem>
-                                <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full mt-4"
-                    onClick={() => removeObject(obj.id)}
-                  >
-                    <Trash2 className="h-4 w-4 mr-2" />
-                    Delete Object
-                  </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full mt-4"
+                onClick={() => removeObject(obj.id)}
+              >
+                <Trash2 className="h-4 w-4 mr-2" />
+                Delete Object
+              </Button>
             </div>
           </DraggableMenuItem>
         ))}
