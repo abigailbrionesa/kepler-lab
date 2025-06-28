@@ -22,7 +22,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
   SidebarContent,
 } from "@/components/ui/sidebar";
 
@@ -82,6 +81,8 @@ const Cube3dIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+{
+  /* 
 const data = {
   user: {
     name: "John Doe",
@@ -153,14 +154,16 @@ const data = {
       icon: ShareIcon,
     },
   ],
-};
+};*/
+}
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   // const { isMobile } = useSidebar();
-  const { setSelectedCategory } = useSelectedCategory();
+  // const { setSelectedCategory } = useSelectedCategory();
   // const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [, setDropdownOpen] = useState(false);
-  {/* 
+  // const [, setDropdownOpen] = useState(false);
+  {
+    /* 
   const handleCategorySelect = (
     item: NonNullable<(typeof data.navMain)[number]["submenu"]>[number]
   ) => {
@@ -170,7 +173,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       icon: item.icon,
     });
     setDropdownOpen(false);
-  };*/}
+  };*/
+  }
 
   return (
     <Sidebar collapsible="offcanvas" {...props}>
@@ -182,7 +186,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <a href="#">
-                <span className="text-base font-semibold">☀️ Abi's Space</span>
+                <span className="text-base font-semibold">
+                  ☀️ Abi&apos;s Space
+                </span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
