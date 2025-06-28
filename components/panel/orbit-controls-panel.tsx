@@ -45,7 +45,7 @@ export function OrbitalControlsPanel({
       </div>
 
       <Accordion type="multiple" className="w-full">
-        {objects.map((obj, index) => (
+        {objects.map((obj, ) => (
           <DraggableMenuItem
             key={obj.id}
             accordionValue={obj.id}
