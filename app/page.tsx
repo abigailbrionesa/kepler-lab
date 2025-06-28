@@ -12,6 +12,7 @@ import { OccludableRefsProvider } from "@/context/occludable-refs-context";
 import { CameraControlProvider } from "@/context/camera-control-context";
 import { OrbitCreatorParamsProvider } from "@/context/orbit-creator-params-context";
 import { SelectedAsteroidSpkidProvider } from "@/context/view-selected-asteroid-spkid";
+import { CustomObjectsProvider } from "@/context/custom-objects-context";
 export default function Page() {
   return (
     <SidebarProvider>
@@ -20,21 +21,23 @@ export default function Page() {
           <OccludableRefsProvider>
             <SelectedCategoryProvider>
               <OrbitCreatorParamsProvider>
-              <SelectedDateProvider>
-                <SelectedAsteroidSpkidProvider> 
-                <SelectedPlanetProvider>
-                  <IsObjectPivotProvider>
-                    <CameraControlProvider>
-                      <AppSidebar variant="inset" />
-                      <SidebarInset>
-                        <MainContent />
-                      </SidebarInset>
-                      <RightSidebar />
-                    </CameraControlProvider>
-                  </IsObjectPivotProvider>
-                </SelectedPlanetProvider>
-                </SelectedAsteroidSpkidProvider>
-              </SelectedDateProvider>
+                <CustomObjectsProvider>
+                  <SelectedDateProvider>
+                    <SelectedAsteroidSpkidProvider>
+                      <SelectedPlanetProvider>
+                        <IsObjectPivotProvider>
+                          <CameraControlProvider>
+                            <AppSidebar variant="inset" />
+                            <SidebarInset>
+                              <MainContent />
+                            </SidebarInset>
+                            <RightSidebar />
+                          </CameraControlProvider>
+                        </IsObjectPivotProvider>
+                      </SelectedPlanetProvider>
+                    </SelectedAsteroidSpkidProvider>
+                  </SelectedDateProvider>
+                </CustomObjectsProvider>
               </OrbitCreatorParamsProvider>
             </SelectedCategoryProvider>
           </OccludableRefsProvider>
