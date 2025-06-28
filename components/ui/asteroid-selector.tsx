@@ -43,7 +43,7 @@ export function AsteroidSelector({ className }: { className?: string }) {
   const [debouncedInput] = useDebounce(input, 300);
   const [options, setOptions] = useState<AsteroidOption[]>([]);
   const [loading, setLoading] = useState(false);
-  const [selected, setSelected] = useState<AsteroidOption | null>(null);
+  const [, setSelected] = useState<AsteroidOption | null>(null);
 
   const handleSearchName = async (query: string) => {
     setLoading(true);
@@ -105,12 +105,12 @@ export function AsteroidSelector({ className }: { className?: string }) {
   return (
     <div className={cn("w-full", className)}>
       <Command>
-<CommandInput
-  value={input}
-  onValueChange={setInput}
-  onFocus={() => handleSearchName("")} // 👈 This triggers fetch on focus
-  placeholder="Search asteroids..."
-/>
+        <CommandInput
+          value={input}
+          onValueChange={setInput}
+          onFocus={() => handleSearchName("")}
+          placeholder="Search asteroids..."
+        />
         <CommandList className="max-h-60 overflow-y-auto">
           {loading ? (
             <CommandItem disabled>Loading...</CommandItem>
