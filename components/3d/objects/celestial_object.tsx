@@ -12,7 +12,6 @@ import { useState } from "react";
 import type { Group } from "three";
 import { useViewConfig } from "@/context/view-config-context";
 import { Orbit } from "./orbit";
-import { useOrbitalParams } from "@/context/orbit-creator-params-context";
 
 type ObjectParams = {
   semiMajorAxis: number;
@@ -34,9 +33,6 @@ type ObjectParams = {
 export default function CelestialObject({
   semiMajorAxis,
   eccentricity,
-  orbitalPeriod,
-  albedo,
-  magnitude,
   diameter,
   inclination,
   argument_of_periapsis,

@@ -18,8 +18,6 @@ export default function Asteroid() {
           spkid,
           semiMajorAxis,
           eccentricity,
-          orbitalPeriod,
-          magnitude,
           inclination,
           argument_of_periapsis,
           longitude_of_ascending_node,
