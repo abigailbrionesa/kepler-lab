@@ -9,6 +9,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import DraggablePanel from "../ui/draggable-menu";
+import { CameraControlsPanel } from "./camera-controls-panel";
 import DraggableMenuItem from "../ui/draggable-menu-item";
 import {
   Popover,
@@ -41,7 +42,7 @@ export function useDebounce<T>(value: T, delay: number): T {
     };
   }, [value, delay]);
 
-  return debouncedValue; 
+  return debouncedValue;
 }
 
 export default function ControlsPanel({
@@ -134,7 +135,11 @@ export default function ControlsPanel({
 
   return (
     <>
-      <DraggablePanel position="left-5 top-5" dragConstraints={dragConstraints} title="Controls">
+      <DraggablePanel
+        position="left-5 top-5"
+        dragConstraints={dragConstraints}
+        title="General Controls"
+      >
         <Accordion
           type="single"
           collapsible
@@ -147,7 +152,7 @@ export default function ControlsPanel({
             subtitle={format(selectedDate, "MMMM d, yyyy")}
           >
             <div className="space-y-4 pt-2">
-              <AsteroidSelector/>
+              <AsteroidSelector />
               <div className="space-y-2">
                 <Label htmlFor="date">Select Date</Label>
                 <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
@@ -397,6 +402,16 @@ export default function ControlsPanel({
               </div>
             </DraggableMenuItem>
           )}
+
+          <DraggableMenuItem
+            accordionValue="camera-controls"
+            title="Camera Controls"
+            subtitle="dolly, zoom, rotate"
+          >
+            <div className="space-y-4 pt-2">
+              <CameraControlsPanel />
+            </div>
+          </DraggableMenuItem>
         </Accordion>
       </DraggablePanel>
     </>
