@@ -1,15 +1,13 @@
 "use client";
-import { useEffect, useState } from "react";
 import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import DraggablePanel from "../ui/draggable-menu";
 import DraggableMenuItem from "../ui/draggable-menu-item";
-import { useOrbitalParams } from "@/context/orbit-creator-params-context";
 import { Plus } from "lucide-react";
 import { useCustomObjects } from "@/context/custom-objects-context";
-import { Trash2 } from "lucide-react";
+import DeleteButton from "../ui/delete-button";
 
 export function OrbitalControlsPanel({
   dragConstraints,
@@ -181,15 +179,7 @@ export function OrbitalControlsPanel({
                   />
                 </div>
               </DraggableMenuItem>
-              <Button
-                variant="outline"
-                size="sm"
-                className="w-full mt-4"
-                onClick={() => removeObject(obj.id)}
-              >
-                <Trash2 className="h-4 w-4 mr-2" />
-                Delete Object
-              </Button>
+              <DeleteButton onClick={() => removeObject(obj.id)} />
             </div>
           </DraggableMenuItem>
         ))}
