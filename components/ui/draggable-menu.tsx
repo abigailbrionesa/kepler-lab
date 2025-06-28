@@ -9,6 +9,7 @@ import type { RefObject } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
+import { useEffect } from "react";
 
 export default function DraggablePanel({
   dragConstraints,
@@ -25,7 +26,12 @@ export default function DraggablePanel({
 }) {
   const dragControls = useDragControls();
   const [isMinimized, setIsMinimized] = useState(false);
-const { theme } = useTheme();
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <motion.div
@@ -36,15 +42,9 @@ const { theme } = useTheme();
       dragMomentum={false}
       dragConstraints={dragConstraints.current ? dragConstraints : undefined}
       dragElastic={0}
-      className={cn("absolute z-10 ", position, width)}
+      className={cn("absolute z-10", position, width)}
     >
-      <div
-        className="
-        z-10 
-        select-none
-        space-y-4 overflow-y-auto h-min 
-        max-h-[calc(100vh-80px)]"
-      >
+      <div className="z-10 select-none space-y-4 overflow-y-auto h-min max-h-[calc(100vh-80px)]">
         <div
           onPointerDown={(e) => dragControls.start(e)}
           className="cursor-move px-3 py-2 border-secondary border-1 rounded-xl bg-background"
@@ -53,7 +53,7 @@ const { theme } = useTheme();
             <div className="flex items-center gap-2">
               <GripVertical className="h-4 w-4 text-secondary" />
               <CardTitle>
-                <p className="text-sm ">{title}</p>
+                <p className="text-sm">{title}</p>
               </CardTitle>
             </div>
             <div className="flex items-center gap-1">
@@ -77,7 +77,10 @@ const { theme } = useTheme();
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
-              className={cn(theme === "light" ? "bg-background" : "", "px-4 py-1 backdrop-blur-sm rounded-xl border-1 border-secondary overflow-hidden")}
+              className={cn(
+                "px-4 py-1 backdrop-blur-sm rounded-xl border-1 border-secondary overflow-hidden",
+                mounted && theme === "light" && "bg-background"
+              )}
             >
               {children}
             </motion.div>
