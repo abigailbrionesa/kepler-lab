@@ -13,13 +13,13 @@ export default function MainContent() {
   return (
     <div className="flex flex-1 flex-col border-secondary border-1  rounded-2xl">
       <SiteHeader />
-      <div ref={containerRef} className="relative flex flex-1 flex-col">
+      <div ref={containerRef} className="relative flex flex-1 flex-col rounded-b-2xl" style={{ backgroundColor: "oklch(16.932% 0.03326 44.084)" }}>
         <div className="@container/main flex flex-1 flex-col">
           {selectedPlanet && <SelectedPlanetHeader />}
           <AsteroidsPanel dragConstraints={containerRef}/>
           {<ControlsPanel dragConstraints={containerRef} />}
           {<OrbitalControlsPanel dragConstraints={containerRef} />}
-          <div className="flex flex-1">
+          <div className="flex flex-1 "  >
             <SolarSystem />
           </div>
         </div>
