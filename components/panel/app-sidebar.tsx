@@ -1,6 +1,7 @@
 "use client";
 
 import type * as React from "react";
+{/*
 import { useState } from "react";
 import {
   SettingsIcon,
@@ -12,7 +13,7 @@ import {
   AlertTriangleIcon,
   GraduationCapIcon,
 } from "lucide-react";
-
+ */}
 // import { ChevronDownIcon, ArrowUpCircleIcon } from "lucide-react";
 
 import {
@@ -34,13 +35,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { NavUser } from "./nav-user";*/
-}
+import { NavUser } from "./nav-user";
 import {
   useSelectedCategory,
   type CategoryType,
 } from "@/context/selected-category-context";
-import { CreatorInfo } from "./creator-info";
 
 const OrbitIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -81,8 +80,6 @@ const Cube3dIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-{
-  /* 
 const data = {
   user: {
     name: "John Doe",
@@ -156,6 +153,7 @@ const data = {
   ],
 };*/
 }
+import { CreatorInfo } from "./creator-info";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   // const { isMobile } = useSidebar();
