@@ -3,8 +3,6 @@ import { Button } from "../ui/button";
 import { useIsObjectPivot } from "@/context/view-is-object-pivot";
 import { X } from "lucide-react";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
-import { useEffect } from "react";
-import { useViewConfig } from "@/context/view-config-context";
 
 function SelectedPlanetHeader() {
   const { selectedPlanet, setSelectedPlanet } = useSelectedPlanet();
