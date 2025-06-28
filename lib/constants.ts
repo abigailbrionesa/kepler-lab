@@ -3,6 +3,12 @@ export const SCALE_FACTOR_ORBIT = 0.000007;
 
 export const SUN_RADIUS = 71492 * SCALE_FACTOR_OBJECT * 1; // sun is ten more times greater than jupiter
 
+export type ObjectType =
+  | 'NEA'
+  | 'PLANET'
+  | 'PHA'
+  | 'NEC';
+
 
 export type PlanetName =
   | 'Sun'
