@@ -8,16 +8,19 @@ import { GripVertical, X, Minimize2 } from "lucide-react";
 import type { RefObject } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence } from "framer-motion";
+
 export default function DraggablePanel({
   dragConstraints,
   title,
   children,
-  position
+  position,
+  width = "w-64",
 }: {
   dragConstraints: RefObject<HTMLDivElement | null>;
   title: string;
   children: React.ReactNode;
   position?: string;
+  width?: string;
 }) {
   const dragControls = useDragControls();
   const [isMinimized, setIsMinimized] = useState(false);
@@ -27,13 +30,14 @@ export default function DraggablePanel({
       drag
       dragControls={dragControls}
       dragListener={false}
+      whileDrag={{ scale: 0.98, opacity: 0.8 }}
       dragMomentum={false}
       dragConstraints={dragConstraints.current ? dragConstraints : undefined}
       dragElastic={0}
-      className={cn("absolute z-10", position)}
+      className={cn("absolute z-10 ", position, width)}
     >
       <div
-        className="w-64 
+        className="
         z-10 
         select-none
         space-y-4 overflow-y-auto h-min 
@@ -63,7 +67,7 @@ export default function DraggablePanel({
           </div>
         </div>
 
-       <AnimatePresence initial={false}>
+        <AnimatePresence initial={false}>
           {!isMinimized && (
             <motion.div
               key="panel-content"
