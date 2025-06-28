@@ -115,7 +115,7 @@ export default function CelestialObject({
         <Html
           center
           zIndexRange={[2, 2]}
-          onOcclude={set}
+          onOcclude={set}        
           className={cn(
             "transition-all duration-200 cursor-pointer z-50 group",
             hidden ? "opacity-0 scale-90" : "opacity-100 scale-100"
