@@ -8,6 +8,7 @@ import { GripVertical, X, Minimize2 } from "lucide-react";
 import type { RefObject } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
 
 export default function DraggablePanel({
   dragConstraints,
@@ -24,6 +25,7 @@ export default function DraggablePanel({
 }) {
   const dragControls = useDragControls();
   const [isMinimized, setIsMinimized] = useState(false);
+const { theme } = useTheme();
 
   return (
     <motion.div
@@ -75,7 +77,7 @@ export default function DraggablePanel({
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
-              className="px-4 py-1 backdrop-blur-sm rounded-xl border-1 border-secondary overflow-hidden"
+              className={cn(theme === "light" ? "bg-background" : "", "px-4 py-1 backdrop-blur-sm rounded-xl border-1 border-secondary overflow-hidden")}
             >
               {children}
             </motion.div>
