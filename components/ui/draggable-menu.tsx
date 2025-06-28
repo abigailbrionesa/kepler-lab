@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CardTitle } from "../ui/card";
 import { motion, useDragControls } from "framer-motion";
-import { GripVertical, X, Minimize2 } from "lucide-react";
+import { GripVertical, Minimize2 } from "lucide-react";
 import type { RefObject } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence } from "framer-motion";
