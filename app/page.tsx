@@ -13,6 +13,7 @@ import { CameraControlProvider } from "@/context/camera-control-context";
 import { OrbitCreatorParamsProvider } from "@/context/orbit-creator-params-context";
 import { SelectedAsteroidSpkidProvider } from "@/context/view-selected-asteroid-spkid";
 import { CustomObjectsProvider } from "@/context/custom-objects-context";
+import { AsteroidProvider } from "@/context/asteroids-context";
 export default function Page() {
   return (
     <SidebarProvider>
@@ -22,6 +23,7 @@ export default function Page() {
             <SelectedCategoryProvider>
               <OrbitCreatorParamsProvider>
                 <CustomObjectsProvider>
+                  <AsteroidProvider> 
                   <SelectedDateProvider>
                     <SelectedAsteroidSpkidProvider>
                       <SelectedPlanetProvider>
@@ -37,6 +39,7 @@ export default function Page() {
                       </SelectedPlanetProvider>
                     </SelectedAsteroidSpkidProvider>
                   </SelectedDateProvider>
+                  </AsteroidProvider>
                 </CustomObjectsProvider>
               </OrbitCreatorParamsProvider>
             </SelectedCategoryProvider>
