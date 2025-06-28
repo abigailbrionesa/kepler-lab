@@ -30,7 +30,7 @@ export function OrbitalControlsPanel({
       title="Orbit Creator"
       position="left-80 top-5"
     >
-      <div className="flex justify-between items-center px-4 pt-2 pb-1">
+      <div className="flex justify-between items-center px-4 pt-1 pb-1">
         <h2 className="text-sm font-medium text-muted-foreground">
           Create Object
         </h2>
@@ -179,7 +179,7 @@ export function OrbitalControlsPanel({
                   />
                 </div>
               </DraggableMenuItem>
-              <DeleteButton onClick={() => removeObject(obj.id)} />
+              <DeleteButton className="mt-2" onClick={() => removeObject(obj.id)} />
             </div>
           </DraggableMenuItem>
         ))}
