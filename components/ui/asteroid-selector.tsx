@@ -53,7 +53,7 @@ export function AsteroidSelector({ className }: { className?: string }) {
       .select("spkid, full_name")
       .ilike("full_name", `%${query}%`)
       .order("condition_code", { ascending: true })
-      .limit(20);
+      .limit(10);
 
     if (error) {
       console.error(error);
@@ -64,7 +64,7 @@ export function AsteroidSelector({ className }: { className?: string }) {
 
       const filtered = data
         .filter((a) => !usedSpkids.has(String(a.spkid)))
-        .slice(0, 5);
+        .slice(0, 3);
 
       setOptions(filtered);
     }
@@ -105,11 +105,12 @@ export function AsteroidSelector({ className }: { className?: string }) {
   return (
     <div className={cn("w-full", className)}>
       <Command>
-        <CommandInput
-          value={input}
-          onValueChange={setInput}
-          placeholder="Search asteroids..."
-        />
+<CommandInput
+  value={input}
+  onValueChange={setInput}
+  onFocus={() => handleSearchName("")} // 👈 This triggers fetch on focus
+  placeholder="Search asteroids..."
+/>
         <CommandList className="max-h-60 overflow-y-auto">
           {loading ? (
             <CommandItem disabled>Loading...</CommandItem>
