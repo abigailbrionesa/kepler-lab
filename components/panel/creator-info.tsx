@@ -4,10 +4,10 @@ import { Separator } from "@/components/ui/separator"
 
 export function CreatorInfo() {
   return (
-    <div className="px-4 py-3 text-xs border-t border-sidebar-border">
+    <div className="px-4 py-3 text-xs  border-sidebar-border">
       <div className="flex flex-col space-y-2">
         <div>
-          <h4 className="font-medium">Created by Abigail Briones</h4>
+          <h4 className="font-medium">Made by Abigail Briones </h4>
           <p className="text-muted-foreground"></p>
         </div>
         <Separator className="my-1" />
