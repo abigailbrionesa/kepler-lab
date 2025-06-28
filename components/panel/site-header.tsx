@@ -7,7 +7,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar"
 import { useSelectedCategory } from "@/context/selected-category-context"
 import { useViewConfig } from "@/context/view-config-context"
 import { useRightSidebar } from "@/context/right-sidebar-context"
-import { Settings2Icon, GridIcon, AudioLinesIcon as LinesIcon, TagIcon, InfoIcon } from "lucide-react"
+import { Settings2Icon, TagIcon, InfoIcon } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
