@@ -1,5 +1,4 @@
 "use client";
-import { useOrbitalParams } from "@/context/orbit-creator-params-context";
 import Object from "./objects/object";
 import { useSelectedDate } from "@/context/view-selected-date";
 import { useCustomObjects } from "@/context/custom-objects-context";

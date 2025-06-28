@@ -156,10 +156,11 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { isMobile } = useSidebar();
+  // const { isMobile } = useSidebar();
   const { setSelectedCategory } = useSelectedCategory();
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  // const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [, setDropdownOpen] = useState(false);
+  {/* 
   const handleCategorySelect = (
     item: NonNullable<(typeof data.navMain)[number]["submenu"]>[number]
   ) => {
@@ -169,7 +170,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       icon: item.icon,
     });
     setDropdownOpen(false);
-  };
+  };*/}
 
   return (
     <Sidebar collapsible="offcanvas" {...props}>
