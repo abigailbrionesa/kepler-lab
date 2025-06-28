@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { createContext, useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -39,7 +39,11 @@ const defaultParams = (): OrbitParams => ({
 const CustomObjectsContext = createContext<{
   objects: OrbitParams[];
   addObject: () => void;
-  updateObject: (id: string, field: keyof OrbitParams, value: number | string) => void;
+  updateObject: (
+    id: string,
+    field: keyof OrbitParams,
+    value: number | string
+  ) => void;
   removeObject: (id: string) => void;
 }>({
   objects: [],
@@ -50,18 +54,36 @@ const CustomObjectsContext = createContext<{
 
 export const useCustomObjects = () => useContext(CustomObjectsContext);
 
-export const CustomObjectsProvider = ({ children }: { children: React.ReactNode }) => {
+export const CustomObjectsProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [objects, setObjects] = useState<OrbitParams[]>([]);
 
   const addObject = () => {
-    setObjects((prev) => [...prev, defaultParams()]);
+    setObjects((prev) => {
+      const customCount = prev.filter((obj) =>
+        obj.name.startsWith("Custom Object")
+      ).length;
+      const newName = `Custom Object ${customCount + 1}`;
+      return [
+        ...prev,
+        {
+          ...defaultParams(),
+          name: newName,
+        },
+      ];
+    });
   };
 
-  const updateObject = (id: string, field: keyof OrbitParams, value: number | string) => {
+  const updateObject = (
+    id: string,
+    field: keyof OrbitParams,
+    value: number | string
+  ) => {
     setObjects((prev) =>
-      prev.map((obj) =>
-        obj.id === id ? { ...obj, [field]: value } : obj
-      )
+      prev.map((obj) => (obj.id === id ? { ...obj, [field]: value } : obj))
     );
   };
 
@@ -70,7 +92,9 @@ export const CustomObjectsProvider = ({ children }: { children: React.ReactNode 
   };
 
   return (
-    <CustomObjectsContext.Provider value={{ objects, addObject, updateObject, removeObject }}>
+    <CustomObjectsContext.Provider
+      value={{ objects, addObject, updateObject, removeObject }}
+    >
       {children}
     </CustomObjectsContext.Provider>
   );
