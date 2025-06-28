@@ -28,7 +28,7 @@ export function OrbitalControlsPanel({
     <DraggablePanel
       dragConstraints={dragConstraints}
       title="Orbit Creator"
-      position="left-80 top-5"
+      position="left-160 top-5"
     >
       <div className="flex justify-between items-center px-4 pt-1 pb-1">
         <h2 className="text-sm font-medium text-muted-foreground">
