@@ -1,36 +1,47 @@
-"use client"
+"use client";
 
-import type * as React from "react"
-import { useState } from "react"
+import type * as React from "react";
+import { useState } from "react";
 import {
   SettingsIcon,
   BookOpenIcon,
   StarIcon,
   ShareIcon,
-  ChevronDownIcon,
   SatelliteIcon,
   RocketIcon as MeteorIcon,
   AlertTriangleIcon,
   GraduationCapIcon,
-  ArrowUpCircleIcon,
-} from "lucide-react"
+} from "lucide-react";
+
+// import { ChevronDownIcon, ArrowUpCircleIcon } from "lucide-react";
 
 import {
   Sidebar,
-  SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarGroup,
-  SidebarGroupContent,
   useSidebar,
-} from "@/components/ui/sidebar"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { NavUser } from "./nav-user"
-import { useSelectedCategory, type CategoryType } from "@/context/selected-category-context"
-import { CreatorInfo } from "./creator-info"
+  SidebarContent,
+} from "@/components/ui/sidebar";
+
+// import { , SidebarGroup, SidebarGroupContent } from "@/components/ui/sidebar";
+{
+  /* 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { NavUser } from "./nav-user";*/
+}
+import {
+  useSelectedCategory,
+  type CategoryType,
+} from "@/context/selected-category-context";
+import { CreatorInfo } from "./creator-info";
 
 const OrbitIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -49,7 +60,7 @@ const OrbitIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <circle cx="12" cy="12" r="10" />
     <ellipse cx="12" cy="12" rx="10" ry="4" />
   </svg>
-)
+);
 
 const Cube3dIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -69,7 +80,7 @@ const Cube3dIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <path d="M3 9h18" />
     <path d="M3 15h18" />
   </svg>
-)
+);
 
 const data = {
   user: {
@@ -142,12 +153,12 @@ const data = {
       icon: ShareIcon,
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { isMobile } = useSidebar()
-  const { setSelectedCategory } = useSelectedCategory()
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const { isMobile } = useSidebar();
+  const { setSelectedCategory } = useSelectedCategory();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleCategorySelect = (
     item: NonNullable<(typeof data.navMain)[number]["submenu"]>[number]
@@ -156,27 +167,28 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       type: item.type,
       title: item.title,
       icon: item.icon,
-    })
-    setDropdownOpen(false)
-
-  }
+    });
+    setDropdownOpen(false);
+  };
 
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
+            <SidebarMenuButton
+              asChild
+              className="data-[slot=sidebar-menu-button]:!p-1.5"
+            >
               <a href="#">
-                <ArrowUpCircleIcon className="h-5 w-5" />
-                <span className="text-base font-semibold">Planets</span>
+                <span className="text-base font-semibold">☀️ Abi's Space</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-
+        {/*  
         <SidebarGroup>
           <SidebarGroupContent className="flex flex-col gap-2">
             <SidebarMenu>
@@ -233,7 +245,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               {data.navSecondary.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild tooltip={item.title}>
-                    <a href={item.url} onClick={() => setSelectedCategory(null)}>
+                    <a
+                      href={item.url}
+                      onClick={() => setSelectedCategory(null)}
+                    >
                       <item.icon />
                       <span>{item.title}</span>
                     </a>
@@ -242,11 +257,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
-        </SidebarGroup>
+        </SidebarGroup>*/}
+        <p className="text-sm p-2">Welcome! Explore</p>
       </SidebarContent>
       <SidebarFooter className="flex flex-col">
         <CreatorInfo />
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
