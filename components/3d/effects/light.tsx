@@ -1,24 +1,28 @@
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import { ToneMapping } from "@react-three/postprocessing";
+import { Vignette } from "@react-three/postprocessing";
+import { BlendFunction } from "postprocessing";
+
 export const Light = () => {
   return (
     <>
-      <ambientLight intensity={1.4} />
+      <ambientLight intensity={1} />
       <directionalLight position={[150, 150, 150]} intensity={1} />
       <EffectComposer>
         <Bloom
           mipmapBlur
           luminanceThreshold={0.2}
-          intensity={0.3}
-          luminanceSmoothing={1}
+          luminanceSmoothing={0.5}
+          intensity={3}
         />
         <ToneMapping />
+        <Vignette
+          offset={0.3}
+          darkness={1}
+          eskil={false}
+          blendFunction={BlendFunction.NORMAL}
+        />
       </EffectComposer>
     </>
   );
 };
-{
-  /*  import { TiltShift2 } from '@react-three/postprocessing';
-import { ToneMapping } from '@react-three/postprocessing';
-<TiltShift2 samples={4} blur={0.04} />   */
-}
