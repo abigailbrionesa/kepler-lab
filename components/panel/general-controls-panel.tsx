@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Asterisk, CalendarIcon } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 import { format, addDays, startOfYear } from "date-fns";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -17,11 +17,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useSelectedCategory } from "@/context/selected-category-context";
 import { Accordion } from "@/components/ui/accordion";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useSelectedDate } from "@/context/view-selected-date";
-import isEqual from "lodash/isEqual";
 import type { RefObject } from "react";
 import { useDebounce } from "use-debounce";
 
