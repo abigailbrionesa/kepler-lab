@@ -154,6 +154,7 @@ export type OrbitParams = {
   longitude_of_ascending_node: number;
   mean_anomaly: number;
   mean_motion: number;
+  color:string;
   epoch: number;
 };
 
