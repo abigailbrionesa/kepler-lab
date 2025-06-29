@@ -93,7 +93,7 @@ export default function Object(props: PlanetProps) {
   const occludeRefs = refs.current;
 
   const refCallback = useCallback(
-    (el: Mesh | null) => {
+    (el: Group | null) => {
       objectRef.current = el;
       if (isPlanet) {
         if (el) {
