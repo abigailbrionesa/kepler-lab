@@ -1,12 +1,11 @@
 "use client";
 import { useMemo } from "react";
-import PlanetModel from "./planet_models/PlanetModel";
+import PlanetModel from "./planet_models/planet-model";
 import { Badge } from "@/components/ui/badge";
 import { Html } from "@react-three/drei";
 import { get_orbit_points, get_position_at_selected_date } from "@/lib/math";
 import { Orbit } from "./orbit";
 import { useSelectedPlanet } from "@/context/view-selected-planet";
-import type { PlanetType } from "@/context/view-selected-planet";
 import { useRef } from "react";
 import type { Object3D } from "three";
 import { useOccludableRefs } from "@/context/occludable-refs-context";
@@ -18,46 +17,7 @@ import { useTransition, animated as a3 } from "@react-spring/three";
 import type { Group } from "three";
 import { useViewConfig } from "@/context/view-config-context";
 import { useSelectedAsteroidSpkid } from "@/context/view-selected-asteroid-spkid";
-
-type NEOType = "NEA" | "NEC" | "PHA";
-
-type PlanetObject = {
-  type: "PLANET";
-  objectParams: {
-    name: PlanetType;
-    radius: number;
-    distance_from_sun: number;
-    color: string;
-    eccentricity: number;
-    inclination: number;
-    argument_of_periapsis: number;
-    longitude_of_ascending_node: number;
-    mean_anomaly: number;
-    mean_motion: number;
-    epoch: number;
-  };
-  selectedDate: Date;
-};
-
-type NEOObject = {
-  type: NEOType;
-  objectParams: {
-    name: string;
-    distance_from_sun: number;
-    color: string;
-    eccentricity: number;
-    inclination: number;
-    argument_of_periapsis: number;
-    longitude_of_ascending_node: number;
-    mean_anomaly: number;
-    mean_motion: number;
-    epoch: number;
-    spkid?: string;
-  };
-  selectedDate: Date;
-};
-
-type PlanetProps = (PlanetObject | NEOObject) & { custom?: boolean };
+import type { PlanetProps } from "@/lib/types";
 
 export default function Object(props: PlanetProps) {
   const { viewConfig } = useViewConfig();
