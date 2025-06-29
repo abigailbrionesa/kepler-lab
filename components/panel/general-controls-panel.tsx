@@ -22,24 +22,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useSelectedDate } from "@/context/view-selected-date";
 import isEqual from "lodash/isEqual";
 import type { RefObject } from "react";
+import { useDebounce } from "use-debounce";
 
-export function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [value, delay]);
-
-  return debouncedValue;
-}
-
-export default function ControlsPanel({
+export default function GeneralControlsPanel({
   dragConstraints,
 }: {
   dragConstraints: RefObject<HTMLDivElement | null>;
@@ -52,8 +37,8 @@ export default function ControlsPanel({
     Math.floor(
       (new Date().getTime() -
         new Date(new Date().getFullYear(), 0, 0).getTime()) /
-        (1000 * 60 * 60 * 24),
-    ),
+        (1000 * 60 * 60 * 24)
+    )
   );
 
   const [semiMajorAxisUI, setSemiMajorAxisUI] = useState<number[]>([0.5, 5]);
@@ -64,19 +49,19 @@ export default function ControlsPanel({
   const [diameterUI, setDiameterUI] = useState<number[]>([0.1, 10]);
   const [showOnlyHazardous, setShowOnlyHazardous] = useState<boolean>(false);
 
-  const debouncedYear = useDebounce(yearUI, 100);
-  const debouncedDayOfYear = useDebounce(dayOfYearUI, 100);
-  const debouncedSemiMajorAxis = useDebounce(semiMajorAxisUI, 1500);
-  const debouncedEccentricity = useDebounce(eccentricityUI, 1500);
-  const debouncedOrbitalPeriod = useDebounce(orbitalPeriodUI, 1500);
-  const debouncedAlbedo = useDebounce(albedoUI, 1500);
-  const debouncedMagnitude = useDebounce(magnitudeUI, 1500);
-  const debouncedDiameter = useDebounce(diameterUI, 1500);
+  const [debouncedYear] = useDebounce(yearUI, 100);
+  const [debouncedDayOfYear] = useDebounce(dayOfYearUI, 100);
+  const [debouncedSemiMajorAxis] = useDebounce(semiMajorAxisUI, 1500);
+  const [debouncedEccentricity] = useDebounce(eccentricityUI, 1500);
+  const [debouncedOrbitalPeriod] = useDebounce(orbitalPeriodUI, 1500);
+  const [debouncedAlbedo] = useDebounce(albedoUI, 1500);
+  const [debouncedMagnitude] = useDebounce(magnitudeUI, 1500);
+  const [debouncedDiameter] = useDebounce(diameterUI, 1500);
 
   useEffect(() => {
     const newDate = addDays(
       startOfYear(new Date(debouncedYear, 0, 1)),
-      debouncedDayOfYear - 1,
+      debouncedDayOfYear - 1
     );
     setSelectedDate(newDate);
   }, [debouncedYear, debouncedDayOfYear, setSelectedDate]);
@@ -112,7 +97,7 @@ export default function ControlsPanel({
 
   const displayDate = addDays(
     startOfYear(new Date(yearUI, 0, 1)),
-    dayOfYearUI - 1,
+    dayOfYearUI - 1
   );
 
   const showFilters =
@@ -155,7 +140,7 @@ export default function ControlsPanel({
                       variant="outline"
                       className={cn(
                         "w-full justify-start text-left font-normal",
-                        !selectedDate && "text-muted-foreground",
+                        !selectedDate && "text-muted-foreground"
                       )}
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
