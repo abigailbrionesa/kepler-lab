@@ -10,8 +10,8 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PaNEOrama",
-  description: "planets",
+  title: "Abi's Solar System",
+  description: "Explore space",
 };
 
 export default function RootLayout({
