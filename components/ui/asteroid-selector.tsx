@@ -8,52 +8,10 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { useDebounce } from "use-debounce";
-import { createClient } from "@/lib/supabase/client";
 import { useSelectedAsteroidSpkid } from "@/context/view-selected-asteroid-spkid";
 import { cn } from "@/lib/utils";
-
-type AsteroidOption = { spkid: number; full_name: string };
-
-const supabase = createClient();
-
-type AsteroidRow = {
-  spkid: number;
-  full_name: string;
-  pha: string;
-  sats: string;
-  H: number;
-  orbit_id: string;
-  epoch_mjd: number;
-  e: number;
-  a: number;
-  q: number;
-  i: number;
-  om: number;
-  w: number;
-  ma: number;
-  n: number;
-  ad: number;
-  per_y: number;
-  data_arc: string;
-  condition_code: string;
-  n_obs_used: number;
-  epoch: number;
-  epoch_cal: string;
-  equinox: string;
-  tp: number;
-  per: string;
-  moid: number;
-  moid_ld: number;
-  moid_jup: number;
-  t_jup: number;
-  class: string;
-  producer: string;
-  first_obs: string;
-  last_obs: string;
-  rms: number;
-  albedo: number;
-  diameter: number;
-};
+import type { AsteroidRow, AsteroidOption } from "@/lib/types";
+import { supabase } from "@/lib/supabase/supabase";
 
 function formatAsteroid(data: AsteroidRow) {
   return {
