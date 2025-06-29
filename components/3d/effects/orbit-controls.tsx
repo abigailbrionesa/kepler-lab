@@ -1,15 +1,18 @@
 "use client";
-import { useRef } from "react";
-import { useSelectedPlanet } from "@/context/view-selected-planet";
+
+import { useEffect, useMemo, useRef } from "react";
+
+import * as THREE from "three";
+import { CameraControls } from "@react-three/drei";
+
+import { useCameraControls } from "@/context/camera-control-context";
+import { useIsObjectPivot } from "@/context/view-is-object-pivot";
 import { useSelectedDate } from "@/context/view-selected-date";
-import { useMemo } from "react";
+import { useSelectedPlanet } from "@/context/view-selected-planet";
+
 import { get_position_at_selected_date } from "@/lib/math";
 import planets_data from "../../../lib/data/planets.json";
-import { useEffect } from "react";
-import * as THREE from "three";
-import { useIsObjectPivot } from "@/context/view-is-object-pivot";
-import { CameraControls } from "@react-three/drei";
-import { useCameraControls } from "@/context/camera-control-context";
+
 const ORIGIN = new THREE.Vector3(0, 0, 0);
 
 export const SpaceControls = () => {
@@ -90,9 +93,9 @@ export const SpaceControls = () => {
 
     const controls = cameraControlsRef.current;
 
-    const newTarget = isObjectPivot && planetPosition ? planetPosition : ORIGIN;
+    const newPosition = isObjectPivot && planetPosition ? planetPosition : ORIGIN;
 
-    controls.setTarget(newTarget.x, newTarget.y, newTarget.z, true);
+    controls.setTarget(newPosition.x, newPosition.y, newPosition.z, true);
   }, [isObjectPivot, planetPosition]);
 
 
