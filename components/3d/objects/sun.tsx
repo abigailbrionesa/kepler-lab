@@ -1,9 +1,9 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { Object3D, TextureLoader } from "three";
 import { useOccludableRefs } from "@/context/occludable-refs-context";
 import { SUN_RADIUS } from "@/lib/constants";
 import { useLoader } from "@react-three/fiber";
-import { MeshStandardMaterial } from "three";
+
 const Sun = () => {
   const meshRef = useRef<Object3D>(null);
   const { registerRef, unregisterRef } = useOccludableRefs();
