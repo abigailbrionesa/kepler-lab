@@ -7,7 +7,7 @@ import { Light } from "./components/3d/effects/light";
 import Planets from "./components/3d/planets";
 import { SpaceControls } from "./components/3d/effects/orbit-controls";
 import planets_json from "./lib/data/planets.json";
-import OrbitCreator from "./components/3d/orbit-creator";
+import CustomObject from "./components/3d/custom-object";
 import Asteroid from "./components/3d/asteroid";
 import type { PlanetData } from "@/lib/types";
 
@@ -25,7 +25,7 @@ export default function SolarSystem() {
       }}
     >
       <Suspense fallback={null}>
-        <OrbitCreator />
+        <CustomObject />
         <Asteroid />
         <Sun />
         <SpaceControls />
