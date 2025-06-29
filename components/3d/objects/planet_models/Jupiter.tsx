@@ -1,42 +1,37 @@
-"use client"
+"use client";
 import React, { forwardRef, useRef, useImperativeHandle } from "react";
 import { useGLTF } from "@react-three/drei";
-import { Mesh } from "three";
-import * as THREE from 'three'
-import { GLTF } from 'three-stdlib'
+import * as THREE from "three";
+import { GLTF } from "three-stdlib";
 import type { Group } from "three";
-
-interface JupiterModelProps extends React.ComponentProps<"group"> {
-  scale: number;
-}
 
 type GLTFResult = GLTF & {
   nodes: {
-    cubemap: THREE.Mesh
-  }
+    cubemap: THREE.Mesh;
+  };
   materials: {
-    None: THREE.MeshStandardMaterial
-  }
-}
+    None: THREE.MeshStandardMaterial;
+  };
+};
 
+export const JupiterModel = forwardRef<
+  Group,
+  React.ComponentProps<"group">
+>((props, ref) => {
+  const { nodes, materials } = useGLTF(
+    "/models/jupiter.glb"
+  ) as unknown as GLTFResult;
 
-export const JupiterModel = forwardRef<Mesh | Group, JupiterModelProps>((props, ref) => {
-  const { nodes, materials } = useGLTF("/models/jupiter.glb") as unknown as GLTFResult;
-  const meshRef = useRef<Mesh>(null);
-
-  useImperativeHandle(ref, () => meshRef.current!, []);
-
-  const { scale, ...rest } = props;
+  const groupRef = useRef<Group>(null);
+  useImperativeHandle(ref, () => groupRef.current!, []);
 
   return (
-    <group {...rest} dispose={null}>
+    <group {...props} ref={groupRef} dispose={null}>
       <mesh
-        ref={meshRef}
         castShadow
         receiveShadow
         geometry={nodes.cubemap.geometry}
         material={materials.None}
-        scale={scale}
       />
     </group>
   );

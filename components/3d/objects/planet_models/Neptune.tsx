@@ -1,42 +1,38 @@
-"use client"
+"use client";
 import { useGLTF } from "@react-three/drei";
-import { Mesh } from "three";
 import { useImperativeHandle, useRef, forwardRef } from "react";
-import * as THREE from 'three'
-import { GLTF } from 'three-stdlib'
+import * as THREE from "three";
+import { GLTF } from "three-stdlib";
 import type { Group } from "three";
-interface NeptuneModelProps extends React.ComponentProps<"group"> {
-  scale: number;
-}
+
 type GLTFResult = GLTF & {
   nodes: {
-    Neptune: THREE.Mesh
-  }
+    Neptune: THREE.Mesh;
+  };
   materials: {
-    ['Default OBJ.001']: THREE.MeshStandardMaterial
-  }
-}
+    ["Default OBJ.001"]: THREE.MeshStandardMaterial;
+  };
+};
 
-export const NeptuneModel = forwardRef<Mesh | Group, NeptuneModelProps>(
-  (props, ref) => {
-    const { nodes, materials } = useGLTF("/models/neptune.glb") as unknown as GLTFResult;
-    const meshRef = useRef<Mesh>(null);
+export const NeptuneModel = forwardRef<
+  Group,
+  React.ComponentProps<"group">
+>((props, ref) => {
+  const { nodes, materials } = useGLTF(
+    "/models/neptune.glb"
+  ) as unknown as GLTFResult;
 
-    useImperativeHandle(ref, () => meshRef.current!, []);
+  const groupRef = useRef<Group>(null);
+  useImperativeHandle(ref, () => groupRef.current!, []);
 
-    const { ...rest } = props;
-
-    return (
-      <group {...rest} dispose={null}>
-        <mesh
-          ref={meshRef}
-          geometry={nodes.Neptune.geometry}
-          material={materials["Default OBJ.001"]}
-          scale={props.scale}
-        />
-      </group>
-    );
-  }
-);
+  return (
+    <group {...props} ref={groupRef} dispose={null}>
+      <mesh
+        geometry={nodes.Neptune.geometry}
+        material={materials["Default OBJ.001"]}
+      />
+    </group>
+  );
+});
 
 NeptuneModel.displayName = "NeptuneModel";

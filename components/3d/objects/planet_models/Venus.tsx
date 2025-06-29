@@ -1,40 +1,35 @@
-"use client"
+"use client";
 import { useGLTF } from "@react-three/drei";
-import { Mesh } from "three";
 import { useImperativeHandle, useRef, forwardRef } from "react";
-import * as THREE from 'three'
-import { GLTF } from 'three-stdlib'
+import * as THREE from "three";
+import { GLTF } from "three-stdlib";
 import type { Group } from "three";
-
-interface VenusModelProps extends React.ComponentProps<"group"> {
-  scale: number;
-}
 
 type GLTFResult = GLTF & {
   nodes: {
-    cylindrically_mapped_sphereMesh: THREE.Mesh
-  }
+    cylindrically_mapped_sphereMesh: THREE.Mesh;
+  };
   materials: {
-    ['Default OBJ']: THREE.MeshStandardMaterial
-  }
-}
+    ["Default OBJ"]: THREE.MeshStandardMaterial;
+  };
+};
 
+export const VenusModel = forwardRef<
+  Group,
+  React.ComponentProps<"group">
+>((props, ref) => {
+  const { nodes, materials } = useGLTF(
+    "/models/venus.glb"
+  ) as unknown as GLTFResult;
 
-export const VenusModel = forwardRef<Mesh | Group, VenusModelProps>((props, ref) => {
-  const { nodes, materials } = useGLTF("/models/venus.glb") as unknown as GLTFResult;
-  const meshRef = useRef<Mesh>(null);
-
-  useImperativeHandle(ref, () => meshRef.current!, []);
-
-  const { scale, ...rest } = props;
+  const groupRef = useRef<Group>(null);
+  useImperativeHandle(ref, () => groupRef.current!, []);
 
   return (
-    <group {...rest} dispose={null}>
+    <group {...props} ref={groupRef} dispose={null}>
       <mesh
-        ref={meshRef}
         geometry={nodes.cylindrically_mapped_sphereMesh.geometry}
         material={materials["Default OBJ"]}
-        scale={scale}
       />
     </group>
   );
@@ -43,4 +38,3 @@ export const VenusModel = forwardRef<Mesh | Group, VenusModelProps>((props, ref)
 VenusModel.displayName = "VenusModel";
 
 useGLTF.preload("/models/venus.glb");
-
