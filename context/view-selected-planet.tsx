@@ -1,16 +1,6 @@
 "use client"
-
+import type { PlanetType } from "@/lib/types";
 import { createContext, useContext, useState, type ReactNode } from "react"
-
-export type PlanetType = 
-  | "Mercury"
-  | "Venus"
-  | "Earth"
-  | "Mars"
-  | "Jupiter"
-  | "Saturn"
-  | "Uranus"
-  | "Neptune"
 
 
 interface SelectedPlanetContextType {
