@@ -1,13 +1,12 @@
 "use client";
 import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
 import DraggablePanel from "../ui/draggable-menu";
 import DraggableMenuItem from "../ui/draggable-menu-item";
 import { Plus } from "lucide-react";
 import { useCustomObjects } from "@/context/custom-objects-context";
 import DeleteButton from "../ui/delete-button";
+import { ParamSlider } from "../ui/param-slider";
 
 export function OrbitalControlsPanel({
   dragConstraints,
@@ -19,7 +18,7 @@ export function OrbitalControlsPanel({
   const handleChange = (
     id: string,
     field: keyof (typeof objects)[0],
-    value: number,
+    value: number
   ) => {
     updateObject(id, field, value);
   };
@@ -66,8 +65,8 @@ export function OrbitalControlsPanel({
                     max={4515000000}
                     step={100000}
                     value={obj.semiMajorAxis}
-                    onChange={(val) =>
-                      handleChange(obj.id, "semiMajorAxis", val)
+                    onChange={(val: number) =>
+                      handleChange(obj.id, "semiMajorAxis", val as number)
                     }
                   />
                   <ParamSlider
@@ -77,8 +76,8 @@ export function OrbitalControlsPanel({
                     max={1}
                     step={0.01}
                     value={obj.eccentricity}
-                    onChange={(val) =>
-                      handleChange(obj.id, "eccentricity", val)
+                    onChange={(val: number) =>
+                      handleChange(obj.id, "eccentricity", val as number)
                     }
                   />
                   <ParamSlider
@@ -88,7 +87,9 @@ export function OrbitalControlsPanel({
                     max={Math.PI}
                     step={0.01}
                     value={obj.inclination}
-                    onChange={(val) => handleChange(obj.id, "inclination", val)}
+                    onChange={(val: number) =>
+                      handleChange(obj.id, "inclination", val as number)
+                    }
                   />
                   <ParamSlider
                     label="Argument of Periapsis (rad)"
@@ -97,8 +98,12 @@ export function OrbitalControlsPanel({
                     max={2 * Math.PI}
                     step={0.01}
                     value={obj.argument_of_periapsis}
-                    onChange={(val) =>
-                      handleChange(obj.id, "argument_of_periapsis", val)
+                    onChange={(val: number) =>
+                      handleChange(
+                        obj.id,
+                        "argument_of_periapsis",
+                        val as number
+                      )
                     }
                   />
                   <ParamSlider
@@ -108,8 +113,12 @@ export function OrbitalControlsPanel({
                     max={2 * Math.PI}
                     step={0.01}
                     value={obj.longitude_of_ascending_node}
-                    onChange={(val) =>
-                      handleChange(obj.id, "longitude_of_ascending_node", val)
+                    onChange={(val: number) =>
+                      handleChange(
+                        obj.id,
+                        "longitude_of_ascending_node",
+                        val as number
+                      )
                     }
                   />
                   <ParamSlider
@@ -119,8 +128,8 @@ export function OrbitalControlsPanel({
                     max={2 * Math.PI}
                     step={0.01}
                     value={obj.mean_anomaly}
-                    onChange={(val) =>
-                      handleChange(obj.id, "mean_anomaly", val)
+                    onChange={(val: number) =>
+                      handleChange(obj.id, "mean_anomaly", val as number)
                     }
                   />
                   <ParamSlider
@@ -130,7 +139,9 @@ export function OrbitalControlsPanel({
                     max={1}
                     step={0.001}
                     value={obj.mean_motion}
-                    onChange={(val) => handleChange(obj.id, "mean_motion", val)}
+                    onChange={(val: number) =>
+                      handleChange(obj.id, "mean_motion", val as number)
+                    }
                   />
                   <ParamSlider
                     label="Epoch (JD)"
@@ -139,7 +150,9 @@ export function OrbitalControlsPanel({
                     max={3000000}
                     step={1}
                     value={obj.epoch}
-                    onChange={(val) => handleChange(obj.id, "epoch", val)}
+                    onChange={(val: number) =>
+                      handleChange(obj.id, "epoch", val as number)
+                    }
                   />
                 </div>
               </DraggableMenuItem>
@@ -157,7 +170,9 @@ export function OrbitalControlsPanel({
                     max={1}
                     step={0.01}
                     value={obj.albedo}
-                    onChange={(val) => handleChange(obj.id, "albedo", val)}
+                    onChange={(val: number) =>
+                      handleChange(obj.id, "albedo", val as number)
+                    }
                   />
                   <ParamSlider
                     label="Magnitude"
@@ -166,7 +181,9 @@ export function OrbitalControlsPanel({
                     max={30}
                     step={0.1}
                     value={obj.magnitude}
-                    onChange={(val) => handleChange(obj.id, "magnitude", val)}
+                    onChange={(val: number) =>
+                      handleChange(obj.id, "magnitude", val as number)
+                    }
                   />
                   <ParamSlider
                     label="Diameter (km)"
@@ -175,7 +192,9 @@ export function OrbitalControlsPanel({
                     max={20000}
                     step={1}
                     value={obj.diameter}
-                    onChange={(val) => handleChange(obj.id, "diameter", val)}
+                    onChange={(val: number) =>
+                      handleChange(obj.id, "diameter", val as number)
+                    }
                   />
                 </div>
               </DraggableMenuItem>
@@ -188,43 +207,5 @@ export function OrbitalControlsPanel({
         ))}
       </Accordion>
     </DraggablePanel>
-  );
-}
-
-function ParamSlider({
-  label,
-  id,
-  min,
-  max,
-  step,
-  value,
-  onChange,
-}: {
-  label: string;
-  id: string;
-  min: number;
-  max: number;
-  step: number;
-  value: number;
-  onChange: (val: number) => void;
-}) {
-  return (
-    <div className="space-y-2">
-      <div className="flex justify-between">
-        <Label htmlFor={id}>{label}</Label>
-        <span className="text-xs text-muted-foreground">
-          {value.toFixed(2)}
-        </span>
-      </div>
-      <Slider
-        id={id}
-        min={min}
-        max={max}
-        step={step}
-        value={[value]}
-        onValueChange={(vals) => onChange(vals[0])}
-        className="w-full"
-      />
-    </div>
   );
 }
