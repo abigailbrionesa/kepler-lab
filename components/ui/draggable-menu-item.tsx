@@ -10,6 +10,7 @@ type DraggableMenuItemProps = {
   title: string | ReactNode;
   subtitle?: string;
   children: ReactNode;
+  className?: string;
 };
 
 export default function DraggableMenuItem({
