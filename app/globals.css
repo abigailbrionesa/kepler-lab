@@ -84,7 +84,7 @@ html {
 .dark {
   --background: oklch(16.932% 0.03326 44.084);
   --foreground: oklch(90.696% 0.01315 71.175);
-  --card:  oklch(0.3 0.0206 257.27);
+  --card: oklch(0.3 0.0206 257.27);
   --card-foreground: oklch(1 0 0);
   --popover: oklch(16.932% 0.03326 44.084);
   --popover-foreground: oklch(90.696% 0.01315 71.175);
@@ -117,13 +117,12 @@ html {
 
 @layer base {
   body {
-    @apply bg-background text-foreground font-ibm-mono
+    @apply bg-background text-foreground font-ibm-mono;
   }
 }
 
 @layer components {
   .custom-border {
-    @apply border-1 border-secondary
+    @apply border-1 border-secondary;
+  }
 }
-}
-

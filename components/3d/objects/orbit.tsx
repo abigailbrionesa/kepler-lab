@@ -13,7 +13,6 @@ export const Orbit: React.FC<OrbitProps> = ({ points }) => {
       lineWidth={1}
       opacity={0.2}
       transparent={true}
-
     />
   );
 };

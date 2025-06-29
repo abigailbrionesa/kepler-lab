@@ -38,7 +38,7 @@ export const SpaceControls = () => {
       planet.longitude_ascending_node_rad,
       planet.mean_anomaly_rad,
       planet.epoch,
-      selectedDate
+      selectedDate,
     );
   }, [selectedPlanet, selectedDate, planet]);
 
@@ -49,7 +49,7 @@ export const SpaceControls = () => {
 
     const distanceToPlanet = planetPosition.length();
 
-    const cameraDistance = distanceToPlanet *0.7 + planet.radius_km * 0.2;
+    const cameraDistance = distanceToPlanet * 0.7 + planet.radius_km * 0.2;
 
     // const fixedCameraDistance = 1000;
 
@@ -70,7 +70,7 @@ export const SpaceControls = () => {
         planetPosition.x,
         planetPosition.y,
         planetPosition.z,
-        true
+        true,
       );
     }
 
@@ -83,7 +83,7 @@ export const SpaceControls = () => {
         ORIGIN.x,
         ORIGIN.y,
         ORIGIN.z,
-        true
+        true,
       );
     }
   }, [selectedPlanet, planetPosition, targetCameraPosition]);
@@ -93,15 +93,20 @@ export const SpaceControls = () => {
 
     const controls = cameraControlsRef.current;
 
-    const newPosition = isObjectPivot && planetPosition ? planetPosition : ORIGIN;
+    const newPosition =
+      isObjectPivot && planetPosition ? planetPosition : ORIGIN;
 
     controls.setTarget(newPosition.x, newPosition.y, newPosition.z, true);
   }, [isObjectPivot, planetPosition]);
 
-
   return (
     <>
-      <CameraControls ref={cameraControlsRef} enabled minDistance={900} maxDistance={50000} />
+      <CameraControls
+        ref={cameraControlsRef}
+        enabled
+        minDistance={900}
+        maxDistance={50000}
+      />
     </>
   );
 };

@@ -1,6 +1,6 @@
-import { GithubIcon, LinkedinIcon, MailIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
+import { GithubIcon, LinkedinIcon, MailIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 export function CreatorInfo() {
   return (
@@ -13,13 +13,21 @@ export function CreatorInfo() {
         <Separator className="my-1" />
         <div className="flex items-center justify-between">
           <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
-            <a href="https://github.com/abigailbrionesa" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://github.com/abigailbrionesa"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <GithubIcon className="h-4 w-4" />
               <span className="sr-only">GitHub</span>
             </a>
           </Button>
           <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
-            <a href="https://www.linkedin.com/in/abigailbrionesaranda/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.linkedin.com/in/abigailbrionesaranda/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <LinkedinIcon className="h-4 w-4" />
               <span className="sr-only">LinkedIn</span>
             </a>
@@ -33,5 +41,5 @@ export function CreatorInfo() {
         </div>
       </div>
     </div>
-  )
+  );
 }

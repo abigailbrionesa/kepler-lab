@@ -25,8 +25,8 @@ export default function SolarSystem() {
       }}
     >
       <Suspense fallback={null}>
-        <OrbitCreator/>
-        <Asteroid/>
+        <OrbitCreator />
+        <Asteroid />
         <Sun />
         <SpaceControls />
         <Stars number={80000} size={3} />

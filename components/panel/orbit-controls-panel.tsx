@@ -19,7 +19,7 @@ export function OrbitalControlsPanel({
   const handleChange = (
     id: string,
     field: keyof (typeof objects)[0],
-    value: number
+    value: number,
   ) => {
     updateObject(id, field, value);
   };
@@ -45,7 +45,7 @@ export function OrbitalControlsPanel({
       </div>
 
       <Accordion type="multiple" className="w-full">
-        {objects.map((obj, ) => (
+        {objects.map((obj) => (
           <DraggableMenuItem
             key={obj.id}
             accordionValue={obj.id}
@@ -179,7 +179,10 @@ export function OrbitalControlsPanel({
                   />
                 </div>
               </DraggableMenuItem>
-              <DeleteButton className="mt-2" onClick={() => removeObject(obj.id)} />
+              <DeleteButton
+                className="mt-2"
+                onClick={() => removeObject(obj.id)}
+              />
             </div>
           </DraggableMenuItem>
         ))}

@@ -17,21 +17,18 @@ type GLTFResult = GLTF & {
   };
 };
 
-export const SaturnModel = forwardRef<Group, React.ComponentProps<'group'>>(
+export const SaturnModel = forwardRef<Group, React.ComponentProps<"group">>(
   (props, ref) => {
     const { nodes, materials } = useGLTF(
-      "/models/saturn.glb"
+      "/models/saturn.glb",
     ) as unknown as GLTFResult;
-    
+
     const groupRef = useRef<Group>(null);
     useImperativeHandle(ref, () => groupRef.current!, []);
 
     return (
       <group ref={groupRef} {...props} dispose={null}>
-        <mesh
-          geometry={nodes.Saturn001.geometry}
-          material={materials.None}
-        />
+        <mesh geometry={nodes.Saturn001.geometry} material={materials.None} />
         <mesh
           geometry={nodes.RingsTop.geometry}
           material={materials.SaturnRings}
@@ -42,7 +39,7 @@ export const SaturnModel = forwardRef<Group, React.ComponentProps<'group'>>(
         />
       </group>
     );
-  }
+  },
 );
 
 SaturnModel.displayName = "SaturnModel";

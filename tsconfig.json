@@ -22,6 +22,19 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/3d/objects/planet_models/Earth.tsx", "components/3d/objects/planet_models/Jupiter.tsx", "components/3d/objects/planet_models/Mars.tsx", "components/3d/objects/planet_models/Mercury.tsx", "components/3d/objects/planet_models/Neptune.tsx", "components/3d/objects/planet_models/Saturn.tsx", "components/3d/objects/planet_models/Uranus.tsx", "components/3d/objects/planet_models/Venus.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "components/3d/objects/planet_models/Earth.tsx",
+    "components/3d/objects/planet_models/Jupiter.tsx",
+    "components/3d/objects/planet_models/Mars.tsx",
+    "components/3d/objects/planet_models/Mercury.tsx",
+    "components/3d/objects/planet_models/Neptune.tsx",
+    "components/3d/objects/planet_models/Saturn.tsx",
+    "components/3d/objects/planet_models/Uranus.tsx",
+    "components/3d/objects/planet_models/Venus.tsx"
+  ],
   "exclude": ["node_modules"]
 }

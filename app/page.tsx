@@ -23,22 +23,22 @@ export default function Page() {
             <SelectedCategoryProvider>
               <OrbitCreatorParamsProvider>
                 <CustomObjectsProvider>
-                  <AsteroidProvider> 
-                  <SelectedDateProvider>
-                    <SelectedAsteroidSpkidProvider>
-                      <SelectedPlanetProvider>
-                        <IsObjectPivotProvider>
-                          <CameraControlProvider>
-                            <AppSidebar variant="inset" />
-                            <SidebarInset>
-                              <MainContent />
-                            </SidebarInset>
-                            <RightSidebar />
-                          </CameraControlProvider>
-                        </IsObjectPivotProvider>
-                      </SelectedPlanetProvider>
-                    </SelectedAsteroidSpkidProvider>
-                  </SelectedDateProvider>
+                  <AsteroidProvider>
+                    <SelectedDateProvider>
+                      <SelectedAsteroidSpkidProvider>
+                        <SelectedPlanetProvider>
+                          <IsObjectPivotProvider>
+                            <CameraControlProvider>
+                              <AppSidebar variant="inset" />
+                              <SidebarInset>
+                                <MainContent />
+                              </SidebarInset>
+                              <RightSidebar />
+                            </CameraControlProvider>
+                          </IsObjectPivotProvider>
+                        </SelectedPlanetProvider>
+                      </SelectedAsteroidSpkidProvider>
+                    </SelectedDateProvider>
                   </AsteroidProvider>
                 </CustomObjectsProvider>
               </OrbitCreatorParamsProvider>

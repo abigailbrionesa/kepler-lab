@@ -41,15 +41,10 @@ export type AsteroidRow = {
   diameter: number;
 };
 
-
-export type ObjectType =
-  | 'NEA'
-  | 'PLANET'
-  | 'PHA'
-  | 'NEC';
+export type ObjectType = "NEA" | "PLANET" | "PHA" | "NEC";
 
 export type NEOType = "NEA" | "NEC" | "PHA";
- 
+
 export type OrbitalParams = {
   name: string;
   color: string;
@@ -68,7 +63,6 @@ export type OrbitalParams = {
   setParams: (params: Partial<OrbitalParams>) => void;
 };
 
-
 export type AsteroidParams = {
   spkid: string;
   full_name: string;
@@ -86,19 +80,16 @@ export type AsteroidParams = {
   epoch: number;
 };
 
-
-
-
 export type CameraControlContextType = {
-  cameraControlsRef: React.RefObject<CameraControlsImpl  | null>
-  rotate: (theta: number, phi: number) => void
-  zoom: (amount: number) => void
-  dolly: (distance: number) => void
-  truck: (x: number, y: number) => void
-  moveTo: (position: [number, number, number]) => void
-}
+  cameraControlsRef: React.RefObject<CameraControlsImpl | null>;
+  rotate: (theta: number, phi: number) => void;
+  zoom: (amount: number) => void;
+  dolly: (distance: number) => void;
+  truck: (x: number, y: number) => void;
+  moveTo: (position: [number, number, number]) => void;
+};
 
-export type PlanetType = 
+export type PlanetType =
   | "Mercury"
   | "Venus"
   | "Earth"
@@ -106,7 +97,7 @@ export type PlanetType =
   | "Jupiter"
   | "Saturn"
   | "Uranus"
-  | "Neptune"
+  | "Neptune";
 
 export type PlanetData = {
   id: number;
@@ -148,7 +139,6 @@ export type PlanetData = {
   color: string;
   index: number;
 };
-
 
 export type OrbitParams = {
   id: string;
@@ -202,6 +192,5 @@ export type NEOObject = {
   };
   selectedDate: Date;
 };
-
 
 export type PlanetProps = (PlanetObject | NEOObject) & { custom?: boolean };

@@ -1,7 +1,6 @@
-"use client"
+"use client";
 import type { PlanetType } from "@/lib/types";
-import { createContext, useContext, useState, type ReactNode } from "react"
-
+import { createContext, useContext, useState, type ReactNode } from "react";
 
 interface SelectedPlanetContextType {
   selectedPlanet: PlanetType | undefined;
@@ -11,19 +10,30 @@ interface SelectedPlanetContextType {
 const defaultContext: SelectedPlanetContextType = {
   selectedPlanet: undefined,
   setSelectedPlanet: () => {
-    throw new Error("setSelectedPlanet function must be used within SelectedPlanetProvider");
+    throw new Error(
+      "setSelectedPlanet function must be used within SelectedPlanetProvider",
+    );
   },
 };
 
-export const SelectedPlanetContext = createContext<SelectedPlanetContextType>(defaultContext)
+export const SelectedPlanetContext =
+  createContext<SelectedPlanetContextType>(defaultContext);
 
-export const useSelectedPlanet = () => useContext(SelectedPlanetContext)
+export const useSelectedPlanet = () => useContext(SelectedPlanetContext);
 
-export const SelectedPlanetProvider = ({ children }: { children: ReactNode }) => {
-  const [selectedPlanet, setSelectedPlanet] = useState<PlanetType | undefined>(undefined);
+export const SelectedPlanetProvider = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
+  const [selectedPlanet, setSelectedPlanet] = useState<PlanetType | undefined>(
+    undefined,
+  );
 
   return (
-    <SelectedPlanetContext.Provider value={{ selectedPlanet, setSelectedPlanet }}>
+    <SelectedPlanetContext.Provider
+      value={{ selectedPlanet, setSelectedPlanet }}
+    >
       {children}
     </SelectedPlanetContext.Provider>
   );

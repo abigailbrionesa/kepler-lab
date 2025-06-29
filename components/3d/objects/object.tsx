@@ -53,7 +53,7 @@ export default function Object(props: PlanetProps) {
       props.objectParams.longitude_of_ascending_node,
       props.objectParams.mean_anomaly,
       props.objectParams.epoch,
-      props.selectedDate
+      props.selectedDate,
     );
   }, [
     props.objectParams.distance_from_sun,
@@ -72,7 +72,7 @@ export default function Object(props: PlanetProps) {
       props.objectParams.eccentricity,
       props.objectParams.inclination,
       props.objectParams.argument_of_periapsis,
-      props.objectParams.longitude_of_ascending_node
+      props.objectParams.longitude_of_ascending_node,
     );
   }, [
     props.objectParams.distance_from_sun,
@@ -103,7 +103,7 @@ export default function Object(props: PlanetProps) {
         }
       }
     },
-    [isPlanet, registerRef, unregisterRef]
+    [isPlanet, registerRef, unregisterRef],
   );
 
   const planetTransitions = useTransition(isPlanet && isSelected, {
@@ -132,7 +132,7 @@ export default function Object(props: PlanetProps) {
                 scale={1}
               />
             </a3.group>
-          ) : null
+          ) : null,
         )}
 
       <group position={object_position}>
@@ -143,7 +143,7 @@ export default function Object(props: PlanetProps) {
           occlude={occludeRefs as React.RefObject<Object3D>[]}
           className={cn(
             "transition-all duration-200 cursor-pointer z-50 group ",
-            hidden ? "opacity-0 scale-90" : "opacity-100 scale-100"
+            hidden ? "opacity-0 scale-90" : "opacity-100 scale-100",
           )}
         >
           <div onClick={handleObjectClick}>

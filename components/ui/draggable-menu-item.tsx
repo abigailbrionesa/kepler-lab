@@ -23,7 +23,9 @@ export default function DraggableMenuItem({
       <AccordionTrigger className="py-2 hover:no-underline">
         <div className="flex flex-col items-start text-left">
           <h3 className="text-sm font-medium">{title}</h3>
-          { subtitle && (<p className="text-xs text-muted-foreground">{subtitle}</p>)}
+          {subtitle && (
+            <p className="text-xs text-muted-foreground">{subtitle}</p>
+          )}
         </div>
       </AccordionTrigger>
       <AccordionContent>{children}</AccordionContent>

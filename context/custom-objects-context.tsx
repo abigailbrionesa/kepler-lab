@@ -26,7 +26,7 @@ const CustomObjectsContext = createContext<{
   updateObject: (
     id: string,
     field: keyof OrbitParams,
-    value: number | string
+    value: number | string,
   ) => void;
   removeObject: (id: string) => void;
 }>({
@@ -48,7 +48,7 @@ export const CustomObjectsProvider = ({
   const addObject = () => {
     setObjects((prev) => {
       const customCount = prev.filter((obj) =>
-        obj.name.startsWith("Custom Object")
+        obj.name.startsWith("Custom Object"),
       ).length;
       const newName = `Custom Object ${customCount + 1}`;
       return [
@@ -64,10 +64,10 @@ export const CustomObjectsProvider = ({
   const updateObject = (
     id: string,
     field: keyof OrbitParams,
-    value: number | string
+    value: number | string,
   ) => {
     setObjects((prev) =>
-      prev.map((obj) => (obj.id === id ? { ...obj, [field]: value } : obj))
+      prev.map((obj) => (obj.id === id ? { ...obj, [field]: value } : obj)),
     );
   };
 

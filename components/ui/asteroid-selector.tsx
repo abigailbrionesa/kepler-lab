@@ -88,7 +88,7 @@ export function AsteroidSelector({ className }: { className?: string }) {
 
       setOptions((prevOptions) => {
         const updated = prevOptions.filter(
-          (opt) => String(opt.spkid) !== String(spkid)
+          (opt) => String(opt.spkid) !== String(spkid),
         );
         return updated;
       });

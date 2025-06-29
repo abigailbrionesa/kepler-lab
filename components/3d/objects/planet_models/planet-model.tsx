@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { EarthModel } from "./Earth";
 import { MarsModel } from "./Mars";
 import { JupiterModel } from "./Jupiter";
@@ -13,7 +13,7 @@ import type { PlanetType } from "@/lib/types";
 
 export type PlanetModelProps = {
   name: PlanetType;
-} & React.ComponentProps<'group'>;  
+} & React.ComponentProps<"group">;
 
 const PlanetModel = forwardRef<Group, PlanetModelProps>((props, ref) => {
   const { name, ...rest } = props;

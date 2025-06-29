@@ -2,10 +2,13 @@
 import { createContext, useContext, useState } from "react";
 import type { OrbitalParams } from "@/lib/types";
 
-
 const OrbitalParamsContext = createContext<OrbitalParams | null>(null);
 
-export function OrbitCreatorParamsProvider({ children }: { children: React.ReactNode }) {
+export function OrbitCreatorParamsProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [params, setParamsState] = useState<Omit<OrbitalParams, "setParams">>({
     name: "Custom",
     color: "red",

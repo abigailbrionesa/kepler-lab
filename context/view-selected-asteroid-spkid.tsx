@@ -10,17 +10,28 @@ interface SelectedAsteroidSpkidType {
 const SelectedAsteroidSpkidContext = createContext<SelectedAsteroidSpkidType>({
   selectedAsteroidSpkid: undefined,
   setSelectedAsteroidSpkid: () => {
-    throw new Error("setSelectedAsteroidSpkid must be used within a SelectedAsteroidSpkidProvider");
+    throw new Error(
+      "setSelectedAsteroidSpkid must be used within a SelectedAsteroidSpkidProvider",
+    );
   },
 });
 
-export const useSelectedAsteroidSpkid = () => useContext(SelectedAsteroidSpkidContext);
+export const useSelectedAsteroidSpkid = () =>
+  useContext(SelectedAsteroidSpkidContext);
 
-export const SelectedAsteroidSpkidProvider = ({ children }: { children: ReactNode }) => {
-  const [selectedAsteroidSpkid, setSelectedAsteroidSpkid] = useState<string | undefined>(undefined);
+export const SelectedAsteroidSpkidProvider = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
+  const [selectedAsteroidSpkid, setSelectedAsteroidSpkid] = useState<
+    string | undefined
+  >(undefined);
 
   return (
-    <SelectedAsteroidSpkidContext.Provider value={{ selectedAsteroidSpkid, setSelectedAsteroidSpkid }}>
+    <SelectedAsteroidSpkidContext.Provider
+      value={{ selectedAsteroidSpkid, setSelectedAsteroidSpkid }}
+    >
       {children}
     </SelectedAsteroidSpkidContext.Provider>
   );

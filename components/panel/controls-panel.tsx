@@ -17,9 +17,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useSelectedCategory } from "@/context/selected-category-context";
-import {
-  Accordion,
-} from "@/components/ui/accordion";
+import { Accordion } from "@/components/ui/accordion";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useSelectedDate } from "@/context/view-selected-date";
 import isEqual from "lodash/isEqual";
@@ -54,8 +52,8 @@ export default function ControlsPanel({
     Math.floor(
       (new Date().getTime() -
         new Date(new Date().getFullYear(), 0, 0).getTime()) /
-        (1000 * 60 * 60 * 24)
-    )
+        (1000 * 60 * 60 * 24),
+    ),
   );
 
   const [semiMajorAxisUI, setSemiMajorAxisUI] = useState<number[]>([0.5, 5]);
@@ -78,7 +76,7 @@ export default function ControlsPanel({
   useEffect(() => {
     const newDate = addDays(
       startOfYear(new Date(debouncedYear, 0, 1)),
-      debouncedDayOfYear - 1
+      debouncedDayOfYear - 1,
     );
     setSelectedDate(newDate);
   }, [debouncedYear, debouncedDayOfYear, setSelectedDate]);
@@ -114,7 +112,7 @@ export default function ControlsPanel({
 
   const displayDate = addDays(
     startOfYear(new Date(yearUI, 0, 1)),
-    dayOfYearUI - 1
+    dayOfYearUI - 1,
   );
 
   const showFilters =
@@ -157,7 +155,7 @@ export default function ControlsPanel({
                       variant="outline"
                       className={cn(
                         "w-full justify-start text-left font-normal",
-                        !selectedDate && "text-muted-foreground"
+                        !selectedDate && "text-muted-foreground",
                       )}
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />

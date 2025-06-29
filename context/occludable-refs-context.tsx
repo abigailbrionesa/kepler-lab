@@ -10,7 +10,9 @@ type OccludableRefsContextType = {
   unregisterRef: (ref: RefObject<Object3D | null>) => void;
 };
 
-const OccludableRefsContext = createContext<OccludableRefsContextType | undefined>(undefined);
+const OccludableRefsContext = createContext<
+  OccludableRefsContextType | undefined
+>(undefined);
 
 export const useOccludableRefs = () => {
   const context = useContext(OccludableRefsContext);
@@ -20,8 +22,11 @@ export const useOccludableRefs = () => {
   return context;
 };
 
-
-export const OccludableRefsProvider = ({ children }: { children: ReactNode }) => {
+export const OccludableRefsProvider = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
   const refs = useRef<RefObject<Object3D | null>[]>([]);
 
   const registerRef = (ref: RefObject<Object3D | null>) => {
@@ -38,7 +43,9 @@ export const OccludableRefsProvider = ({ children }: { children: ReactNode }) =>
   };
 
   return (
-    <OccludableRefsContext.Provider value={{ refs, registerRef, unregisterRef }}>
+    <OccludableRefsContext.Provider
+      value={{ refs, registerRef, unregisterRef }}
+    >
       {children}
     </OccludableRefsContext.Provider>
   );

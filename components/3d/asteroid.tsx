@@ -41,7 +41,9 @@ export default function Asteroid() {
               eccentricity: eccentricity,
               inclination: degToRad(inclination),
               argument_of_periapsis: degToRad(argument_of_periapsis),
-              longitude_of_ascending_node: degToRad(longitude_of_ascending_node),
+              longitude_of_ascending_node: degToRad(
+                longitude_of_ascending_node,
+              ),
               mean_anomaly: degToRad(mean_anomaly),
               mean_motion: degToRad(mean_motion),
               epoch: epoch,

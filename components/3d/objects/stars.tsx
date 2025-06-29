@@ -1,10 +1,10 @@
-import { useMemo } from 'react';
+import { useMemo } from "react";
 import {
   BufferAttribute,
   BufferGeometry,
   MathUtils,
   PointsMaterial,
-} from 'three';
+} from "three";
 interface Props {
   number?: number;
   size?: number;
@@ -20,13 +20,13 @@ const Stars = ({ number = 2000, size = 100 }: Props) => {
       starPositions[i * 3 + 2] = MathUtils.randFloatSpread(number);
     }
 
-    geometry.setAttribute('position', new BufferAttribute(starPositions, 3));
+    geometry.setAttribute("position", new BufferAttribute(starPositions, 3));
     return geometry;
   }, [number]);
 
   const starMaterial = useMemo(
-    () => new PointsMaterial({ color: 'lightgray', size }),
-    [size]
+    () => new PointsMaterial({ color: "lightgray", size }),
+    [size],
   );
 
   return <points args={[starsGeometry, starMaterial]} />;

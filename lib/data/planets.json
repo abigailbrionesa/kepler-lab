@@ -2,7 +2,7 @@
   {
     "id": 6,
     "name": "Saturn",
-    "mass_kg": 5.68e+26,
+    "mass_kg": 5.68e26,
     "diameter_km": 120536,
     "radius_km": 60268,
     "density_kg_m3": 687,
@@ -42,7 +42,7 @@
   {
     "id": 7,
     "name": "Uranus",
-    "mass_kg": 8.68e+25,
+    "mass_kg": 8.68e25,
     "diameter_km": 51118,
     "radius_km": 25559,
     "density_kg_m3": 1270,
@@ -82,7 +82,7 @@
   {
     "id": 8,
     "name": "Neptune",
-    "mass_kg": 1.02e+26,
+    "mass_kg": 1.02e26,
     "diameter_km": 49528,
     "radius_km": 24764,
     "density_kg_m3": 1638,
@@ -122,7 +122,7 @@
   {
     "id": 1,
     "name": "Mercury",
-    "mass_kg": 3.3e+23,
+    "mass_kg": 3.3e23,
     "diameter_km": 4879,
     "radius_km": 2439.5,
     "density_kg_m3": 5429,
@@ -162,7 +162,7 @@
   {
     "id": 2,
     "name": "Venus",
-    "mass_kg": 4.87e+24,
+    "mass_kg": 4.87e24,
     "diameter_km": 12104,
     "radius_km": 6052,
     "density_kg_m3": 5243,
@@ -202,7 +202,7 @@
   {
     "id": 3,
     "name": "Earth",
-    "mass_kg": 5.97e+24,
+    "mass_kg": 5.97e24,
     "diameter_km": 12756,
     "radius_km": 6378,
     "density_kg_m3": 5514,
@@ -242,7 +242,7 @@
   {
     "id": 4,
     "name": "Mars",
-    "mass_kg": 6.42e+23,
+    "mass_kg": 6.42e23,
     "diameter_km": 6792,
     "radius_km": 3396,
     "density_kg_m3": 3934,
@@ -282,7 +282,7 @@
   {
     "id": 5,
     "name": "Jupiter",
-    "mass_kg": 1.898e+27,
+    "mass_kg": 1.898e27,
     "diameter_km": 142984,
     "radius_km": 71492,
     "density_kg_m3": 1326,

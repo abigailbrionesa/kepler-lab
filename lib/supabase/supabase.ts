@@ -1,3 +1,3 @@
-import { createClient } from './client'
+import { createClient } from "./client";
 
-export const supabase = createClient()
+export const supabase = createClient();

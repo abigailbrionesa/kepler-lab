@@ -79,7 +79,7 @@ export default function DraggablePanel({
               transition={{ duration: 0.25, ease: "easeInOut" }}
               className={cn(
                 "px-4 py-1 backdrop-blur-sm rounded-xl border-1 border-secondary overflow-hidden",
-                mounted && theme === "light" && "bg-background"
+                mounted && theme === "light" && "bg-background",
               )}
             >
               {children}

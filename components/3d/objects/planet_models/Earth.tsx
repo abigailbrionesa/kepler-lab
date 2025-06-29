@@ -17,28 +17,27 @@ type GLTFResult = GLTF & {
   };
 };
 
-export const EarthModel = forwardRef<
-  Group,
-  React.ComponentProps<"group">
->((props, ref) => {
-  const { nodes, materials } = useGLTF(
-    "/models/earth.glb"
-  ) as unknown as GLTFResult;
+export const EarthModel = forwardRef<Group, React.ComponentProps<"group">>(
+  (props, ref) => {
+    const { nodes, materials } = useGLTF(
+      "/models/earth.glb",
+    ) as unknown as GLTFResult;
 
- const groupRef = useRef<Group>(null);
-  useImperativeHandle(ref, () => groupRef.current!, []);
+    const groupRef = useRef<Group>(null);
+    useImperativeHandle(ref, () => groupRef.current!, []);
 
-  return (
-    <group {...props} ref={groupRef} dispose={null}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube001.geometry}
-        material={materials["Default OBJ"]}
-      />
-    </group>
-  );
-});
+    return (
+      <group {...props} ref={groupRef} dispose={null}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Cube001.geometry}
+          material={materials["Default OBJ"]}
+        />
+      </group>
+    );
+  },
+);
 
 EarthModel.displayName = "EarthModel";
 

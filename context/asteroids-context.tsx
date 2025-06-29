@@ -14,7 +14,11 @@ const AsteroidContext = createContext<{
 
 export const useAsteroids = () => useContext(AsteroidContext);
 
-export const AsteroidProvider = ({ children }: { children: React.ReactNode }) => {
+export const AsteroidProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [asteroids, setAsteroids] = useState<AsteroidParams[]>([]);
 
   const addAsteroid = (asteroid: AsteroidParams) => {
@@ -29,7 +33,9 @@ export const AsteroidProvider = ({ children }: { children: React.ReactNode }) =>
   };
 
   return (
-    <AsteroidContext.Provider value={{ asteroids, addAsteroid, removeAsteroid }}>
+    <AsteroidContext.Provider
+      value={{ asteroids, addAsteroid, removeAsteroid }}
+    >
       {children}
     </AsteroidContext.Provider>
   );
