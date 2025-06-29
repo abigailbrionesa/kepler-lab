@@ -7,7 +7,7 @@ import { Plus } from "lucide-react";
 import { useCustomObjects } from "@/context/scene/custom-objects-context";
 import DeleteButton from "@/components/ui/delete-button";
 import { ParamSlider } from "@/components/ui/param-slider";
-
+import { Input } from "@/components/ui/shadcn/input";
 export function OrbitalControlsPanel({
   dragConstraints,
 }: {
@@ -18,7 +18,7 @@ export function OrbitalControlsPanel({
   const handleChange = (
     id: string,
     field: keyof (typeof objects)[0],
-    value: number
+    value: string | number
   ) => {
     updateObject(id, field, value);
   };
@@ -36,7 +36,7 @@ export function OrbitalControlsPanel({
         <Button
           variant="ghost"
           size="icon"
-          className="h-6 w-6"
+          className="h-6 w-6 cursor-pointer"
           onClick={addObject}
         >
           <Plus className="h-4 w-4" />
@@ -52,6 +52,16 @@ export function OrbitalControlsPanel({
             subtitle="Category"
           >
             <div className="pl-4">
+              <div className="flex items-center gap-3">
+                <label className="text-sm font-medium text-muted-foreground">
+                  Name
+                </label>
+                <Input
+                  value={obj.name}
+                  onChange={(e) => handleChange(obj.id, "name", e.target.value)}
+                />
+
+              </div>
               <DraggableMenuItem
                 accordionValue={`orbital-${obj.id}`}
                 title="Orbital Parameters"
@@ -156,7 +166,6 @@ export function OrbitalControlsPanel({
                   />
                 </div>
               </DraggableMenuItem>
-
               <DraggableMenuItem
                 accordionValue={`physical-${obj.id}`}
                 title="Physical Parameters"
