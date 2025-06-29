@@ -4,7 +4,7 @@ import { SiteHeader } from "@/components/panel/site-header";
 import { useRef } from "react";
 import { useSelectedPlanet } from "@/context/view-selected-planet";
 import SelectedPlanetHeader from "@/components/panel/selected-planet-header";
-import ControlsPanel from "@/components/panel/controls-panel";
+import GeneralControlsPanel from "@/components/panel/general-controls-panel";
 import { OrbitalControlsPanel } from "@/components/panel/orbit-controls-panel";
 import { AsteroidsPanel } from "@/components/panel/asteroid-panel";
 
@@ -22,7 +22,7 @@ export default function MainContent() {
         <div className="@container/main flex flex-1 flex-col">
           {selectedPlanet && <SelectedPlanetHeader />}
           <AsteroidsPanel dragConstraints={containerRef} />
-          {<ControlsPanel dragConstraints={containerRef} />}
+          {<GeneralControlsPanel dragConstraints={containerRef} />}
           {<OrbitalControlsPanel dragConstraints={containerRef} />}
           <div className="flex flex-1 ">
             <SolarSystem />
