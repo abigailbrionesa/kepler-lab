@@ -1,12 +1,12 @@
 "use client";
-import SolarSystem from "@/components/3d/solar-system";
+import SolarSystem from "@/solar-system";
 import { SiteHeader } from "@/components/panel/site-header";
 import { useRef } from "react";
 import { useSelectedPlanet } from "@/context/view-selected-planet";
 import SelectedPlanetHeader from "@/components/panel/selected-planet-header";
-import GeneralControlsPanel from "@/components/panel/general-controls-panel";
-import { OrbitalControlsPanel } from "@/components/panel/orbit-controls-panel";
-import { AsteroidsPanel } from "@/components/panel/asteroid-panel";
+import GeneralControlsPanel from "@/components/panel/scene/general-controls-panel";
+import { OrbitalControlsPanel } from "@/components/panel/scene/orbit-controls-panel";
+import { AsteroidsPanel } from "@/components/panel/scene/asteroid-panel";
 
 export default function MainContent() {
   const { selectedPlanet } = useSelectedPlanet();
