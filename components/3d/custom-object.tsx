@@ -3,7 +3,7 @@ import Object from "./objects/object";
 import { useSelectedDate } from "@/context/scene/view-selected-date";
 import { useCustomObjects } from "@/context/scene/custom-objects-context";
 
-export default function OrbitCreator() {
+export default function CustomObject() {
   const { selectedDate } = useSelectedDate();
   const { objects } = useCustomObjects();
 
@@ -17,7 +17,7 @@ export default function OrbitCreator() {
           objectParams={{
             name: obj.name,
             distance_from_sun: obj.semiMajorAxis,
-            color: "#ffffff",
+            color: obj.color,
             eccentricity: obj.eccentricity,
             inclination: obj.inclination,
             argument_of_periapsis: obj.argument_of_periapsis,
