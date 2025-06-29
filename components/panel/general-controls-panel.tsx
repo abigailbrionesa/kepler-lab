@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { CalendarIcon } from "lucide-react";
+import { Asterisk, CalendarIcon } from "lucide-react";
 import { format, addDays, startOfYear } from "date-fns";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,7 @@ import { Slider } from "@/components/ui/slider";
 import DraggablePanel from "../ui/draggable-menu";
 import { CameraControlsPanel } from "./camera-controls-panel";
 import DraggableMenuItem from "../ui/draggable-menu-item";
+import AsteroidQuery from "./asteroid-query";
 import {
   Popover,
   PopoverContent,
@@ -29,7 +30,6 @@ export default function GeneralControlsPanel({
 }: {
   dragConstraints: RefObject<HTMLDivElement | null>;
 }) {
-  const { selectedCategory } = useSelectedCategory();
   const [calendarOpen, setCalendarOpen] = useState(false);
   const { selectedDate, setSelectedDate } = useSelectedDate();
   const [yearUI, setYearUI] = useState<number>(new Date().getFullYear());
@@ -41,22 +41,8 @@ export default function GeneralControlsPanel({
     )
   );
 
-  const [semiMajorAxisUI, setSemiMajorAxisUI] = useState<number[]>([0.5, 5]);
-  const [eccentricityUI, setEccentricityUI] = useState<number[]>([0, 1]);
-  const [orbitalPeriodUI, setOrbitalPeriodUI] = useState<number[]>([0.5, 10]);
-  const [albedoUI, setAlbedoUI] = useState<number[]>([0, 1]);
-  const [magnitudeUI, setMagnitudeUI] = useState<number[]>([5, 25]);
-  const [diameterUI, setDiameterUI] = useState<number[]>([0.1, 10]);
-  const [showOnlyHazardous, setShowOnlyHazardous] = useState<boolean>(false);
-
   const [debouncedYear] = useDebounce(yearUI, 100);
   const [debouncedDayOfYear] = useDebounce(dayOfYearUI, 100);
-  const [debouncedSemiMajorAxis] = useDebounce(semiMajorAxisUI, 1500);
-  const [debouncedEccentricity] = useDebounce(eccentricityUI, 1500);
-  const [debouncedOrbitalPeriod] = useDebounce(orbitalPeriodUI, 1500);
-  const [debouncedAlbedo] = useDebounce(albedoUI, 1500);
-  const [debouncedMagnitude] = useDebounce(magnitudeUI, 1500);
-  const [debouncedDiameter] = useDebounce(diameterUI, 1500);
 
   useEffect(() => {
     const newDate = addDays(
@@ -77,40 +63,10 @@ export default function GeneralControlsPanel({
     setDayOfYearUI(day);
   }, [selectedDate]);
 
-  useEffect(() => {
-    console.log("Filters updated:", {
-      semiMajorAxis: debouncedSemiMajorAxis,
-      eccentricity: debouncedEccentricity,
-      orbitalPeriod: debouncedOrbitalPeriod,
-      albedo: debouncedAlbedo,
-      magnitude: debouncedMagnitude,
-      diameter: debouncedDiameter,
-    });
-  }, [
-    debouncedSemiMajorAxis,
-    debouncedEccentricity,
-    debouncedOrbitalPeriod,
-    debouncedAlbedo,
-    debouncedMagnitude,
-    debouncedDiameter,
-  ]);
-
   const displayDate = addDays(
     startOfYear(new Date(yearUI, 0, 1)),
     dayOfYearUI - 1
   );
-
-  const showFilters =
-    selectedCategory?.type != null &&
-    ["neas", "necs", "phas"].includes(selectedCategory.type);
-
-  const isUpdatingFilters =
-    !isEqual(semiMajorAxisUI, debouncedSemiMajorAxis) ||
-    !isEqual(eccentricityUI, debouncedEccentricity) ||
-    !isEqual(orbitalPeriodUI, debouncedOrbitalPeriod) ||
-    !isEqual(albedoUI, debouncedAlbedo) ||
-    !isEqual(magnitudeUI, debouncedMagnitude) ||
-    !isEqual(diameterUI, debouncedDiameter);
 
   return (
     <>
@@ -214,172 +170,7 @@ export default function GeneralControlsPanel({
             </div>
           </DraggableMenuItem>
 
-          {showFilters && (
-            <DraggableMenuItem
-              accordionValue="filters"
-              title={
-                <>
-                  Filters
-                  {isUpdatingFilters && (
-                    <span className="ml-2 text-xs text-muted-foreground italic">
-                      (updating...)
-                    </span>
-                  )}
-                </>
-              }
-              subtitle="Orbital & physical parameters"
-            >
-              <div className="space-y-4 pt-2">
-                {/* Semi-Major Axis */}
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <Label htmlFor="semi-major-axis">
-                      Semi-Major Axis (AU)
-                    </Label>
-                    <span className="text-xs text-muted-foreground">
-                      {semiMajorAxisUI[0].toFixed(1)}-
-                      {semiMajorAxisUI[1].toFixed(1)}
-                    </span>
-                  </div>
-                  <Slider
-                    id="semi-major-axis"
-                    min={0.1}
-                    max={10}
-                    step={0.1}
-                    value={semiMajorAxisUI}
-                    onValueChange={setSemiMajorAxisUI}
-                    className="w-full"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <Label htmlFor="eccentricity">Eccentricity</Label>
-                    <span className="text-xs text-muted-foreground">
-                      {eccentricityUI[0].toFixed(2)}-
-                      {eccentricityUI[1].toFixed(2)}
-                    </span>
-                  </div>
-                  <Slider
-                    id="eccentricity"
-                    min={0}
-                    max={1}
-                    step={0.01}
-                    value={eccentricityUI}
-                    onValueChange={setEccentricityUI}
-                    className="w-full"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <Label htmlFor="orbital-period">
-                      Orbital Period (years)
-                    </Label>
-                    <span className="text-xs text-muted-foreground">
-                      {orbitalPeriodUI[0].toFixed(1)}-
-                      {orbitalPeriodUI[1].toFixed(1)}
-                    </span>
-                  </div>
-                  <Slider
-                    id="orbital-period"
-                    min={0.1}
-                    max={20}
-                    step={0.1}
-                    value={orbitalPeriodUI}
-                    onValueChange={setOrbitalPeriodUI}
-                    className="w-full"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <Label htmlFor="albedo">Albedo</Label>
-                    <span className="text-xs text-muted-foreground">
-                      {albedoUI[0].toFixed(2)}-{albedoUI[1].toFixed(2)}
-                    </span>
-                  </div>
-                  <Slider
-                    id="albedo"
-                    min={0}
-                    max={1}
-                    step={0.01}
-                    value={albedoUI}
-                    onValueChange={setAlbedoUI}
-                    className="w-full"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <Label htmlFor="magnitude">Magnitude</Label>
-                    <span className="text-xs text-muted-foreground">
-                      {magnitudeUI[0].toFixed(1)}-{magnitudeUI[1].toFixed(1)}
-                    </span>
-                  </div>
-                  <Slider
-                    id="magnitude"
-                    min={0}
-                    max={30}
-                    step={0.5}
-                    value={magnitudeUI}
-                    onValueChange={setMagnitudeUI}
-                    className="w-full"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <Label htmlFor="diameter">Diameter (km)</Label>
-                    <span className="text-xs text-muted-foreground">
-                      {diameterUI[0].toFixed(2)}-{diameterUI[1].toFixed(2)}
-                    </span>
-                  </div>
-                  <Slider
-                    id="diameter"
-                    min={0.01}
-                    max={50}
-                    step={0.01}
-                    value={diameterUI}
-                    onValueChange={setDiameterUI}
-                    className="w-full"
-                  />
-                </div>
-
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full mt-4"
-                  onClick={() => {
-                    setSemiMajorAxisUI([0.5, 5]);
-                    setEccentricityUI([0, 1]);
-                    setOrbitalPeriodUI([0.5, 10]);
-                    setAlbedoUI([0, 1]);
-                    setMagnitudeUI([5, 25]);
-                    setDiameterUI([0.1, 10]);
-                    setShowOnlyHazardous(false);
-                  }}
-                >
-                  Reset Filters
-                </Button>
-
-                {selectedCategory.type === "phas" && (
-                  <div className="flex items-center space-x-2 pt-2">
-                    <Checkbox
-                      id="hazardous"
-                      checked={showOnlyHazardous}
-                      onCheckedChange={(checked) =>
-                        setShowOnlyHazardous(checked as boolean)
-                      }
-                    />
-                    <Label htmlFor="hazardous" className="text-sm">
-                      Show only hazardous objects
-                    </Label>
-                  </div>
-                )}
-              </div>
-            </DraggableMenuItem>
-          )}
+          <AsteroidQuery />
 
           <DraggableMenuItem
             accordionValue="camera-controls"
