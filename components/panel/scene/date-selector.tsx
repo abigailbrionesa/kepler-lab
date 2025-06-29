@@ -81,7 +81,7 @@ export default function DateSelector() {
                 )}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className=" p-0" align="start">
+            <PopoverContent align="start">
               <Calendar
                 mode="single"
                 selected={selectedDate}
@@ -91,6 +91,7 @@ export default function DateSelector() {
                     setCalendarOpen(false);
                   }
                 }}
+                captionLayout="dropdown"
                 defaultMonth={selectedDate}
                 startMonth={new Date(1850, 0)}
                 endMonth={new Date(2090, 11)}
