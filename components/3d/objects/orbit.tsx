@@ -9,11 +9,11 @@ export const Orbit: React.FC<OrbitProps> = ({ points }) => {
   return (
     <Line
       points={points}
-      color="white"
+      color="#e6dfd7"
       lineWidth={1}
       opacity={0.2}
       transparent={true}
-      dashed={false}
+
     />
   );
 };
