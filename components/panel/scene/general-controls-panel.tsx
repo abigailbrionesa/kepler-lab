@@ -1,7 +1,7 @@
 "use client";
-import DraggablePanel from "../ui/draggable-menu";
+import DraggablePanel from "../../ui/draggable-menu";
 import { CameraControlsPanel } from "./camera-controls-panel";
-import DraggableMenuItem from "../ui/draggable-menu-item";
+import DraggableMenuItem from "../../ui/draggable-menu-item";
 import AsteroidQuery from "./asteroid-query";
 import DateSelector from "./date-selector";
 import { Accordion } from "@/components/ui/shadcn/accordion";

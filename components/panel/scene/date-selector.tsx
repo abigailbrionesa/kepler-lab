@@ -7,8 +7,8 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/shadcn/button";
 import { Calendar } from "@/components/ui/shadcn/calendar";
 import { Label } from "@/components/ui/shadcn/label";
-import { ParamSlider } from "../ui/param-slider";
-import DraggableMenuItem from "../ui/draggable-menu-item";
+import { ParamSlider } from "../../ui/param-slider";
+import DraggableMenuItem from "../../ui/draggable-menu-item";
 import {
   Popover,
   PopoverContent,

@@ -1,14 +1,14 @@
 "use client";
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import Sun from "./objects/sun";
-import Stars from "./objects/stars";
-import { Light } from "./effects/light";
-import Planets from "./objects/planets";
-import { SpaceControls } from "./effects/orbit-controls";
-import planets_json from "../../lib/data/planets.json";
-import OrbitCreator from "./orbit-creator";
-import Asteroid from "./asteroid";
+import Sun from "./components/3d/objects/sun";
+import Stars from "./components/3d/objects/stars";
+import { Light } from "./components/3d/effects/light";
+import Planets from "./components/3d/planets";
+import { SpaceControls } from "./components/3d/effects/orbit-controls";
+import planets_json from "./lib/data/planets.json";
+import OrbitCreator from "./components/3d/orbit-creator";
+import Asteroid from "./components/3d/asteroid";
 import type { PlanetData } from "@/lib/types";
 
 export default function SolarSystem() {

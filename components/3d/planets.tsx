@@ -1,4 +1,4 @@
-import Object from "./object";
+import Object from "./objects/object";
 import { useSelectedDate } from "@/context/view-selected-date";
 import type { PlanetData } from "@/lib/types";
 
