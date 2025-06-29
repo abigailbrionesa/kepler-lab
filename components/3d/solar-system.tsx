@@ -7,9 +7,10 @@ import { Light } from "./effects/light";
 import Planets from "./objects/planets";
 import { SpaceControls } from "./effects/orbit-controls";
 import planets_json from "../../lib/data/planets.json";
-import type { PlanetData } from "./objects/planets";
 import OrbitCreator from "./orbit-creator";
 import Asteroid from "./asteroid";
+import type { PlanetData } from "@/lib/types";
+
 export default function SolarSystem() {
   const planets_data = planets_json as PlanetData[];
 
