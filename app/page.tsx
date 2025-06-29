@@ -1,7 +1,7 @@
 import MainContent from "./main-content";
 import { AppSidebar } from "@/components/panel/app-sidebar";
 import { RightSidebar } from "@/components/panel/right-sidebar";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/shadcn/sidebar";
 import { SelectedCategoryProvider } from "@/context/selected-category-context";
 import { ViewConfigProvider } from "@/context/view-config-context";
 import { RightSidebarProvider } from "@/context/right-sidebar-context";

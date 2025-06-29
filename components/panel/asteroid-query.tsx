@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/shadcn/button";
+import { Label } from "@/components/ui/shadcn/label";
 import DraggableMenuItem from "../ui/draggable-menu-item";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox } from "@/components/ui/shadcn/checkbox";
 import isEqual from "lodash/isEqual";
 import { useDebounce } from "use-debounce";
 import { ParamSlider } from "../ui/param-slider";

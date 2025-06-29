@@ -6,12 +6,12 @@ import {
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/shadcn/button";
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from "@/components/ui/tooltip";
+} from "@/components/ui/shadcn/tooltip";
 import { useCameraControls } from "@/context/camera-control-context";
 
 export function CameraControlsPanel() {

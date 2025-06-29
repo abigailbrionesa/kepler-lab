@@ -1,6 +1,6 @@
 import { GithubIcon, LinkedinIcon, MailIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/shadcn/button";
+import { Separator } from "@/components/ui/shadcn/separator";
 
 export function CreatorInfo() {
   return (

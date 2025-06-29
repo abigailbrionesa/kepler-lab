@@ -26,7 +26,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarContent,
-} from "@/components/ui/sidebar";
+} from "@/components/ui/shadcn/sidebar";
 
 // import { , SidebarGroup, SidebarGroupContent } from "@/components/ui/sidebar";
 {

@@ -5,7 +5,7 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from "../ui/tooltip";
+} from "../ui/shadcn/tooltip";
 import {
   ZoomOut,
   ZoomIn,
@@ -14,7 +14,7 @@ import {
   MoveLeft,
   RotateCcw,
 } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../ui/shadcn/button";
 
 function CameraControlsMenu() {
   const { rotate, zoom, dolly } = useCameraControls();

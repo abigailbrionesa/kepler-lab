@@ -2,8 +2,8 @@
 
 import type React from "react";
 
-import { Separator } from "@/components/ui/separator";
-import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Separator } from "@/components/ui/shadcn/separator";
+import { SidebarTrigger } from "@/components/ui/shadcn/sidebar";
 import { useSelectedCategory } from "@/context/selected-category-context";
 import { useViewConfig } from "@/context/view-config-context";
 import { useRightSidebar } from "@/context/right-sidebar-context";
@@ -15,8 +15,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuCheckboxItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
+} from "@/components/ui/shadcn/dropdown-menu";
+import { Button } from "@/components/ui/shadcn/button";
 import { ThemeToggle } from "./theme-toggle";
 import CameraControlsMenu from "./camera-controls-menu";
 

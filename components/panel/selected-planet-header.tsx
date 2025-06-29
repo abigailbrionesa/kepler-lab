@@ -1,8 +1,8 @@
 import { useSelectedPlanet } from "@/context/view-selected-planet";
-import { Button } from "../ui/button";
+import { Button } from "../ui/shadcn/button";
 import { useIsObjectPivot } from "@/context/view-is-object-pivot";
 import { X } from "lucide-react";
-import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
+import { ToggleGroup, ToggleGroupItem } from "../ui/shadcn/toggle-group";
 
 function SelectedPlanetHeader() {
   const { selectedPlanet, setSelectedPlanet } = useSelectedPlanet();

@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/shadcn/button";
 import { Trash2 } from "lucide-react";
 
 interface DeleteButtonProps {

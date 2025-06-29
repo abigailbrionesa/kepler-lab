@@ -4,16 +4,16 @@ import { useState, useEffect } from "react";
 import { CalendarIcon } from "lucide-react";
 import { format, addDays, startOfYear } from "date-fns";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/shadcn/button";
+import { Calendar } from "@/components/ui/shadcn/calendar";
+import { Label } from "@/components/ui/shadcn/label";
 import { ParamSlider } from "../ui/param-slider";
 import DraggableMenuItem from "../ui/draggable-menu-item";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@/components/ui/shadcn/popover";
 import { useSelectedDate } from "@/context/view-selected-date";
 import { useDebounce } from "use-debounce";
 
@@ -25,7 +25,7 @@ export default function DateSelector() {
     Math.floor(
       (new Date().getTime() -
         new Date(new Date().getFullYear(), 0, 0).getTime()) /
-        (1000 * 60 * 60 * 24)
+      (1000 * 60 * 60 * 24)
     )
   );
 

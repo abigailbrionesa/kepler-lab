@@ -2,7 +2,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
+} from "@/components/ui/shadcn/accordion";
 import type { ReactNode } from "react";
 
 type DraggableMenuItemProps = {

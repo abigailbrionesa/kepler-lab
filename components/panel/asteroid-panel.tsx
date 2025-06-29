@@ -1,5 +1,5 @@
 "use client";
-import { Accordion, AccordionItem } from "@/components/ui/accordion";
+import { Accordion, AccordionItem } from "@/components/ui/shadcn/accordion";
 import DraggablePanel from "../ui/draggable-menu";
 import { AsteroidSelector } from "../ui/asteroid-selector";
 import { useAsteroids } from "@/context/asteroids-context";

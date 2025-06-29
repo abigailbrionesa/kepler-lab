@@ -1,6 +1,6 @@
 "use client";
-import { Accordion } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
+import { Accordion } from "@/components/ui/shadcn/accordion";
+import { Button } from "@/components/ui/shadcn/button";
 import DraggablePanel from "../ui/draggable-menu";
 import DraggableMenuItem from "../ui/draggable-menu-item";
 import { Plus } from "lucide-react";

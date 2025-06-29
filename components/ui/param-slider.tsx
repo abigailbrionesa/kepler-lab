@@ -1,5 +1,5 @@
-import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
+import { Label } from "@/components/ui/shadcn/label";
+import { Slider } from "@/components/ui/shadcn/slider";
 import type { Dispatch, SetStateAction } from "react";
 
 type ParamSliderProps = {
@@ -33,8 +33,8 @@ export function ParamSlider({
           {isNumber
             ? (value as number).toFixed(2)
             : `${(value as number[])[0].toFixed(1)} - ${(
-                value as number[]
-              )[1].toFixed(1)}`}
+              value as number[]
+            )[1].toFixed(1)}`}
         </span>
       </div>
       <Slider

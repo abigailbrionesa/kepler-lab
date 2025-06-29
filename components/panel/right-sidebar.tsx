@@ -3,8 +3,8 @@
 import { useRightSidebar } from "@/context/right-sidebar-context";
 import { useSelectedCategory } from "@/context/selected-category-context";
 import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/shadcn/button";
+import { Separator } from "@/components/ui/shadcn/separator";
 
 export function RightSidebar() {
   const { isOpen, toggleSidebar } = useRightSidebar();
@@ -16,9 +16,8 @@ export function RightSidebar() {
 
   return (
     <div
-      className={`fixed top-0 right-0 z-40 h-screen w-64 bg-sidebar border-l border-sidebar-border transform transition-transform duration-300 ease-in-out ${
-        isOpen ? "translate-x-0" : "translate-x-full"
-      }`}
+      className={`fixed top-0 right-0 z-40 h-screen w-64 bg-sidebar border-l border-sidebar-border transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
     >
       <div className="flex h-full flex-col">
         <div className="flex h-12 items-center justify-between border-b border-sidebar-border px-4">

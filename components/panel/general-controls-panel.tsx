@@ -4,7 +4,7 @@ import { CameraControlsPanel } from "./camera-controls-panel";
 import DraggableMenuItem from "../ui/draggable-menu-item";
 import AsteroidQuery from "./asteroid-query";
 import DateSelector from "./date-selector";
-import { Accordion } from "@/components/ui/accordion";
+import { Accordion } from "@/components/ui/shadcn/accordion";
 import type { RefObject } from "react";
 
 export default function GeneralControlsPanel({
@@ -25,7 +25,7 @@ export default function GeneralControlsPanel({
           defaultValue="date-controls"
           className="w-full"
         >
-          <DateSelector/>
+          <DateSelector />
 
           <AsteroidQuery />
 

@@ -1,7 +1,7 @@
 "use client";
 import { useMemo } from "react";
 import PlanetModel from "./planet_models/planet-model";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/shadcn/badge";
 import { Html } from "@react-three/drei";
 import { get_orbit_points, get_position_at_selected_date } from "@/lib/math";
 import { Orbit } from "./orbit";

@@ -6,7 +6,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
+} from "@/components/ui/shadcn/command";
 import { useDebounce } from "use-debounce";
 import { useSelectedAsteroidSpkid } from "@/context/view-selected-asteroid-spkid";
 import { cn } from "@/lib/utils";
