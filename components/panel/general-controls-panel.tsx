@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
+import { ParamSlider } from "../ui/param-slider";
 import DraggablePanel from "../ui/draggable-menu";
 import { CameraControlsPanel } from "./camera-controls-panel";
 import DraggableMenuItem from "../ui/draggable-menu-item";
@@ -122,41 +122,25 @@ export default function GeneralControlsPanel({
                 </Popover>
               </div>
 
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <Label htmlFor="year">Year: {yearUI}</Label>
-                  <span className="text-xs text-muted-foreground">
-                    1850-2090
-                  </span>
-                </div>
-                <Slider
-                  id="year"
-                  min={1850}
-                  max={2090}
-                  step={1}
-                  value={[yearUI]}
-                  onValueChange={(values) => setYearUI(values[0])}
-                  className="w-full"
-                />
-              </div>
+              <ParamSlider
+                label={`Year: ${yearUI}`}
+                id="year"
+                min={1850}
+                max={2090}
+                step={1}
+                value={yearUI}
+                onChange={(val:number) => setYearUI(val)}
+              />
 
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <Label htmlFor="day">Day: {dayOfYearUI}</Label>
-                  <span className="text-xs text-muted-foreground">
-                    {format(displayDate, "MMM d")}
-                  </span>
-                </div>
-                <Slider
-                  id="day"
-                  min={1}
-                  max={365}
-                  step={1}
-                  value={[dayOfYearUI]}
-                  onValueChange={(values) => setDayOfYearUI(values[0])}
-                  className="w-full"
-                />
-              </div>
+              <ParamSlider
+                label={`Day: ${dayOfYearUI}`}
+                id="day"
+                min={1}
+                max={365}
+                step={1}
+                value={dayOfYearUI}
+                onChange={(val:number) => setDayOfYearUI(val)}
+              />
 
               {(debouncedYear !== yearUI ||
                 debouncedDayOfYear !== dayOfYearUI) && (
