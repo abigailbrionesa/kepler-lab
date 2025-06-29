@@ -157,7 +157,7 @@ export default function Object(props: PlanetProps) {
               </Badge>
             )}
             <span
-              className="absolute border-2 border-white w-4 h-4 group-hover:w-5 group-hover:h-5 rounded-full -translate-x-1/2 -translate-y-1/2 transition-all"
+              className="absolute border w-4 h-4 group-hover:w-5 group-hover:h-5 rounded-full -translate-x-1/2 -translate-y-1/2 transition-all"
               style={{ backgroundColor: props.objectParams.color }}
             ></span>
           </div>
