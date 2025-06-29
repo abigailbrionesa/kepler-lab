@@ -1,22 +1,6 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
-
-export type AsteroidParams = {
-  spkid: string;
-  full_name: string;
-  semiMajorAxis: number;
-  eccentricity: number;
-  orbitalPeriod: number;
-  albedo: number;
-  magnitude: number;
-  diameter: number;
-  inclination: number;
-  argument_of_periapsis: number;
-  longitude_of_ascending_node: number;
-  mean_anomaly: number;
-  mean_motion: number;
-  epoch: number;
-};
+import type { AsteroidParams } from "@/lib/types";
 
 const AsteroidContext = createContext<{
   asteroids: AsteroidParams[];
