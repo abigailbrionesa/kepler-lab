@@ -1,7 +1,7 @@
 "use client";
 import Object from "./objects/object";
-import { useSelectedDate } from "@/context/view-selected-date";
-import { useCustomObjects } from "@/context/custom-objects-context";
+import { useSelectedDate } from "@/context/scene/view-selected-date";
+import { useCustomObjects } from "@/context/scene/custom-objects-context";
 
 export default function OrbitCreator() {
   const { selectedDate } = useSelectedDate();

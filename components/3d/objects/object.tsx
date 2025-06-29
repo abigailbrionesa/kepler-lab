@@ -5,18 +5,18 @@ import { Badge } from "@/components/ui/shadcn/badge";
 import { Html } from "@react-three/drei";
 import { get_orbit_points, get_position_at_selected_date } from "@/lib/math";
 import { Orbit } from "./orbit";
-import { useSelectedPlanet } from "@/context/view-selected-planet";
+import { useSelectedPlanet } from "@/context/scene/view-selected-planet";
 import { useRef } from "react";
 import type { Object3D } from "three";
-import { useOccludableRefs } from "@/context/occludable-refs-context";
+import { useOccludableRefs } from "@/context/scene/occludable-refs-context";
 import { useCallback } from "react";
 import { cn } from "@/lib/utils";
 import type { Mesh } from "three";
 import { useState } from "react";
 import { useTransition, animated as a3 } from "@react-spring/three";
 import type { Group } from "three";
-import { useViewConfig } from "@/context/view-config-context";
-import { useSelectedAsteroidSpkid } from "@/context/view-selected-asteroid-spkid";
+import { useViewConfig } from "@/context/scene/view-config-context";
+import { useSelectedAsteroidSpkid } from "@/context/scene/view-selected-asteroid-spkid";
 import type { PlanetProps } from "@/lib/types";
 
 export default function Object(props: PlanetProps) {

@@ -2,7 +2,7 @@
 import SolarSystem from "@/solar-system";
 import { SiteHeader } from "@/components/panel/site-header";
 import { useRef } from "react";
-import { useSelectedPlanet } from "@/context/view-selected-planet";
+import { useSelectedPlanet } from "@/context/scene/view-selected-planet";
 import SelectedPlanetHeader from "@/components/panel/selected-planet-header";
 import GeneralControlsPanel from "@/components/panel/scene/general-controls-panel";
 import { OrbitalControlsPanel } from "@/components/panel/scene/orbit-controls-panel";

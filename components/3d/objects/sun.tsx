@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import { Object3D, TextureLoader } from "three";
-import { useOccludableRefs } from "@/context/occludable-refs-context";
+import { useOccludableRefs } from "@/context/scene/occludable-refs-context";
 import { SUN_RADIUS } from "@/lib/constants";
 import { useLoader } from "@react-three/fiber";
 

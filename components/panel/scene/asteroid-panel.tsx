@@ -2,7 +2,7 @@
 import { Accordion, AccordionItem } from "@/components/ui/shadcn/accordion";
 import DraggablePanel from "../../ui/draggable-menu";
 import { AsteroidSelector } from "../../ui/asteroid-selector";
-import { useAsteroids } from "@/context/asteroids-context";
+import { useAsteroids } from "@/context/scene/asteroids-context";
 import DraggableMenuItem from "../../ui/draggable-menu-item";
 import DeleteButton from "../../ui/delete-button";
 

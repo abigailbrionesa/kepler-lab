@@ -1,5 +1,5 @@
 "use client";
-import { useAsteroids } from "@/context/asteroids-context";
+import { useAsteroids } from "@/context/scene/asteroids-context";
 import { useEffect, useState } from "react";
 import {
   Command,
@@ -8,7 +8,7 @@ import {
   CommandList,
 } from "@/components/ui/shadcn/command";
 import { useDebounce } from "use-debounce";
-import { useSelectedAsteroidSpkid } from "@/context/view-selected-asteroid-spkid";
+import { useSelectedAsteroidSpkid } from "@/context/scene/view-selected-asteroid-spkid";
 import { cn } from "@/lib/utils";
 import type { AsteroidRow, AsteroidOption } from "@/lib/types";
 import { supabase } from "@/lib/supabase/supabase";

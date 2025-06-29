@@ -1,5 +1,5 @@
 import React from "react";
-import { useCameraControls } from "@/context/camera-control-context";
+import { useCameraControls } from "@/context/scene/camera-control-context";
 import {
   TooltipProvider,
   Tooltip,

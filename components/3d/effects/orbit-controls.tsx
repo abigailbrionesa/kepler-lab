@@ -5,10 +5,10 @@ import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { CameraControls } from "@react-three/drei";
 
-import { useCameraControls } from "@/context/camera-control-context";
-import { useIsObjectPivot } from "@/context/view-is-object-pivot";
-import { useSelectedDate } from "@/context/view-selected-date";
-import { useSelectedPlanet } from "@/context/view-selected-planet";
+import { useCameraControls } from "@/context/scene/camera-control-context";
+import { useIsObjectPivot } from "@/context/scene/view-is-object-pivot";
+import { useSelectedDate } from "@/context/scene/view-selected-date";
+import { useSelectedPlanet } from "@/context/scene/view-selected-planet";
 
 import { get_position_at_selected_date } from "@/lib/math";
 import planets_data from "../../../lib/data/planets.json";

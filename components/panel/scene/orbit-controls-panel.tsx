@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/shadcn/button";
 import DraggablePanel from "../ui/draggable-menu";
 import DraggableMenuItem from "../ui/draggable-menu-item";
 import { Plus } from "lucide-react";
-import { useCustomObjects } from "@/context/custom-objects-context";
+import { useCustomObjects } from "@/context/scene/custom-objects-context";
 import DeleteButton from "../ui/delete-button";
 import { ParamSlider } from "../ui/param-slider";
 

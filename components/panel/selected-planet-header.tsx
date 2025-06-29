@@ -1,6 +1,6 @@
-import { useSelectedPlanet } from "@/context/view-selected-planet";
+import { useSelectedPlanet } from "@/context/scene/view-selected-planet";
 import { Button } from "../ui/shadcn/button";
-import { useIsObjectPivot } from "@/context/view-is-object-pivot";
+import { useIsObjectPivot } from "@/context/scene/view-is-object-pivot";
 import { X } from "lucide-react";
 import { ToggleGroup, ToggleGroupItem } from "../ui/shadcn/toggle-group";
 

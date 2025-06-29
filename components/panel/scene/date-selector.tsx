@@ -14,7 +14,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/shadcn/popover";
-import { useSelectedDate } from "@/context/view-selected-date";
+import { useSelectedDate } from "@/context/scene/view-selected-date";
 import { useDebounce } from "use-debounce";
 
 export default function DateSelector() {

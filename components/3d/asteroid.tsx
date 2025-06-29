@@ -1,7 +1,7 @@
 "use client";
 
-import { useAsteroids } from "@/context/asteroids-context";
-import { useSelectedDate } from "@/context/view-selected-date";
+import { useAsteroids } from "@/context/scene/asteroids-context";
+import { useSelectedDate } from "@/context/scene/view-selected-date";
 import { degToRad } from "three/src/math/MathUtils.js";
 import Object from "./objects/object";
 

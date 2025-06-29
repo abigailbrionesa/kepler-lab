@@ -1,5 +1,5 @@
 import Object from "./objects/object";
-import { useSelectedDate } from "@/context/view-selected-date";
+import { useSelectedDate } from "@/context/scene/view-selected-date";
 import type { PlanetData } from "@/lib/types";
 
 export function Planets({ planets_data }: { planets_data: PlanetData[] }) {

@@ -12,7 +12,7 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "@/components/ui/shadcn/tooltip";
-import { useCameraControls } from "@/context/camera-control-context";
+import { useCameraControls } from "@/context/scene/camera-control-context";
 
 export function CameraControlsPanel() {
   const { rotate, zoom, dolly } = useCameraControls();
