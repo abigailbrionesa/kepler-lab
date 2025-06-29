@@ -1,23 +1,7 @@
 "use client";
 import { createContext, useContext, useState } from "react";
+import type { OrbitalParams } from "@/lib/types";
 
-type OrbitalParams = {
-  name: string;
-  color: string;
-  semiMajorAxis: number;
-  eccentricity: number;
-  orbitalPeriod: number;
-  albedo: number;
-  magnitude: number;
-  diameter: number;
-  inclination: number;
-  argument_of_periapsis: number;
-  longitude_of_ascending_node: number;
-  mean_anomaly: number;
-  mean_motion: number;
-  epoch: number;
-  setParams: (params: Partial<OrbitalParams>) => void;
-};
 
 const OrbitalParamsContext = createContext<OrbitalParams | null>(null);
 

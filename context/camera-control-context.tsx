@@ -2,15 +2,8 @@
 import { createContext, useContext, useRef, useCallback } from "react"
 import CameraControls from "camera-controls"
 import { CameraControls as CameraControlsImpl } from "@react-three/drei"
+import type { CameraControlContextType } from "@/lib/types"
 
-type CameraControlContextType = {
-  cameraControlsRef: React.RefObject<CameraControlsImpl  | null>
-  rotate: (theta: number, phi: number) => void
-  zoom: (amount: number) => void
-  dolly: (distance: number) => void
-  truck: (x: number, y: number) => void
-  moveTo: (position: [number, number, number]) => void
-}
 
 const CameraControlContext = createContext<CameraControlContextType | undefined>(undefined)
 

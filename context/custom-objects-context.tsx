@@ -1,23 +1,7 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-
-export type OrbitParams = {
-  id: string;
-  name: string;
-  semiMajorAxis: number;
-  eccentricity: number;
-  orbitalPeriod: number;
-  albedo: number;
-  magnitude: number;
-  diameter: number;
-  inclination: number;
-  argument_of_periapsis: number;
-  longitude_of_ascending_node: number;
-  mean_anomaly: number;
-  mean_motion: number;
-  epoch: number;
-};
+import type { OrbitParams } from "@/lib/types";
 
 const defaultParams = (): OrbitParams => ({
   id: uuidv4(),
