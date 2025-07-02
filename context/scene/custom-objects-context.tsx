@@ -2,11 +2,8 @@
 import React, { createContext, useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import type { OrbitParams } from "@/lib/types";
+import { getRandomColor } from "@/lib/utils";
 
-function getRandomColor(): string {
-  const hue = Math.floor(Math.random() * 360);
-  return `hsl(${hue}, 100%, 50%)`;
-}
 
 const defaultParams = (): OrbitParams => ({
   id: uuidv4(),
