@@ -65,7 +65,6 @@ export function ObjectCreatorPanel({
               <DraggableMenuItem
                 accordionValue={`orbital-${obj.id}`}
                 title="Orbital Parameters"
-                subtitle="Set orbital values"
               >
                 <div className="space-y-4 pt-2">
                   <ParamSlider
@@ -169,7 +168,6 @@ export function ObjectCreatorPanel({
               <DraggableMenuItem
                 accordionValue={`physical-${obj.id}`}
                 title="Physical Parameters"
-                subtitle="Set physical values"
               >
                 <div className="space-y-4 pt-2">
                   <ParamSlider
