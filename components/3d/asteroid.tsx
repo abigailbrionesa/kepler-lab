@@ -25,9 +25,8 @@ export default function Asteroid() {
           mean_motion,
           epoch,
           full_name,
+          color,
         } = asteroid;
-
-        const color = "#f5d300";
 
         return (
           <Object
