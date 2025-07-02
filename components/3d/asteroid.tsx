@@ -15,27 +15,30 @@ export default function Asteroid() {
     <>
       {asteroids.map((asteroid) => {
         const {
-          spkid,
-          semiMajorAxis,
+          id,
+          distance_from_sun,
           eccentricity,
           inclination,
           argument_of_periapsis,
           longitude_of_ascending_node,
           mean_anomaly,
+          magnitude,
+          albedo,
+          diameter,
           mean_motion,
           epoch,
-          full_name,
+          name,
           color,
         } = asteroid;
 
         return (
           <Object
-            key={spkid}
-            type="NEA"
+            key={id}
+            type="ASTEROID"
             selectedDate={selectedDate}
-            objectParams={{
-              name: full_name,
-              distance_from_sun: semiMajorAxis * 149597871,
+            params={{
+              name: name,
+              distance_from_sun: distance_from_sun,
               color: color,
               eccentricity: eccentricity,
               inclination: degToRad(inclination),
@@ -43,10 +46,13 @@ export default function Asteroid() {
               longitude_of_ascending_node: degToRad(
                 longitude_of_ascending_node,
               ),
+              magnitude: magnitude,
+              diameter: diameter,
+              albedo:albedo,
               mean_anomaly: degToRad(mean_anomaly),
               mean_motion: degToRad(mean_motion),
               epoch: epoch,
-              spkid: spkid,
+              id: id,
             }}
           />
         );
