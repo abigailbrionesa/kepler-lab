@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { useSelectedPlanet } from "@/context/scene/view-selected-planet";
 import SelectedPlanetHeader from "@/components/panel/selected-planet-header";
 import GeneralControlsPanel from "@/components/panel/scene/general-controls-panel";
-import { OrbitalControlsPanel } from "@/components/panel/scene/orbit-controls-panel";
+import { ObjectCreatorPanel } from "@/components/panel/scene/object-creator-panel";
 import { AsteroidsPanel } from "@/components/panel/scene/asteroid-panel";
 
 export default function MainContent() {
@@ -23,7 +23,7 @@ export default function MainContent() {
           {selectedPlanet && <SelectedPlanetHeader />}
           <AsteroidsPanel dragConstraints={containerRef} />
           {<GeneralControlsPanel dragConstraints={containerRef} />}
-          {<OrbitalControlsPanel dragConstraints={containerRef} />}
+          {<ObjectCreatorPanel dragConstraints={containerRef} />}
           <div className="flex flex-1 ">
             <SolarSystem />
           </div>
