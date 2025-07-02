@@ -17,9 +17,9 @@ import { useTransition, animated as a3 } from "@react-spring/three";
 import type { Group } from "three";
 import { useViewConfig } from "@/context/scene/view-config-context";
 import { useSelectedAsteroidSpkid } from "@/context/scene/view-selected-asteroid-spkid";
-import type { PlanetProps } from "@/lib/types";
+import type { ObjectProps } from "@/lib/types";
 
-export default function Object(props: PlanetProps) {
+export default function Object(props: ObjectProps) {
   const { viewConfig } = useViewConfig();
 
   const { selectedPlanet, setSelectedPlanet } = useSelectedPlanet(); //call selectedplanet
@@ -38,55 +38,55 @@ export default function Object(props: PlanetProps) {
 
   let isSelected = false;
   if (isPlanet) {
-    isSelected = selectedPlanet === props.objectParams.name;
+    isSelected = selectedPlanet === props.params.name;
   } else if (isNEO) {
-    isSelected = selectedAsteroidSpkid === props.objectParams.spkid;
+    isSelected = selectedAsteroidSpkid === props.params.id;
   }
 
   const object_position = useMemo(() => {
     return get_position_at_selected_date(
-      props.objectParams.distance_from_sun,
-      props.objectParams.eccentricity,
-      props.objectParams.mean_motion,
-      props.objectParams.inclination,
-      props.objectParams.argument_of_periapsis,
-      props.objectParams.longitude_of_ascending_node,
-      props.objectParams.mean_anomaly,
-      props.objectParams.epoch,
+      props.params.distance_from_sun,
+      props.params.eccentricity,
+      props.params.mean_motion,
+      props.params.inclination,
+      props.params.argument_of_periapsis,
+      props.params.longitude_of_ascending_node,
+      props.params.mean_anomaly,
+      props.params.epoch,
       props.selectedDate,
     );
   }, [
-    props.objectParams.distance_from_sun,
-    props.objectParams.eccentricity,
-    props.objectParams.mean_motion,
-    props.objectParams.inclination,
-    props.objectParams.argument_of_periapsis,
-    props.objectParams.longitude_of_ascending_node,
-    props.objectParams.mean_anomaly,
-    props.objectParams.epoch,
+    props.params.distance_from_sun,
+    props.params.eccentricity,
+    props.params.mean_motion,
+    props.params.inclination,
+    props.params.argument_of_periapsis,
+    props.params.longitude_of_ascending_node,
+    props.params.mean_anomaly,
+    props.params.epoch,
     props.selectedDate,
   ]);
   const orbit_points = useMemo(() => {
     return get_orbit_points(
-      props.objectParams.distance_from_sun,
-      props.objectParams.eccentricity,
-      props.objectParams.inclination,
-      props.objectParams.argument_of_periapsis,
-      props.objectParams.longitude_of_ascending_node,
+      props.params.distance_from_sun,
+      props.params.eccentricity,
+      props.params.inclination,
+      props.params.argument_of_periapsis,
+      props.params.longitude_of_ascending_node,
     );
   }, [
-    props.objectParams.distance_from_sun,
-    props.objectParams.eccentricity,
-    props.objectParams.inclination,
-    props.objectParams.argument_of_periapsis,
-    props.objectParams.longitude_of_ascending_node,
+    props.params.distance_from_sun,
+    props.params.eccentricity,
+    props.params.inclination,
+    props.params.argument_of_periapsis,
+    props.params.longitude_of_ascending_node,
   ]);
 
   const handleObjectClick = () => {
     if (isPlanet) {
-      setSelectedPlanet(props.objectParams.name);
+      setSelectedPlanet(props.params.name);
     } else if (isNEO) {
-      setSelectedAsteroidSpkid(props.objectParams.spkid);
+      setSelectedAsteroidSpkid(props.params.id);
     }
   };
 
@@ -109,7 +109,7 @@ export default function Object(props: PlanetProps) {
   const planetTransitions = useTransition(isPlanet && isSelected, {
     from: { scale: 0, opacity: 0 },
     enter: {
-      scale: isPlanet ? 0.3 + props.objectParams.radius * 0.00001 : 0,
+      scale: isPlanet ? 0.3 + props.params.radius * 0.00001 : 0,
       opacity: 1,
     },
     leave: { scale: 0, opacity: 0 },
@@ -128,7 +128,7 @@ export default function Object(props: PlanetProps) {
             >
               <PlanetModel
                 ref={refCallback}
-                name={props.objectParams.name}
+                name={props.params.name}
                 scale={1}
               />
             </a3.group>
@@ -151,14 +151,14 @@ export default function Object(props: PlanetProps) {
               <Badge
                 variant={"outline"}
                 className="absolute group-hover:-translate-y-1 transition-all -translate-x-1/2
-             bottom-3  backdrop-blur- bg-background/85"
+             bottom-3  backdrop-blur-sm bg-background/70"
               >
-                {props.objectParams.name}
+                {props.params.name}
               </Badge>
             )}
             <span
               className="absolute border w-4 h-4 group-hover:w-5 group-hover:h-5 rounded-full -translate-x-1/2 -translate-y-1/2 transition-all"
-              style={{ backgroundColor: props.objectParams.color }}
+              style={{ backgroundColor: props.params.color }}
             ></span>
           </div>
         </Html>
