@@ -30,27 +30,27 @@ export function AsteroidsPanel({
               {asteroids.map((asteroid) => (
                 <AccordionItem
                   className="border-b-0"
-                  value={asteroid.spkid}
-                  key={asteroid.spkid}
+                  value={asteroid.id}
+                  key={asteroid.id}
                 >
                   <DraggableMenuItem
-                    accordionValue={asteroid.spkid}
+                    accordionValue={asteroid.id}
                     title={
                       <NameAndColor
-                        name={asteroid.full_name}
+                        name={asteroid.name}
                         color={asteroid.color}
                       />
                     }
                   >
                     <div className="pl-4">
                       <DraggableMenuItem
-                        accordionValue={`orbital-${asteroid.spkid}`}
+                        accordionValue={`orbital-${asteroid.id}`}
                         title="Orbital Parameters"
                       >
                         <ul className="pl-4 text-sm text-muted-foreground space-y-1">
-                          <li>Semi-Major Axis: {asteroid.semiMajorAxis}</li>
+                          <li>Semi-Major Axis: {asteroid.distance_from_sun}</li>
                           <li>Eccentricity: {asteroid.eccentricity}</li>
-                          <li>Orbital Period: {asteroid.orbitalPeriod}</li>
+                          <li>Orbital Period: {asteroid.orbital_period}</li>
                           <li>Inclination: {asteroid.inclination}</li>
                           <li>
                             Argument of Periapsis:{" "}
@@ -67,7 +67,7 @@ export function AsteroidsPanel({
                       </DraggableMenuItem>
 
                       <DraggableMenuItem
-                        accordionValue={`physical-${asteroid.spkid}`}
+                        accordionValue={`physical-${asteroid.id}`}
                         title="Physical Parameters"
                       >
                         <ul className="pl-4 text-sm text-muted-foreground space-y-1">
@@ -80,7 +80,7 @@ export function AsteroidsPanel({
                         className="mt-2"
                         onClick={(e) => {
                           e.stopPropagation();
-                          removeAsteroid(asteroid.spkid);
+                          removeAsteroid(asteroid.id);
                         }}
                       />
                     </div>
