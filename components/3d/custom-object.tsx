@@ -12,12 +12,16 @@ export default function CustomObject() {
       {objects.map((obj) => (
         <Object
           key={obj.id}
-          type="NEA"
+          type="ASTEROID"
           selectedDate={selectedDate}
-          objectParams={{
+          params={{
             name: obj.name,
-            distance_from_sun: obj.semiMajorAxis,
+            id: obj.id,
+            distance_from_sun: obj.distance_from_sun,
             color: obj.color,
+            albedo: obj.albedo,
+            magnitude: obj.magnitude,
+            diameter: obj.diameter,
             eccentricity: obj.eccentricity,
             inclination: obj.inclination,
             argument_of_periapsis: obj.argument_of_periapsis,
