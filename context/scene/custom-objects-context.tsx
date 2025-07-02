@@ -1,16 +1,16 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import type { OrbitParams } from "@/lib/types";
+import type { AsteroidProps } from "@/lib/types";
 import { getRandomColor } from "@/lib/utils";
 
 
-const defaultParams = (): OrbitParams => ({
+const defaultParams = (): AsteroidProps => ({
   id: uuidv4(),
   name: `Custom Object`,
-  semiMajorAxis: 252600000,
+  distance_from_sun: 252600000,
   eccentricity: 0.5,
-  orbitalPeriod: 1,
+  orbital_period: 1,
   albedo: 0.5,
   magnitude: 10,
   diameter: 1,
@@ -24,11 +24,11 @@ const defaultParams = (): OrbitParams => ({
 });
 
 const CustomObjectsContext = createContext<{
-  objects: OrbitParams[];
+  objects: AsteroidProps[];
   addObject: () => void;
   updateObject: (
     id: string,
-    field: keyof OrbitParams,
+    field: keyof AsteroidProps,
     value: number | string,
   ) => void;
   removeObject: (id: string) => void;
@@ -46,7 +46,7 @@ export const CustomObjectsProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [objects, setObjects] = useState<OrbitParams[]>([]);
+  const [objects, setObjects] = useState<AsteroidProps[]>([]);
 
   const addObject = () => {
     setObjects((prev) => {
@@ -66,7 +66,7 @@ export const CustomObjectsProvider = ({
 
   const updateObject = (
     id: string,
-    field: keyof OrbitParams,
+    field: keyof AsteroidProps,
     value: number | string,
   ) => {
     setObjects((prev) =>
