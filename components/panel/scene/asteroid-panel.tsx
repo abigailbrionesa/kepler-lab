@@ -5,6 +5,7 @@ import { AsteroidSelector } from "../../ui/asteroid-selector";
 import { useAsteroids } from "@/context/scene/asteroids-context";
 import DraggableMenuItem from "../../ui/draggable-menu-item";
 import DeleteButton from "../../ui/delete-button";
+import NameAndColor from "@/components/ui/name-and-color";
 
 export function AsteroidsPanel({
   dragConstraints,
@@ -31,8 +32,14 @@ export function AsteroidsPanel({
                 <AccordionItem value={asteroid.spkid} key={asteroid.spkid}>
                   <DraggableMenuItem
                     accordionValue={asteroid.spkid}
-                    title={asteroid.full_name}
+                    title={
+                      <NameAndColor
+                        name={asteroid.full_name}
+                        color={asteroid.color}
+                      />
+                    }
                   >
+                    {JSON.stringify(asteroid, null, 2)}
                     <DeleteButton
                       onClick={(e) => {
                         e.stopPropagation();
