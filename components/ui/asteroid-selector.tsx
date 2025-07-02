@@ -12,24 +12,25 @@ import { useSelectedAsteroidSpkid } from "@/context/scene/view-selected-asteroid
 import { cn, getRandomColor } from "@/lib/utils";
 import type { AsteroidRow, AsteroidOption } from "@/lib/types";
 import { supabase } from "@/lib/supabase/supabase";
+import { degToRad } from "three/src/math/MathUtils.js";
 
 function formatAsteroid(data: AsteroidRow) {
   return {
-    spkid: String(data.spkid),
-    full_name: data.full_name.trim(),
-    semiMajorAxis: data.a,
+    id: String(data.spkid),
+    name: data.full_name.trim(),
+    distance_from_sun: data.a * 149597871,
+    color: getRandomColor(),
     eccentricity: data.e,
-    orbitalPeriod: parseFloat(data.per),
+    orbital_period: parseFloat(data.per),
     albedo: data.albedo ?? 0.1,
     magnitude: data.H,
     diameter: data.diameter ?? 0,
-    inclination: data.i,
-    argument_of_periapsis: data.w,
-    longitude_of_ascending_node: data.om,
-    mean_anomaly: data.ma,
-    mean_motion: data.n,
+    inclination: degToRad(data.i),
+    argument_of_periapsis: degToRad(data.w),
+    longitude_of_ascending_node: degToRad(data.om),
+    mean_anomaly: degToRad(data.ma),
+    mean_motion: degToRad(data.n),
     epoch: data.epoch,
-    color: getRandomColor(),
   };
 }
 
@@ -58,12 +59,15 @@ export function AsteroidSelector({ className }: { className?: string }) {
     }
 
     if (data) {
-      const usedSpkids = new Set(asteroids.map((a) => a.spkid));
+      const usedSpkids = new Set(asteroids.map((a) => a.id));
 
       const filtered = data
         .filter((a) => !usedSpkids.has(String(a.spkid)))
-        .slice(0, 3);
-
+        .slice(0, 3)
+        .map((a) => ({
+          id: String(a.spkid),
+          full_name: a.full_name,
+        }));
       setOptions(filtered);
     }
 
@@ -89,7 +93,7 @@ export function AsteroidSelector({ className }: { className?: string }) {
 
       setOptions((prevOptions) => {
         const updated = prevOptions.filter(
-          (opt) => String(opt.spkid) !== String(spkid)
+          (opt) => String(opt.id) !== String(spkid)
         );
         return updated;
       });
@@ -115,12 +119,12 @@ export function AsteroidSelector({ className }: { className?: string }) {
           ) : options.length > 0 ? (
             options.map((asteroid) => (
               <CommandItem
-                key={asteroid.spkid}
+                key={asteroid.id}
                 onSelect={() => {
                   const trimmedName = asteroid.full_name.trim();
                   setSelected({ ...asteroid, full_name: trimmedName });
                   setInput(trimmedName);
-                  fetchFullAsteroidData(String(asteroid.spkid));
+                  fetchFullAsteroidData(String(asteroid.id));
                   setInput("");
                 }}
               >
