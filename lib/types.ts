@@ -1,8 +1,9 @@
 import type { CameraControlsImpl } from "@react-three/drei";
 
-export type AsteroidOption = { spkid: number; full_name: string };
+export type AsteroidOption = { id: string; full_name: string };
 
 export type AsteroidRow = {
+  //from NASA Query
   spkid: number;
   full_name: string;
   pha: string;
@@ -39,46 +40,6 @@ export type AsteroidRow = {
   rms: number;
   albedo: number;
   diameter: number;
-};
-
-export type ObjectType = "NEA" | "PLANET" | "PHA" | "NEC";
-
-export type NEOType = "NEA" | "NEC" | "PHA";
-
-export type OrbitalParams = {
-  name: string;
-  color: string;
-  semiMajorAxis: number;
-  eccentricity: number;
-  orbitalPeriod: number;
-  albedo: number;
-  magnitude: number;
-  diameter: number;
-  inclination: number;
-  argument_of_periapsis: number;
-  longitude_of_ascending_node: number;
-  mean_anomaly: number;
-  mean_motion: number;
-  epoch: number;
-  setParams: (params: Partial<OrbitalParams>) => void;
-};
-
-export type AsteroidParams = {
-  spkid: string;
-  full_name: string;
-  semiMajorAxis: number;
-  eccentricity: number;
-  orbitalPeriod: number;
-  albedo: number;
-  magnitude: number;
-  diameter: number;
-  inclination: number;
-  argument_of_periapsis: number;
-  longitude_of_ascending_node: number;
-  mean_anomaly: number;
-  mean_motion: number;
-  epoch: number;
-  color: string;
 };
 
 export type CameraControlContextType = {
@@ -141,12 +102,26 @@ export type PlanetData = {
   index: number;
 };
 
-export type OrbitParams = {
+export type PlanetProps = {
+  name: PlanetType;
+  radius: number;
+  distance_from_sun: number;
+  color: string;
+  eccentricity: number;
+  inclination: number;
+  argument_of_periapsis: number;
+  longitude_of_ascending_node: number;
+  mean_anomaly: number;
+  mean_motion: number;
+  epoch: number;
+};
+
+export type AsteroidProps = {
   id: string;
   name: string;
-  semiMajorAxis: number;
+  distance_from_sun: number;
   eccentricity: number;
-  orbitalPeriod: number;
+  orbital_period?: number;
   albedo: number;
   magnitude: number;
   diameter: number;
@@ -155,29 +130,22 @@ export type OrbitParams = {
   longitude_of_ascending_node: number;
   mean_anomaly: number;
   mean_motion: number;
-  color:string;
   epoch: number;
+  color: string;
 };
 
-export type PlanetObject = {
-  type: "PLANET";
-  objectParams: {
-    name: PlanetType;
-    radius: number;
-    distance_from_sun: number;
-    color: string;
-    eccentricity: number;
-    inclination: number;
-    argument_of_periapsis: number;
-    longitude_of_ascending_node: number;
-    mean_anomaly: number;
-    mean_motion: number;
-    epoch: number;
-  };
+export type ObjectProps = (
+  | ({ type: "PLANET" } & { params: PlanetProps })
+  | ({ type: "ASTEROID" } & { params: AsteroidProps })
+) & {
   selectedDate: Date;
+  custom?: boolean;
 };
 
-export type NEOObject = {
+{
+  /* 
+  
+  export type NEOObject = {
   type: NEOType;
   objectParams: {
     name: string;
@@ -195,4 +163,10 @@ export type NEOObject = {
   selectedDate: Date;
 };
 
-export type PlanetProps = (PlanetObject | NEOObject) & { custom?: boolean };
+
+export type ObjectType = "NEA" | "PLANET" | "PHA" | "NEC";
+
+export type NEOType = "NEA" | "NEC" | "PHA";
+  
+  */
+}
