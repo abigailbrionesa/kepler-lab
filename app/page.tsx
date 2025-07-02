@@ -10,7 +10,6 @@ import { SelectedPlanetProvider } from "@/context/scene/view-selected-planet";
 import { IsObjectPivotProvider } from "@/context/scene/view-is-object-pivot";
 import { OccludableRefsProvider } from "@/context/scene/occludable-refs-context";
 import { CameraControlProvider } from "@/context/scene/camera-control-context";
-import { OrbitCreatorParamsProvider } from "@/context/scene/orbit-creator-params-context";
 import { SelectedAsteroidSpkidProvider } from "@/context/scene/view-selected-asteroid-spkid";
 import { CustomObjectsProvider } from "@/context/scene/custom-objects-context";
 import { AsteroidProvider } from "@/context/scene/asteroids-context";
@@ -21,7 +20,6 @@ export default function Page() {
         <ViewConfigProvider>
           <OccludableRefsProvider>
             <SelectedCategoryProvider>
-              <OrbitCreatorParamsProvider>
                 <CustomObjectsProvider>
                   <AsteroidProvider>
                     <SelectedDateProvider>
@@ -41,7 +39,6 @@ export default function Page() {
                     </SelectedDateProvider>
                   </AsteroidProvider>
                 </CustomObjectsProvider>
-              </OrbitCreatorParamsProvider>
             </SelectedCategoryProvider>
           </OccludableRefsProvider>
         </ViewConfigProvider>
