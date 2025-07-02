@@ -26,10 +26,13 @@ export function AsteroidsPanel({
 
         {asteroids.length > 0 ? (
           <>
-            <h3 className="text-sm font-medium">Selected Asteroids:</h3>
             <Accordion type="multiple" className="w-full">
               {asteroids.map((asteroid) => (
-                <AccordionItem value={asteroid.spkid} key={asteroid.spkid}>
+                <AccordionItem
+                  className="border-b-0"
+                  value={asteroid.spkid}
+                  key={asteroid.spkid}
+                >
                   <DraggableMenuItem
                     accordionValue={asteroid.spkid}
                     title={
@@ -39,13 +42,48 @@ export function AsteroidsPanel({
                       />
                     }
                   >
-                    {JSON.stringify(asteroid, null, 2)}
-                    <DeleteButton
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        removeAsteroid(asteroid.spkid);
-                      }}
-                    />
+                    <div className="pl-4">
+                      <DraggableMenuItem
+                        accordionValue={`orbital-${asteroid.spkid}`}
+                        title="Orbital Parameters"
+                      >
+                        <ul className="pl-4 text-sm text-muted-foreground space-y-1">
+                          <li>Semi-Major Axis: {asteroid.semiMajorAxis}</li>
+                          <li>Eccentricity: {asteroid.eccentricity}</li>
+                          <li>Orbital Period: {asteroid.orbitalPeriod}</li>
+                          <li>Inclination: {asteroid.inclination}</li>
+                          <li>
+                            Argument of Periapsis:{" "}
+                            {asteroid.argument_of_periapsis}
+                          </li>
+                          <li>
+                            Longitude of Ascending Node:{" "}
+                            {asteroid.longitude_of_ascending_node}
+                          </li>
+                          <li>Mean Anomaly: {asteroid.mean_anomaly}</li>
+                          <li>Mean Motion: {asteroid.mean_motion}</li>
+                          <li>Epoch: {asteroid.epoch}</li>
+                        </ul>
+                      </DraggableMenuItem>
+
+                      <DraggableMenuItem
+                        accordionValue={`physical-${asteroid.spkid}`}
+                        title="Physical Parameters"
+                      >
+                        <ul className="pl-4 text-sm text-muted-foreground space-y-1">
+                          <li>Magnitude: {asteroid.magnitude}</li>
+                          <li>Albedo: {asteroid.albedo}</li>
+                          <li>Diameter: {asteroid.diameter}</li>
+                        </ul>
+                      </DraggableMenuItem>
+                      <DeleteButton
+                        className="mt-2"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          removeAsteroid(asteroid.spkid);
+                        }}
+                      />
+                    </div>
                   </DraggableMenuItem>
                 </AccordionItem>
               ))}
