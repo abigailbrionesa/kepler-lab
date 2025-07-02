@@ -7,7 +7,7 @@ export default function NameAndColor({
 }) {
   return (
     <div className="flex items-center gap-3">
-      <span>{name}</span>
+      <span className="font-bold">{name}</span>
       <div
         style={{ backgroundColor: color }}
         className="h-3 w-3 rounded-full border"
