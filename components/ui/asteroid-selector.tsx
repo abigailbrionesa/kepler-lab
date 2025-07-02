@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/shadcn/command";
 import { useDebounce } from "use-debounce";
 import { useSelectedAsteroidSpkid } from "@/context/scene/view-selected-asteroid-spkid";
-import { cn } from "@/lib/utils";
+import { cn, getRandomColor } from "@/lib/utils";
 import type { AsteroidRow, AsteroidOption } from "@/lib/types";
 import { supabase } from "@/lib/supabase/supabase";
 
@@ -29,6 +29,7 @@ function formatAsteroid(data: AsteroidRow) {
     mean_anomaly: data.ma,
     mean_motion: data.n,
     epoch: data.epoch,
+    color: getRandomColor(),
   };
 }
 
@@ -88,7 +89,7 @@ export function AsteroidSelector({ className }: { className?: string }) {
 
       setOptions((prevOptions) => {
         const updated = prevOptions.filter(
-          (opt) => String(opt.spkid) !== String(spkid),
+          (opt) => String(opt.spkid) !== String(spkid)
         );
         return updated;
       });
