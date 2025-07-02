@@ -8,9 +8,9 @@ import { useCustomObjects } from "@/context/scene/custom-objects-context";
 import DeleteButton from "@/components/ui/delete-button";
 import { ParamSlider } from "@/components/ui/param-slider";
 import { Input } from "@/components/ui/shadcn/input";
-import { cn } from "@/lib/utils";
+import NameAndColor from "@/components/ui/name-and-color";
 
-export function OrbitalControlsPanel({
+export function ObjectCreatorPanel({
   dragConstraints,
 }: {
   dragConstraints: React.RefObject<HTMLDivElement | null>;
@@ -50,17 +50,7 @@ export function OrbitalControlsPanel({
           <DraggableMenuItem
             key={obj.id}
             accordionValue={obj.id}
-            title={
-              <div className="flex items-center gap-3">
-                <span>{obj.name}</span>
-
-                <div
-                  style={{ backgroundColor: obj.color }}
-                  className={cn("h-3 w-3 rounded-full border")}
-                />
-              </div>
-            }
-            subtitle="Category"
+            title={<NameAndColor name={obj.name} color={obj.color} />}
           >
             <div className="pl-4">
               <div className="flex items-center gap-3">
