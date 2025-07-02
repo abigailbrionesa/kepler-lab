@@ -73,9 +73,9 @@ export function ObjectCreatorPanel({
                     min={57900000}
                     max={4515000000}
                     step={100000}
-                    value={obj.semiMajorAxis}
+                    value={obj.distance_from_sun}
                     onChange={(val: number) =>
-                      handleChange(obj.id, "semiMajorAxis", val as number)
+                      handleChange(obj.id, "distance_from_sun", val as number)
                     }
                   />
                   <ParamSlider
