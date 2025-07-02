@@ -78,6 +78,7 @@ export type AsteroidParams = {
   mean_anomaly: number;
   mean_motion: number;
   epoch: number;
+  color: string;
 };
 
 export type CameraControlContextType = {
