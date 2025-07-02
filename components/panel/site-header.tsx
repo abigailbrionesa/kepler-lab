@@ -40,9 +40,7 @@ const CustomOrbitIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export function SiteHeader() {
-  const { selectedCategory } = useSelectedCategory();
   const { viewConfig, toggleOption } = useViewConfig();
-  const { toggleSidebar } = useRightSidebar();
 
   return (
     <header
@@ -57,64 +55,43 @@ export function SiteHeader() {
             className="mx-2 data-[orientation=vertical]:h-4"
           />
           <h1 className="text-base font-medium flex items-center">
-            {selectedCategory ? (
-              <div className="flex items-center">
-                {selectedCategory.icon && (
-                  <selectedCategory.icon className="mr-1.5 h-4 w-4" />
-                )}
-                <span>{selectedCategory.title.replace("See ", "")}</span>
-              </div>
-            ) : (
-              "Celestial Dashboard"
-            )}
+            Celestial Dashboard
           </h1>
         </div>
 
         <div className="flex items-center gap-2">
           <CameraControlsMenu />
 
+          <>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className="gap-1.5">
+                  <Settings2Icon className="h-4 w-4" />
+                  <span>Config</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuLabel>Display Options</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuCheckboxItem
+                  checked={viewConfig.labels}
+                  onCheckedChange={() => toggleOption("labels")}
+                >
+                  <TagIcon className="mr-2 h-4 w-4" />
+                  <span>Show Labels</span>
+                </DropdownMenuCheckboxItem>
+                <DropdownMenuCheckboxItem
+                  checked={viewConfig.orbits}
+                  onCheckedChange={() => toggleOption("orbits")}
+                >
+                  <CustomOrbitIcon className="mr-2 h-4 w-4" />
+                  <span>Show Orbits</span>
+                </DropdownMenuCheckboxItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </>
+
           <ThemeToggle />
-
-          {selectedCategory && (
-            <>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="sm" className="gap-1.5">
-                    <Settings2Icon className="h-4 w-4" />
-                    <span>Config</span>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  <DropdownMenuLabel>Display Options</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuCheckboxItem
-                    checked={viewConfig.labels}
-                    onCheckedChange={() => toggleOption("labels")}
-                  >
-                    <TagIcon className="mr-2 h-4 w-4" />
-                    <span>Show Labels</span>
-                  </DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem
-                    checked={viewConfig.orbits}
-                    onCheckedChange={() => toggleOption("orbits")}
-                  >
-                    <CustomOrbitIcon className="mr-2 h-4 w-4" />
-                    <span>Show Orbits</span>
-                  </DropdownMenuCheckboxItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              <Button
-                variant="outline"
-                size="sm"
-                className="gap-1.5"
-                onClick={toggleSidebar}
-              >
-                <InfoIcon className="h-4 w-4" />
-                <span>More Info</span>
-              </Button>
-            </>
-          )}
         </div>
       </div>
     </header>
