@@ -1,5 +1,5 @@
 "use client";
-import SolarSystem from "@/solar-system";
+import SolarSystem from "@/components/3d/solar-system";
 import { SiteHeader } from "@/components/panel/site-header";
 import { useRef } from "react";
 import { useSelectedPlanet } from "@/context/scene/view-selected-planet";
