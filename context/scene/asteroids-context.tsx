@@ -1,11 +1,11 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
-import type { AsteroidParams } from "@/lib/types";
+import type { AsteroidProps } from "@/lib/types";
 
 const AsteroidContext = createContext<{
-  asteroids: AsteroidParams[];
-  addAsteroid: (asteroid: AsteroidParams) => void;
-  removeAsteroid: (spkid: string) => void;
+  asteroids: AsteroidProps[];
+  addAsteroid: (asteroid: AsteroidProps) => void;
+  removeAsteroid: (id: string) => void;
 }>({
   asteroids: [],
   addAsteroid: () => {},
@@ -19,17 +19,17 @@ export const AsteroidProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [asteroids, setAsteroids] = useState<AsteroidParams[]>([]);
+  const [asteroids, setAsteroids] = useState<AsteroidProps[]>([]);
 
-  const addAsteroid = (asteroid: AsteroidParams) => {
+  const addAsteroid = (asteroid: AsteroidProps) => {
     setAsteroids((prev) => {
-      const exists = prev.some((a) => a.spkid === asteroid.spkid);
+      const exists = prev.some((a) => a.id === asteroid.id);
       return exists ? prev : [...prev, asteroid];
     });
   };
 
-  const removeAsteroid = (spkid: string) => {
-    setAsteroids((prev) => prev.filter((a) => a.spkid !== spkid));
+  const removeAsteroid = (id: string) => {
+    setAsteroids((prev) => prev.filter((a) => a.id !== id));
   };
 
   return (
