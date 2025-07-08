@@ -18,6 +18,7 @@ import type { Group } from "three";
 import { useViewConfig } from "@/context/scene/view-config-context";
 import { useSelectedAsteroidSpkid } from "@/context/scene/view-selected-asteroid-spkid";
 import type { ObjectProps } from "@/lib/types";
+import { SCALE_FACTOR_OBJECT } from "@/lib/constants";
 
 export default function Object(props: ObjectProps) {
   const { viewConfig } = useViewConfig();
@@ -109,7 +110,7 @@ export default function Object(props: ObjectProps) {
   const planetTransitions = useTransition(isPlanet && isSelected, {
     from: { scale: 0, opacity: 0 },
     enter: {
-      scale: isPlanet ? 0.3 + props.params.radius * 0.00001 : 0,
+      scale: isPlanet ? 1 : 0,
       opacity: 1,
     },
     leave: { scale: 0, opacity: 0 },
@@ -129,8 +130,14 @@ export default function Object(props: ObjectProps) {
               <PlanetModel
                 ref={refCallback}
                 name={props.params.name}
-                scale={1}
+    scale={props.params.radius * SCALE_FACTOR_OBJECT}
               />
+
+                 <mesh>
+      <sphereGeometry args={[props.params.radius * 0.0025, 16, 16]} />
+      <meshStandardMaterial color="orange" />
+    </mesh>
+
             </a3.group>
           ) : null,
         )}

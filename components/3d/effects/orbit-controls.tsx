@@ -9,7 +9,7 @@ import { useCameraControls } from "@/context/scene/camera-control-context";
 import { useIsObjectPivot } from "@/context/scene/view-is-object-pivot";
 import { useSelectedDate } from "@/context/scene/view-selected-date";
 import { useSelectedPlanet } from "@/context/scene/view-selected-planet";
-
+import { SCALE_FACTOR_OBJECT } from "@/lib/constants";
 import { get_position_at_selected_date } from "@/lib/math";
 import planets_data from "../../../lib/data/planets.json";
 
@@ -49,7 +49,7 @@ export const SpaceControls = () => {
 
     const distanceToPlanet = planetPosition.length();
 
-    const cameraDistance = distanceToPlanet * 0.7 + planet.radius_km * 0.2;
+    const cameraDistance = distanceToPlanet  + (4 *planet.radius_km * 0.0025);
 
     // const fixedCameraDistance = 1000;
 
@@ -90,13 +90,16 @@ export const SpaceControls = () => {
 
   useEffect(() => {
     if (!cameraControlsRef.current) return;
-
     const controls = cameraControlsRef.current;
 
-    const newPosition =
-      isObjectPivot && planetPosition ? planetPosition : ORIGIN;
+    const newTarget = isObjectPivot && planetPosition ? planetPosition : ORIGIN;
+    controls.setTarget(newTarget.x, newTarget.y, newTarget.z, true);
 
-    controls.setTarget(newPosition.x, newPosition.y, newPosition.z, true);
+    if (isObjectPivot) {
+      controls.minDistance = 0;
+    } else {
+      controls.minDistance = 900;
+    }
   }, [isObjectPivot, planetPosition]);
 
   return (
@@ -104,7 +107,6 @@ export const SpaceControls = () => {
       <CameraControls
         ref={cameraControlsRef}
         enabled
-        minDistance={900}
         maxDistance={50000}
       />
     </>
