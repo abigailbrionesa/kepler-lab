@@ -1,7 +1,7 @@
-export const SCALE_FACTOR_OBJECT = 0.001;
+export const SCALE_FACTOR_OBJECT = 0.000005;
 export const SCALE_FACTOR_ORBIT = 0.000007;
 
-export const SUN_RADIUS = 71492 * SCALE_FACTOR_OBJECT * 1; // sun is ten more times greater than jupiter
+export const SUN_RADIUS = 71492 * 0.0001 * 10; // sun is ten more times greater than jupiter
 
 export const planetIds = {
   Sun: "10",
