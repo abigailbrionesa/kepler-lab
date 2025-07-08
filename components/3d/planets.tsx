@@ -10,7 +10,7 @@ export function Planets({ planets_data }: { planets_data: PlanetData[] }) {
       {planets_data.map((planet) => (
         <Object
           key={planet.index}
-          objectParams={{
+          params={{
             name: planet.name,
             radius: planet.radius_km,
             distance_from_sun: planet.distance_from_sun_km,
