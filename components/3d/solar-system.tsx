@@ -19,7 +19,7 @@ export default function SolarSystem() {
       gl={{ antialias: false }}
       camera={{
         position: [-1000, 500, 1000],
-        near: 100,
+        near: 1,
         far: 100_000,
         fov: 45,
       }}
