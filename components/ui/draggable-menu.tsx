@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import { useEffect } from "react";
+import type { ReactNode } from "react";
 
 export default function DraggablePanel({
   dragConstraints,
@@ -17,12 +18,14 @@ export default function DraggablePanel({
   children,
   position,
   width = "w-64",
+  transparent = true,
 }: {
   dragConstraints: RefObject<HTMLDivElement | null>;
-  title: string;
-  children: React.ReactNode;
+  title: string | ReactNode;
+  children: ReactNode;
   position?: string;
   width?: string;
+  transparent?: boolean;
 }) {
   const dragControls = useDragControls();
   const [isMinimized, setIsMinimized] = useState(false);
@@ -38,7 +41,7 @@ export default function DraggablePanel({
       drag
       dragControls={dragControls}
       dragListener={false}
-      whileDrag={{ scale: 0.98, opacity: 0.8 }}
+      whileDrag={{ scale: 0.98 }}
       dragMomentum={false}
       dragConstraints={dragConstraints.current ? dragConstraints : undefined}
       dragElastic={0}
@@ -78,8 +81,9 @@ export default function DraggablePanel({
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
               className={cn(
-                "px-4 py-1 backdrop-blur-sm rounded-xl border-1 border-secondary overflow-hidden",
+                "px-4 py-1 rounded-xl border border-secondary overflow-hidden",
                 mounted && theme === "light" && "bg-background",
+                transparent ? "backdrop-blur-sm" : "bg-background"
               )}
             >
               {children}
