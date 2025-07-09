@@ -54,7 +54,7 @@ export default function Object(props: ObjectProps) {
       props.params.longitude_of_ascending_node,
       props.params.mean_anomaly,
       props.params.epoch,
-      props.selectedDate,
+      props.selectedDate
     );
   }, [
     props.params.distance_from_sun,
@@ -73,7 +73,7 @@ export default function Object(props: ObjectProps) {
       props.params.eccentricity,
       props.params.inclination,
       props.params.argument_of_periapsis,
-      props.params.longitude_of_ascending_node,
+      props.params.longitude_of_ascending_node
     );
   }, [
     props.params.distance_from_sun,
@@ -104,7 +104,7 @@ export default function Object(props: ObjectProps) {
         }
       }
     },
-    [isPlanet, registerRef, unregisterRef],
+    [isPlanet, registerRef, unregisterRef]
   );
 
   const planetTransitions = useTransition(isPlanet && isSelected, {
@@ -130,16 +130,18 @@ export default function Object(props: ObjectProps) {
               <PlanetModel
                 ref={refCallback}
                 name={props.params.name}
-    scale={props.params.radius * SCALE_FACTOR_OBJECT}
+                scale={props.params.radius * SCALE_FACTOR_OBJECT}
               />
-
-                 <mesh>
-      <sphereGeometry args={[props.params.radius * 0.0025, 16, 16]} />
-      <meshStandardMaterial color="orange" />
-    </mesh>
-
+            {/* 
+              <mesh>
+                <sphereGeometry
+                  args={[props.params.radius * 500 * 0.000005, 16, 16]}
+                />
+                <meshStandardMaterial color="orange" />
+              </mesh>
+            */}
             </a3.group>
-          ) : null,
+          ) : null
         )}
 
       <group position={object_position}>
@@ -150,7 +152,7 @@ export default function Object(props: ObjectProps) {
           occlude={occludeRefs as React.RefObject<Object3D>[]}
           className={cn(
             "transition-all duration-200 cursor-pointer z-50 group ",
-            hidden ? "opacity-0 scale-90" : "opacity-100 scale-100",
+            hidden ? "opacity-0 scale-90" : "opacity-100 scale-100"
           )}
         >
           <div onClick={handleObjectClick}>
