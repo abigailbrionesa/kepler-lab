@@ -7,7 +7,7 @@ import SelectedPlanetHeader from "@/components/panel/selected-planet-header";
 import GeneralControlsPanel from "@/components/panel/scene/general-controls-panel";
 import { ObjectCreatorPanel } from "@/components/panel/scene/object-creator-panel";
 import { AsteroidsPanel } from "@/components/panel/scene/asteroid-panel";
-
+import { ObjectInfoPanel } from "@/components/panel/scene/object-info-panel";
 export default function MainContent() {
   const { selectedPlanet } = useSelectedPlanet();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -20,10 +20,13 @@ export default function MainContent() {
         style={{ backgroundColor: "oklch(16.932% 0.03326 44.084)" }}
       >
         <div className="@container/main flex flex-1 flex-col">
+
           {selectedPlanet && <SelectedPlanetHeader />}
-          <AsteroidsPanel dragConstraints={containerRef} />
+          {<AsteroidsPanel dragConstraints={containerRef} />}
           {<GeneralControlsPanel dragConstraints={containerRef} />}
           {<ObjectCreatorPanel dragConstraints={containerRef} />}
+          {selectedPlanet && <ObjectInfoPanel dragConstraints={containerRef} />}
+
           <div className="flex flex-1 ">
             <SolarSystem />
           </div>
