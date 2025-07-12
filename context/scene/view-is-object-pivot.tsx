@@ -25,7 +25,7 @@ export const IsObjectPivotProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  const [isObjectPivot, setIsObjectPivot] = useState(false);
+  const [isObjectPivot, setIsObjectPivot] = useState(true);
 
   const togglePivot = () => {
     setIsObjectPivot((prev) => !prev);
