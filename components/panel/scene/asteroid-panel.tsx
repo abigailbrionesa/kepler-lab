@@ -42,12 +42,14 @@ export function AsteroidsPanel({
                       />
                     }
                   >
-                    <div className="pl-4">
+                    <div className="pl-2">
                       <DraggableMenuItem
                         accordionValue={`orbital-${asteroid.id}`}
-                        title="Orbital Parameters"
+                        title={
+                          <span className="star-point">Orbital Parameters</span>
+                        }
                       >
-                        <ul className="pl-4 text-sm text-muted-foreground space-y-1">
+                        <ul className="text-muted-foreground pl-2 space-y-1">
                           <li>Semi-Major Axis: {asteroid.distance_from_sun}</li>
                           <li>Eccentricity: {asteroid.eccentricity}</li>
                           <li>Orbital Period: {asteroid.orbital_period}</li>
@@ -68,9 +70,13 @@ export function AsteroidsPanel({
 
                       <DraggableMenuItem
                         accordionValue={`physical-${asteroid.id}`}
-                        title="Physical Parameters"
+                        title={
+                          <span className="star-point">
+                            Physical Parameters
+                          </span>
+                        }
                       >
-                        <ul className="pl-4 text-sm text-muted-foreground space-y-1">
+                        <ul className="text-muted-foreground space-y-1 pl-2">
                           <li>Magnitude: {asteroid.magnitude}</li>
                           <li>Albedo: {asteroid.albedo}</li>
                           <li>Diameter: {asteroid.diameter}</li>
