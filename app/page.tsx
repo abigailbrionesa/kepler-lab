@@ -20,25 +20,25 @@ export default function Page() {
         <ViewConfigProvider>
           <OccludableRefsProvider>
             <SelectedCategoryProvider>
-                <CustomObjectsProvider>
-                  <AsteroidProvider>
-                    <SelectedDateProvider>
-                      <SelectedAsteroidSpkidProvider>
-                        <SelectedPlanetProvider>
-                          <IsObjectPivotProvider>
-                            <CameraControlProvider>
-                              <AppSidebar variant="inset" />
-                              <SidebarInset>
-                                <MainContent />
-                              </SidebarInset>
-                              <RightSidebar />
-                            </CameraControlProvider>
-                          </IsObjectPivotProvider>
-                        </SelectedPlanetProvider>
-                      </SelectedAsteroidSpkidProvider>
-                    </SelectedDateProvider>
-                  </AsteroidProvider>
-                </CustomObjectsProvider>
+              <CustomObjectsProvider>
+                <AsteroidProvider>
+                  <SelectedDateProvider>
+                    <SelectedAsteroidSpkidProvider>
+                      <SelectedPlanetProvider>
+                        <IsObjectPivotProvider>
+                          <CameraControlProvider>
+                            <AppSidebar variant="inset" />
+                            <SidebarInset>
+                              <MainContent />
+                            </SidebarInset>
+                            <RightSidebar />
+                          </CameraControlProvider>
+                        </IsObjectPivotProvider>
+                      </SelectedPlanetProvider>
+                    </SelectedAsteroidSpkidProvider>
+                  </SelectedDateProvider>
+                </AsteroidProvider>
+              </CustomObjectsProvider>
             </SelectedCategoryProvider>
           </OccludableRefsProvider>
         </ViewConfigProvider>
