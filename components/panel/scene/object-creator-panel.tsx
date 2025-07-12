@@ -28,8 +28,9 @@ export function ObjectCreatorPanel({
   return (
     <DraggablePanel
       dragConstraints={dragConstraints}
-      title="Orbit Creator"
+      title="Asteroid Creator"
       position="left-160 top-5"
+      width="w-80"
     >
       <div className="flex justify-between items-center px-4 pt-1 pb-1">
         <h2 className="text-sm font-medium text-muted-foreground">
@@ -52,7 +53,7 @@ export function ObjectCreatorPanel({
             accordionValue={obj.id}
             title={<NameAndColor name={obj.name} color={obj.color} />}
           >
-            <div className="pl-4">
+            <div className="pl-2">
               <div className="flex items-center gap-3">
                 <label className="text-sm font-medium text-muted-foreground">
                   Name
@@ -64,9 +65,9 @@ export function ObjectCreatorPanel({
               </div>
               <DraggableMenuItem
                 accordionValue={`orbital-${obj.id}`}
-                title="Orbital Parameters"
+                title={<span className="star-point">Orbital Parameters</span>}
               >
-                <div className="space-y-4 pt-2">
+                <div className="space-y-4 pt-2 pl-2 text-muted-foreground">
                   <ParamSlider
                     label="Semi-Major Axis (km)"
                     id={`semiMajorAxis-${obj.id}`}
@@ -167,9 +168,9 @@ export function ObjectCreatorPanel({
               </DraggableMenuItem>
               <DraggableMenuItem
                 accordionValue={`physical-${obj.id}`}
-                title="Physical Parameters"
+                title={<span className="star-point">Physical Parameters</span>}
               >
-                <div className="space-y-4 pt-2">
+                <div className="space-y-4 pt-2 pl-2 text-muted-foreground">
                   <ParamSlider
                     label="Albedo"
                     id={`albedo-${obj.id}`}
