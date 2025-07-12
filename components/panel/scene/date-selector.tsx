@@ -62,7 +62,7 @@ export default function DateSelector() {
     >
       <div className="space-y-4 pt-2">
         <div className="space-y-2">
-          <Label htmlFor="date">Select Date</Label>
+          <Label htmlFor="date" className="star-point">Select Date</Label>
           <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
             <PopoverTrigger asChild>
               <Button
