@@ -18,7 +18,7 @@ html {
   --primary: oklch(68.195% 0.14966 63.181);
   --primary-foreground: oklch(0.96 0.0028 128.49);
   --secondary: oklch(66.435% 0.15732 58.997);
-  --secondary-foreground: oklch(16.932% 0.03326 44.084);
+  --secondary-foreground: oklch(46.419% 0.13783 38.29);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(76.687% 0.10707 70.027);
@@ -91,7 +91,7 @@ html {
   --primary: oklch(68.195% 0.14966 63.181);
   --primary-foreground: oklch(16.932% 0.03326 44.084);
   --secondary: oklch(58.119% 0.13689 59.531);
-  --secondary-foreground: oklch(0.985 0 0);
+  --secondary-foreground: oklch(82.623% 0.07846 70.791);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(48.788% 0.09395 48.808 / 0.493);
@@ -119,10 +119,24 @@ html {
   body {
     @apply bg-background text-foreground font-ibm-mono;
   }
+  a {
+    @apply underline hover:text-secondary-foreground underline-offset-4 transition-colors;
+  }
+  li {
+    @apply before:text-foreground
+  }
 }
 
 @layer components {
   .custom-border {
     @apply border-1 border-secondary;
+  }
+
+  .star-point {
+    @apply before:content-['✦'] before:mr-2
+  }
+
+  .circle-point {
+    @apply before:content-['•'] before:mr-2
   }
 }
