@@ -4,10 +4,8 @@ import type React from "react";
 
 import { Separator } from "@/components/ui/shadcn/separator";
 import { SidebarTrigger } from "@/components/ui/shadcn/sidebar";
-import { useSelectedCategory } from "@/context/selected-category-context";
 import { useViewConfig } from "@/context/scene/view-config-context";
-import { useRightSidebar } from "@/context/right-sidebar-context";
-import { Settings2Icon, TagIcon, InfoIcon } from "lucide-react";
+import { Settings2Icon, TagIcon } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
