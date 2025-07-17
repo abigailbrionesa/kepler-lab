@@ -17,6 +17,10 @@ export function ObjectInfoPanel({
   const planet = (planets_json as PlanetData[]).find(
     (p) => p.name === selectedPlanet
   );
+
+  if (!planet) {
+    return null
+  }
   return (
     <DraggablePanel
       dragConstraints={dragConstraints}
