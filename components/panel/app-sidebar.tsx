@@ -12,6 +12,7 @@ import {
   SidebarGroupContent,
 } from "@/components/ui/shadcn/sidebar";
 import { CreatorInfo } from "./creator-info";
+import Link from "next/link";
 
 const spaceResources = [
   {
@@ -46,11 +47,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className=" data-[slot=sidebar-menu-button]:!p-1.5 hover:!bg-transparent hover:text-secondary-foreground"
             >
-              <a href="/" className=" !no-underline !underline-offset-4">
+              <Link href="/" className="!no-underline !underline-offset-4">
                 <span className="text-base font-semibold">
                   ☀️ Abi&apos;s Space
                 </span>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
