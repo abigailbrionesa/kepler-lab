@@ -49,7 +49,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             >
               <Link href="/" className="!no-underline !underline-offset-4">
                 <span className="text-base font-semibold">
-                  ☀️ Abi&apos;s Space
+                  ☀️ Space!
                 </span>
               </Link>
             </SidebarMenuButton>
