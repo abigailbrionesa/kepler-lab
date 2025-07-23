@@ -1,1 +1,1 @@
-![Screenshot](images/keplerlab.png)
+![Screenshot](/hero.png)
