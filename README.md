@@ -1,1 +1,1 @@
-![Screenshot](/hero.png)
+![Screenshot](/public/hero.png)
