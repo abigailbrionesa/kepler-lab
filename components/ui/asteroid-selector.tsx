@@ -11,7 +11,7 @@ import { useDebounce } from "use-debounce";
 import { useSelectedAsteroidSpkid } from "@/context/scene/view-selected-asteroid-spkid";
 import { cn, getRandomColor } from "@/lib/utils";
 import type { AsteroidRow, AsteroidOption } from "@/lib/types";
-import { supabase } from "@/lib/supabase/supabase";
+import { useAsteroidSearch } from "@/hooks/use-asteroid-search";
 import { degToRad } from "three/src/math/MathUtils.js";
 
 function formatAsteroid(data: AsteroidRow) {
@@ -37,72 +37,74 @@ function formatAsteroid(data: AsteroidRow) {
 export function AsteroidSelector({ className }: { className?: string }) {
   const { setSelectedAsteroidSpkid } = useSelectedAsteroidSpkid();
   const { asteroids, addAsteroid } = useAsteroids();
+  const { ready, results, search, fetchAsteroidBySpkid, loading: searchLoading } = useAsteroidSearch();
 
   const [input, setInput] = useState("");
   const [debouncedInput] = useDebounce(input, 300);
   const [options, setOptions] = useState<AsteroidOption[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(false);
   const [, setSelected] = useState<AsteroidOption | null>(null);
 
-  const handleSearchName = async (query: string) => {
-    setLoading(true);
+  // Update search results when worker returns them
+  useEffect(() => {
+    if (!ready) return;
 
-    const { data, error } = await supabase
-      .from("asteroids")
-      .select("spkid, full_name")
-      .ilike("full_name", `%${query}%`)
-      .order("condition_code", { ascending: true })
-      .limit(10);
+    const usedSpkids = new Set(asteroids.map((a) => a.id));
 
-    if (error) {
-      console.error(error);
-    }
+    const filtered = results
+      .filter((result) => !usedSpkids.has(String(result.spkid)))
+      .slice(0, 3)
+      .map((result) => ({
+        id: String(result.spkid),
+        full_name: result.full_name,
+      }));
 
-    if (data) {
-      const usedSpkids = new Set(asteroids.map((a) => a.id));
+    setOptions(filtered);
+  }, [results, asteroids, ready]);
 
-      const filtered = data
-        .filter((a) => !usedSpkids.has(String(a.spkid)))
-        .slice(0, 3)
-        .map((a) => ({
-          id: String(a.spkid),
-          full_name: a.full_name,
-        }));
-      setOptions(filtered);
-    }
+  // Trigger search when debounced input changes
+  useEffect(() => {
+    if (!ready) return;
+    search(debouncedInput || "");
+  }, [debouncedInput, ready, search]);
 
-    setLoading(false);
+  const handleSearchName = (query: string) => {
+    if (!ready) return;
+    search(query);
   };
 
   const fetchFullAsteroidData = async (spkid: string) => {
-    const { data, error } = await supabase
-      .from("asteroids")
-      .select("*")
-      .eq("spkid", spkid)
-      .single();
-
-    if (error) {
-      console.error(error);
+    if (!ready) {
+      console.error("Search worker not ready");
+      return;
     }
 
-    if (data) {
-      const formatted = formatAsteroid(data);
+    setFetching(true);
 
-      addAsteroid(formatted);
-      setSelectedAsteroidSpkid(spkid);
+    try {
+      const asteroidData = await fetchAsteroidBySpkid(spkid);
 
-      setOptions((prevOptions) => {
-        const updated = prevOptions.filter(
-          (opt) => String(opt.id) !== String(spkid)
-        );
-        return updated;
-      });
+      if (asteroidData) {
+        const formatted = formatAsteroid(asteroidData);
+
+        addAsteroid(formatted);
+        setSelectedAsteroidSpkid(spkid);
+
+        setOptions((prevOptions) => {
+          const updated = prevOptions.filter(
+            (opt) => String(opt.id) !== String(spkid)
+          );
+          return updated;
+        });
+      } else {
+        console.error("Asteroid not found:", spkid);
+      }
+    } catch (error) {
+      console.error("Error fetching asteroid data:", error);
+    } finally {
+      setFetching(false);
     }
   };
-
-  useEffect(() => {
-    handleSearchName(debouncedInput || "");
-  }, [debouncedInput, asteroids]);
 
   return (
     <div className={cn("w-full", className)}>
@@ -114,8 +116,10 @@ export function AsteroidSelector({ className }: { className?: string }) {
           placeholder="Search asteroids..."
         />
         <CommandList className="max-h-60 overflow-y-auto">
-          {loading ? (
+          {!ready || searchLoading ? (
             <CommandItem disabled>Loading...</CommandItem>
+          ) : fetching ? (
+            <CommandItem disabled>Fetching asteroid data...</CommandItem>
           ) : options.length > 0 ? (
             options.map((asteroid) => (
               <CommandItem
