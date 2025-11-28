@@ -23,7 +23,7 @@ import { useAsteroidSearch, type SearchFilters } from "@/hooks/use-asteroid-sear
 const DEBOUNCE_DELAY = 300;
 const SEARCH_INPUT_PLACEHOLDER = "Search asteroids by name...";
 const VIRTUALIZER_OVERSCAN = 5;
-const VIRTUALIZER_ESTIMATED_SIZE = 50;
+const VIRTUALIZER_ESTIMATED_SIZE = 35;
 const MAX_VIRTUAL_HEIGHT = 100;
 const DECIMAL_PLACES = 2;
 const ECCENTRICITY_STEP = 0.01;
@@ -224,11 +224,7 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
                 </Button>
               )}
             </div>
-            {ready && (
-              <div className="text-sm text-muted-foreground">
-                {count} asteroid{count !== 1 ? "s" : ""} found
-              </div>
-            )}
+
             {renderFilterSlider(
               "distance-range",
               "Distance from Sun (km)",
@@ -275,6 +271,7 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
           </div>
         </PopoverContent>
       </Popover>
+
       <Command className="rounded-lg border shadow-md">
         <div className="relative">
           <CommandInput
@@ -283,6 +280,7 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
             onValueChange={setInput}
             className="h-12"
           />
+
           {input && (
             <button
               onClick={() => setInput("")}
@@ -293,12 +291,6 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
             </button>
           )}
         </div>
-
-        {ready && (
-          <div className="mb-2 text-sm text-muted-foreground">
-            {count} asteroid{count !== 1 ? "s" : ""} found
-          </div>
-        )}
 
         <div
           ref={parentRef}
@@ -330,6 +322,12 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
           </div>
         </div>
       </Command>
+      {ready && (
+        <div className="my-2 text-sm text-muted-foreground">
+          {count} asteroid{count !== 1 ? "s" : ""} found
+        </div>
+      )}
+
     </div>
   );
 }
