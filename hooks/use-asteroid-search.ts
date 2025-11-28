@@ -15,8 +15,11 @@ export function useAsteroidSearch() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    workerRef.current = new Worker("/searchWorker.js");
-
+    workerRef.current = new Worker(
+      new URL("../searchWorker.js", import.meta.url),
+      { type: "module" }
+    );
+  
     const loadAsteroids = async () => {
       try {
         setLoading(true);
