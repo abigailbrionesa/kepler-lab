@@ -181,7 +181,7 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
       <div className="flex justify-between">
         <Label htmlFor={id}>{label}</Label>
         <span className="text-xs text-muted-foreground">
-          {filters[minKey] !== undefined ? formatValue(filters[minKey] as number) : formatValue(min)} -
+          {filters[minKey] !== undefined ? formatValue(filters[minKey] as number) : formatValue(min)} - {' '} 
           {filters[maxKey] !== undefined ? formatValue(filters[maxKey] as number) : formatValue(max)}
         </span>
       </div>
