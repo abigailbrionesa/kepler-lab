@@ -101,13 +101,9 @@ export function AsteroidSelector({ className }: { className?: string }) {
 
   useEffect(() => {
     if (!ready) return;
+    console.log(debouncedInput, '')
     search(debouncedInput || "", debouncedFilters);
   }, [debouncedInput, debouncedFilters, ready, search]);
-
-  const handleSearchName = useCallback((query: string) => {
-    if (!ready) return;
-    setInput(query);
-  }, [ready]);
 
   const handleFilterChange = useCallback((key: keyof FilterState, value: number | undefined) => {
     setFilters(prev => ({
@@ -131,18 +127,13 @@ export function AsteroidSelector({ className }: { className?: string }) {
       console.error("Search worker not ready");
       return;
     }
-
     setFetching(true);
-
     try {
       const asteroidData = await fetchAsteroidBySpkid(spkid);
-
       if (asteroidData) {
         const formatted = formatAsteroid(asteroidData);
-
         addAsteroid(formatted);
         setSelectedAsteroidSpkid(spkid);
-
         setOptions((prevOptions) => {
           const updated = prevOptions.filter(
             (opt) => String(opt.id) !== String(spkid)
@@ -158,10 +149,7 @@ export function AsteroidSelector({ className }: { className?: string }) {
       setFetching(false);
     }
   };
-
   const parentRef = useRef<HTMLDivElement>(null);
-
-  // Always call useVirtualizer unconditionally
   const rowVirtualizer = useVirtualizer({
     count: options.length,
     getScrollElement: () => parentRef.current!,
@@ -172,14 +160,6 @@ export function AsteroidSelector({ className }: { className?: string }) {
 
   return (
     <div className={cn("w-full", className)}>
-      <Command>
-        <CommandInput
-          value={input}
-          onValueChange={setInput}
-          onFocus={() => handleSearchName("")}
-          placeholder="Search asteroids..."
-        />
-      </Command>
 
       <Collapsible open={isFiltersOpen} onOpenChange={setIsFiltersOpen}>
         <CollapsibleTrigger asChild>
