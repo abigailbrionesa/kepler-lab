@@ -6,7 +6,7 @@
 
 <p>
 An interactive, GPU-accelerated <strong>3D web application</strong> that lets users explore the orbits of over <strong>32,000 asteroids and planets</strong> in real-time. 
-Built with <a href="https://threejs.org/" target="_blank">Three.js</a> and WebGL, this tool leverages orbital data from 
+Built with <a href="https://threejs.org/" target="_blank">Three.js</a>, this tool leverages orbital data from 
 <strong>NASA's Jet Propulsion Laboratory Small-Body Database</strong> to provide a physics-accurate space simulation.
 </p>
 ˚　　　　✦　　　.　　. 🪐　 ˚　.　　　　 　　.　　　　　　 ✦　　　.　　˚　🌒　　　　. ✦ 　🌍  
@@ -44,9 +44,8 @@ Built with <a href="https://threejs.org/" target="_blank">Three.js</a> and WebGL
 <h2>𝚃𝚎𝚌𝚑 𝚂𝚝𝚊𝚌𝚔</h2>
 
 <ul>
-  <li><strong>Frontend:</strong> Three.js, WebGL, JavaScript (ES6+), HTML/CSS</li>
+  <li><strong>Frontend:</strong> Three.js, JavaScript (ES6+), React</li>
   <li><strong>Database:</strong> NASA JPL Small-Body Database Query</li>
-  <li><strong>Tools:</strong> Vite / Webpack, Git, Visual Studio Code</li>
 </ul>
 
 </samp>
