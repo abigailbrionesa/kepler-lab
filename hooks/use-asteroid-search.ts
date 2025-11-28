@@ -3,9 +3,37 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import type { AsteroidRow } from "@/lib/types";
 
-type SearchResult = {
+export type SearchResult = {
   spkid: string;
   full_name: string;
+  condition_code?: number;
+  a?: number;
+  e?: number;
+  i?: number;
+  H?: number;
+};
+
+export type SearchStats = {
+  total: number;
+  minDistance: number;
+  maxDistance: number;
+  minEccentricity: number;
+  maxEccentricity: number;
+  minInclination: number;
+  maxInclination: number;
+  minMagnitude: number;
+  maxMagnitude: number;
+};
+
+export type SearchFilters = {
+  minDistance?: number;
+  maxDistance?: number;
+  minEccentricity?: number;
+  maxEccentricity?: number;
+  minInclination?: number;
+  maxInclination?: number;
+  minMagnitude?: number;
+  maxMagnitude?: number;
 };
 
 export function useAsteroidSearch() {
@@ -13,6 +41,8 @@ export function useAsteroidSearch() {
   const [ready, setReady] = useState(false);
   const [results, setResults] = useState<SearchResult[]>([]);
   const [loading, setLoading] = useState(false);
+  const [stats, setStats] = useState<SearchStats | null>(null);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     workerRef.current = new Worker(
@@ -47,10 +77,12 @@ export function useAsteroidSearch() {
       if (type === "READY") {
         setReady(true);
         setLoading(false);
+        setStats(e.data.stats);
       }
 
       if (type === "RESULTS") {
-        setResults(searchResults || []);
+        setResults(e.data.results || []);
+        setCount(e.data.count || 0);
       }
 
       if (type === "ASTEROID_DATA") {
@@ -69,12 +101,12 @@ export function useAsteroidSearch() {
   }, []);
 
   const search = useCallback(
-    (query: string) => {
+    (query: string, filters: SearchFilters = {}) => {
       if (!workerRef.current || !ready) return;
 
       workerRef.current.postMessage({
         type: "SEARCH",
-        payload: { query },
+        payload: { query, filters },
       });
     },
     [ready]
@@ -113,6 +145,14 @@ export function useAsteroidSearch() {
     [ready]
   );
 
-  return { ready, results, search, fetchAsteroidBySpkid, loading };
+  return { 
+    ready, 
+    results, 
+    search, 
+    fetchAsteroidBySpkid, 
+    loading, 
+    stats, 
+    count 
+  };
 }
 
