@@ -31,6 +31,7 @@ const INCLINATION_STEP = 0.1;
 const MAGNITUDE_STEP = 0.1;
 const INCLINATION_MAX = 180;
 const MAGNITUDE_DEFAULT_MAX = 30;
+const SLIDER_MAX_DISTANCE = 500000000;
 const DISTANCE_STEP = 1000000;
 
 const formatNumber = (num: number, decimals: number = 2) => {
@@ -229,12 +230,13 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
               "distance-range",
               "Distance from Sun (km)",
               stats?.minDistance || 0,
-              stats?.maxDistance || 1000000000,
+              Math.min(stats?.maxDistance || SLIDER_MAX_DISTANCE, SLIDER_MAX_DISTANCE),
               DISTANCE_STEP,
               "minDistance",
               "maxDistance",
               (val) => formatNumber(val, DECIMAL_PLACES)
             )}
+
 
             {renderFilterSlider(
               "eccentricity-range",
