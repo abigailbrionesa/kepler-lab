@@ -2,18 +2,21 @@
 
 <samp>
 
-<h1> KeplerLab - Asteroid Creator</h1>
+# KeplerLab - Asteroid Creator
 
 <p>
-An interactive, GPU-accelerated <strong>3D web application</strong> that lets users explore the orbits of over <strong>32,000 asteroids and planets</strong> in real-time. 
-Built with <a href="https://threejs.org/" target="_blank">Three.js</a>, this tool leverages orbital data from 
+An interactive, GPU-accelerated <strong>3D web application</strong> that lets users explore the orbits of over <strong>32,000 asteroids and planets</strong> in real-time.
+Built with <a href="https://threejs.org/" target="_blank">Three.js</a>, this tool leverages orbital data from
 <strong>NASA's Jet Propulsion Laboratory Small-Body Database</strong> to provide a physics-accurate space simulation.
 </p>
-˚　　　　✦　　　.　　. 🪐　 ˚　.　　　　 　　.　　　　　　 ✦　　　.　　˚　🌒　　　　. ✦ 　🌍  
- 　　.  　 　　　˚　　　　　*　　 　　✦　　　.　　.　　　✦　　˚ 　　　 　　˚　.　*　　. 　˚　　.
+˚　　　　✦　　　.　　. 🪐　 ˚　.　　　　 　　.　　　　　　 ✦　　　.　　˚　🌒　　　　. ✦ 　🌍
+　　.  　 　　　˚　　　　　*　　 　　✦　　　.　　.　　　✦　　˚ 　　　 　　˚　.　*　　. 　˚　　.
 
- 
-<h2>𝙵𝚎𝚊𝚝𝚞𝚛𝚎𝚜</h2>
+## Topic Rationale
+
+We chose this topic to make complex orbital mechanics accessible and engaging for a non-technical audience. Our goal is to answer the question: "How do small changes in an asteroid's orbit affect its path through the solar system, and what is the potential impact on Earth?" By visualizing these concepts, we hope to foster a greater understanding of planetary defense and the importance of tracking Near-Earth Objects (NEOs).
+
+## 𝙵𝚎𝚊𝚝𝚞𝚛𝚎𝚜
 
 <ul>
   <li>
@@ -30,22 +33,21 @@ Built with <a href="https://threejs.org/" target="_blank">Three.js</a>, this too
   </li>
 </ul>
 
-
-
-<h2>𝙻𝚒𝚟𝚎 𝙳𝚎𝚖𝚘</h2>
+## 𝙻𝚒𝚟𝚎 D𝚎𝚖𝚘
 
 <p>
-🔗 <a href="https://your-deployment-link.com" target="_blank">Deployed on Vercel</a><br>
-<em>(https://keplerlab.vercel.app/)</em>
+🔗 <a href="https://keplerlab.vercel.app/" target="_blank">Deployed on Vercel</a>
 </p>
 
+## Data Sourcing and Openness
 
+This project uses data from the **NASA JPL Small-Body Database Query**, which is a publicly available and open-source dataset. We are committed to using open data to ensure transparency and reproducibility.
 
-<h2>𝚃𝚎𝚌𝚑 𝚂𝚝𝚊𝚌𝚔</h2>
+## 𝚃𝚎𝚌𝚑 𝚂𝚝𝚊𝚌𝚔
 
 <ul>
-  <li><strong>Frontend:</strong> Three.js, JavaScript (ES6+), React</li>
-  <li><strong>Database:</strong> NASA JPL Small-Body Database Query</li>
+  <li><strong>Frontend:</strong> Three.js, React, JavaScript (ES6+), WebGL. We chose this stack for its high-performance 3D rendering capabilities. Three.js/WebGL allows for GPU-accelerated rendering, which is essential for visualizing tens of thousands of bodies in real-time. React provides a robust framework for building a dynamic and interactive user interface.</li>
+  <li><strong>Database:</strong> NASA JPL Small-Body Database Query.</li>
 </ul>
 
 </samp>
