@@ -8,12 +8,15 @@ import GeneralControlsPanel from "@/components/panel/scene/general-controls-pane
 import { ObjectCreatorPanel } from "@/components/panel/scene/object-creator-panel";
 import { AsteroidsPanel } from "@/components/panel/scene/asteroid-panel";
 import { ObjectInfoPanel } from "@/components/panel/scene/object-info-panel";
+import { WelcomeTutorial } from "@/components/panel/welcome-tutorial";
+
 export default function MainContent() {
   const { selectedPlanet } = useSelectedPlanet();
   const containerRef = useRef<HTMLDivElement>(null);
   return (
     <div className="flex flex-1 flex-col border-secondary border-1  rounded-2xl">
       <SiteHeader />
+      <WelcomeTutorial />
       <div
         ref={containerRef}
         className="relative flex flex-1 flex-col rounded-b-2xl max-w-full max-h-full overflow-hidden"
