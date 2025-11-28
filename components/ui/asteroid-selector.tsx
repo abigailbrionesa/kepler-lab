@@ -23,7 +23,6 @@ import { useAsteroidSearch, type SearchFilters } from "@/hooks/use-asteroid-sear
 import { degToRad } from "three/src/math/MathUtils.js";
 import { useRef } from "react";
 import { useVirtualizer } from '@tanstack/react-virtual';
-// Format number with specified decimal places
 const formatNumber = (num: number, decimals: number = 2) => {
   return Number(num.toFixed(decimals)).toLocaleString();
 };
@@ -120,6 +119,10 @@ export function AsteroidSelector({ className }: { className?: string }) {
   const clearFilters = useCallback(() => {
     setFilters({});
   }, []);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const hasActiveFilters = Object.values(filters).some(v => v !== undefined);
 
@@ -158,9 +161,10 @@ export function AsteroidSelector({ className }: { className?: string }) {
 
   const parentRef = useRef<HTMLDivElement>(null);
 
+  // Always call useVirtualizer unconditionally
   const rowVirtualizer = useVirtualizer({
     count: options.length,
-    getScrollElement: () => parentRef.current,
+    getScrollElement: () => parentRef.current!,
     estimateSize: () => 50,
     overscan: 5,
   });
@@ -311,28 +315,20 @@ export function AsteroidSelector({ className }: { className?: string }) {
             {count} asteroid{count !== 1 ? "s" : ""} found
           </div>
         )}
-        <CommandList
+
+
+        <div
           ref={parentRef}
-          className="max-h-[400px] overflow-auto relative"
+          className="max-h-[100px] overflow-auto relative"
         >
-          {options.length > 0 ? (
-            <div
-              style={{ height: `${rowVirtualizer.getTotalSize()}px`, position: 'relative' }}
-            >
-              {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+          <div style={{ height: rowVirtualizer.getTotalSize(), position: 'relative' }}>
+            {mounted &&
+              rowVirtualizer.getVirtualItems().map((virtualRow) => {
                 const option = options[virtualRow.index];
                 return (
                   <CommandItem
                     key={option.id}
                     value={option.full_name}
-                    onSelect={() => {
-                      setSelected(option);
-                      fetchFullAsteroidData(option.id);
-                    }}
-                    className={cn(
-                      "cursor-pointer",
-                      selected?.id === option.id && "bg-accent"
-                    )}
                     style={{
                       position: 'absolute',
                       top: 0,
@@ -340,26 +336,16 @@ export function AsteroidSelector({ className }: { className?: string }) {
                       width: '100%',
                       transform: `translateY(${virtualRow.start}px)`,
                     }}
+                    onSelect={() => fetchFullAsteroidData(option.id)}
                   >
                     <div className="flex w-full items-center justify-between">
                       <span>{option.full_name}</span>
-                      <div className="flex space-x-4 text-xs text-muted-foreground">
-                        <span>a: {formatNumber(option.a! * 149597871, 0)} km</span>
-                        <span>e: {option.e?.toFixed(3)}</span>
-                        <span>i: {option.i?.toFixed(1)}°</span>
-                        <span>H: {option.H?.toFixed(1)}</span>
-                      </div>
                     </div>
                   </CommandItem>
                 );
               })}
-            </div>
-          ) : (
-            <CommandEmpty>
-              {searchLoading ? 'Searching...' : 'No asteroids found. Try adjusting your search or filters.'}
-            </CommandEmpty>
-          )}
-        </CommandList>
+          </div>
+        </div>
 
       </Command>
     </div>
