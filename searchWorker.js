@@ -2,15 +2,29 @@ importScripts("https://cdn.jsdelivr.net/npm/minisearch@6.3.0/dist/umd/index.min.
 
 let miniSearch;
 let asteroidsMap = new Map();
+let allAsteroids = [];
+
+function applyFilters(asteroids, filters) {
+  return asteroids.filter(asteroid => {
+    if (filters.minDistance && asteroid.a * 149597871 < filters.minDistance) return false;
+    if (filters.maxDistance && asteroid.a * 149597871 > filters.maxDistance) return false;
+    if (filters.minEccentricity && asteroid.e < filters.minEccentricity) return false;
+    if (filters.maxEccentricity && asteroid.e > filters.maxEccentricity) return false;
+    if (filters.minInclination && asteroid.i < filters.minInclination) return false;
+    if (filters.maxInclination && asteroid.i > filters.maxInclination) return false;
+    if (filters.minMagnitude && asteroid.H < filters.minMagnitude) return false;
+    if (filters.maxMagnitude && asteroid.H > filters.maxMagnitude) return false;
+    return true;
+  });
+}
 
 self.onmessage = (e) => {
   const { type, payload } = e.data;
 
   if (type === "LOAD") {
-    const asteroids = payload.asteroids;
-
+    allAsteroids = payload.asteroids;
     asteroidsMap.clear();
-    asteroids.forEach((asteroid) => {
+    allAsteroids.forEach((asteroid) => {
       asteroidsMap.set(String(asteroid.spkid), asteroid);
     });
 
@@ -25,51 +39,60 @@ self.onmessage = (e) => {
       },
     });
 
-    miniSearch.addAll(asteroids);
+    miniSearch.addAll(allAsteroids);
     
-    self.postMessage({ type: "READY" });
+    self.postMessage({ 
+      type: "READY",
+      stats: {
+        total: allAsteroids.length,
+        minDistance: Math.min(...allAsteroids.map(a => a.a * 149597871)),
+        maxDistance: Math.max(...allAsteroids.map(a => a.a * 149597871)),
+        minEccentricity: Math.min(...allAsteroids.map(a => a.e)),
+        maxEccentricity: Math.max(...allAsteroids.map(a => a.e)),
+        minInclination: Math.min(...allAsteroids.map(a => a.i)),
+        maxInclination: Math.max(...allAsteroids.map(a => a.i)),
+        minMagnitude: Math.min(...allAsteroids.map(a => a.H)),
+        maxMagnitude: Math.max(...allAsteroids.map(a => a.H)),
+      }
+    });
   }
 
   if (type === "SEARCH") {
     if (!miniSearch) {
-      self.postMessage({ type: "RESULTS", results: [] });
+      self.postMessage({ type: "RESULTS", results: [], count: 0 });
       return;
     }
 
-    const query = payload.query?.trim() || "";
+    const { query = "", filters = {} } = payload;
+    let results = [];
     
-    if (!query) {
-      const allAsteroids = Array.from(asteroidsMap.values());
-      const results = allAsteroids
-        .sort((a, b) => (a.condition_code || 9) - (b.condition_code || 9))
-        .slice(0, 10)
-        .map((a) => ({
-          spkid: String(a.spkid),
-          full_name: a.full_name,
-          condition_code: a.condition_code,
-        }));
-      self.postMessage({ type: "RESULTS", results });
-      
-      return;
+    if (query.trim()) {
+      const searchResults = miniSearch.search(query);
+      const resultIds = new Set(searchResults.map(r => r.spkid));
+      results = allAsteroids.filter(a => resultIds.has(String(a.spkid)));
+    } else {
+      results = [...allAsteroids];
     }
 
-    const searchResults = miniSearch.search(query).slice(0, 10);
+    const filteredResults = applyFilters(results, filters);
     
-    const sortedResults = searchResults
-      .sort((a, b) => {
-        const codeA = a.condition_code ?? 9;
-        const codeB = b.condition_code ?? 9;
-        if (codeA !== codeB) {
-          return codeA - codeB;
-        }
-        return (b.score || 0) - (a.score || 0);
-      })
-      .map((result) => ({
-        spkid: String(result.spkid),
-        full_name: result.full_name,
+    const sortedResults = filteredResults
+      .sort((a, b) => (a.condition_code || 9) - (b.condition_code || 9))
+      .map((a) => ({
+        spkid: String(a.spkid),
+        full_name: a.full_name,
+        condition_code: a.condition_code,
+        a: a.a,
+        e: a.e,
+        i: a.i,
+        H: a.H,
       }));
 
-    self.postMessage({ type: "RESULTS", results: sortedResults });
+    self.postMessage({ 
+      type: "RESULTS", 
+      results: sortedResults,
+      count: filteredResults.length
+    });
   }
 
   if (type === "FETCH_BY_SPKID") {
