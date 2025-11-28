@@ -140,3 +140,5 @@ html {
     @apply before:content-['•'] before:mr-2
   }
 }
+
+@plugin 'tailwind-scrollbar';
