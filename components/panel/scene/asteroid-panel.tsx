@@ -17,7 +17,7 @@ export function AsteroidsPanel({
   return (
     <DraggablePanel
       dragConstraints={dragConstraints}
-      title="Select Asteroids"
+      title="Visualize Asteroid"
       position="left-80 top-5"
       width="w-72"
     >
