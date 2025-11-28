@@ -272,7 +272,7 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
         </PopoverContent>
       </Popover>
 
-      <Command className="rounded-lg border shadow-md">
+      <Command className="rounded-lg border border-border shadow-md ">
         <div className="relative">
           <CommandInput
             placeholder={SEARCH_INPUT_PLACEHOLDER}
@@ -294,7 +294,8 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
 
         <div
           ref={parentRef}
-          className={`relative overflow-auto`}
+          className="relative overflow-auto scrollbar scrollbar-thumb-primary scrollbar-track-background scrollbar-thumb-rounded-full"
+
           style={{ maxHeight: `${MAX_VIRTUAL_HEIGHT}px` }}
         >
           <div style={{ height: rowVirtualizer.getTotalSize(), position: "relative" }}>
@@ -313,7 +314,7 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
                   }}
                   onSelect={() => fetchFullAsteroidData(option.id)}
                 >
-                  <div className="flex w-full items-center justify-between">
+                  <div className="flex px-1 text-clip w-full items-center justify-between">
                     <span>{option.full_name}</span>
                   </div>
                 </CommandItem>
