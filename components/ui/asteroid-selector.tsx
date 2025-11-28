@@ -201,7 +201,6 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
 
   return (
     <div className={cn("w-full", className)}>
-      {/* Filters Section with Popover */}
       <Popover open={isFiltersOpen} onOpenChange={setIsFiltersOpen}>
         <PopoverTrigger asChild>
           <Button variant="outline" size="sm" className="mb-2">
@@ -213,6 +212,7 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold">Filter Asteroids</h3>
+
               {hasActiveFilters && (
                 <Button
                   variant="ghost"
@@ -224,7 +224,11 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
                 </Button>
               )}
             </div>
-
+            {ready && (
+              <div className="text-sm text-muted-foreground">
+                {count} asteroid{count !== 1 ? "s" : ""} found
+              </div>
+            )}
             {renderFilterSlider(
               "distance-range",
               "Distance from Sun (km)",
@@ -296,7 +300,6 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
           </div>
         )}
 
-        {/* Virtualized List */}
         <div
           ref={parentRef}
           className={`relative overflow-auto`}
