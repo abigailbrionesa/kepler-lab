@@ -22,8 +22,7 @@ export function AsteroidsPanel({
       width="w-72"
     >
       <>
-        <AsteroidSelector className="py-4" />
-
+        <AsteroidSelector className="py-2" />
         {asteroids.length > 0 ? (
           <>
             <Accordion type="multiple" className="w-full">
