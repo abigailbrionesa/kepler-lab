@@ -205,7 +205,7 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
         <PopoverTrigger asChild>
           <Button variant="outline" size="sm" className="mb-2">
             <span className="mr-2">⚙️</span>
-            Filters {hasActiveFilters && <span className="ml-1 text-xs">(active)</span>}
+            Filters <span className="ml-1 text-xs">({count ?? 0} results)</span>
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-80 space-y-4">
@@ -322,12 +322,6 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
           </div>
         </div>
       </Command>
-      {ready && (
-        <div className="my-2 text-sm text-muted-foreground">
-          {count} asteroid{count !== 1 ? "s" : ""} found
-        </div>
-      )}
-
     </div>
   );
 }
