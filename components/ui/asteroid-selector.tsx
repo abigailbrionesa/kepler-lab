@@ -4,7 +4,7 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { useDebounce } from "use-debounce";
 import { degToRad } from "three/src/math/MathUtils.js";
-import { ChevronDown, ChevronUp, X } from "lucide-react";
+import { X } from "lucide-react";
 import { useAsteroids } from "@/context/scene/asteroids-context";
 import { useSelectedAsteroidSpkid } from "@/context/scene/view-selected-asteroid-spkid";
 import {
@@ -15,7 +15,7 @@ import {
 import { Slider } from "@/components/ui/shadcn/slider";
 import { Button } from "@/components/ui/shadcn/button";
 import { Label } from "@/components/ui/shadcn/label";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsible";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/shadcn/popover";
 import { cn, getRandomColor } from "@/lib/utils";
 import type { AsteroidRow, AsteroidOption } from "@/lib/types";
 import { useAsteroidSearch, type SearchFilters } from "@/hooks/use-asteroid-search";
@@ -94,7 +94,6 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [debouncedFilters] = useDebounce(filters, DEBOUNCE_DELAY);
 
-  // Refs
   const parentRef = useRef<HTMLDivElement>(null);
   const rowVirtualizer = useVirtualizer({
     count: options.length,
@@ -103,7 +102,6 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
     overscan: VIRTUALIZER_OVERSCAN,
   });
 
-  // Update options when results change
   useEffect(() => {
     if (!ready) return;
 
@@ -128,7 +126,6 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
     search(debouncedInput || "", debouncedFilters);
   }, [debouncedInput, debouncedFilters, ready, search]);
 
-  // Filter handlers
   const handleFilterChange = useCallback(
     (key: keyof FilterState, value: number | undefined) => {
       setFilters((prev) => ({
@@ -204,20 +201,30 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
 
   return (
     <div className={cn("w-full", className)}>
-      {/* Filters Section */}
-      <Collapsible open={isFiltersOpen} onOpenChange={setIsFiltersOpen}>
-        <CollapsibleTrigger asChild>
+      {/* Filters Section with Popover */}
+      <Popover open={isFiltersOpen} onOpenChange={setIsFiltersOpen}>
+        <PopoverTrigger asChild>
           <Button variant="outline" size="sm" className="mb-2">
-            {isFiltersOpen ? (
-              <ChevronUp className="mr-2 h-4 w-4" />
-            ) : (
-              <ChevronDown className="mr-2 h-4 w-4" />
-            )}
-            Filters
+            <span className="mr-2">⚙️</span>
+            Filters {hasActiveFilters && <span className="ml-1 text-xs">(active)</span>}
           </Button>
-        </CollapsibleTrigger>
-        <CollapsibleContent className="space-y-4">
-          <div className="space-y-4 rounded-md border p-4">
+        </PopoverTrigger>
+        <PopoverContent className="w-80 space-y-4">
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="font-semibold">Filter Asteroids</h3>
+              {hasActiveFilters && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={clearFilters}
+                  className="text-xs"
+                >
+                  Clear
+                </Button>
+              )}
+            </div>
+
             {renderFilterSlider(
               "distance-range",
               "Distance from Sun (km)",
@@ -262,8 +269,8 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
               (val) => val.toFixed(1)
             )}
           </div>
-        </CollapsibleContent>
-      </Collapsible>
+        </PopoverContent>
+      </Popover>
       <Command className="rounded-lg border shadow-md">
         <div className="relative">
           <CommandInput
