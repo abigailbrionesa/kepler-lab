@@ -21,7 +21,7 @@ import type { AsteroidRow, AsteroidOption } from "@/lib/types";
 import { useAsteroidSearch, type SearchFilters } from "@/hooks/use-asteroid-search";
 
 const DEBOUNCE_DELAY = 300;
-const SEARCH_INPUT_PLACEHOLDER = "Search asteroids by name...";
+const SEARCH_INPUT_PLACEHOLDER = "Search by name...";
 const VIRTUALIZER_OVERSCAN = 5;
 const VIRTUALIZER_ESTIMATED_SIZE = 35;
 const MAX_VIRTUAL_HEIGHT = 100;
