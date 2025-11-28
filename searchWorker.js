@@ -49,6 +49,7 @@ self.onmessage = (e) => {
           condition_code: a.condition_code,
         }));
       self.postMessage({ type: "RESULTS", results });
+      
       return;
     }
 
