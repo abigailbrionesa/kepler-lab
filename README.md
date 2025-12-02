@@ -5,7 +5,7 @@
 # KeplerLab - Asteroid Creator
 
 <p>
-An interactive, GPU-accelerated <strong>3D web application</strong> that lets users explore the orbits of over <strong>32,000 asteroids and planets</strong> in real-time.
+An interactive, GPU-accelerated <strong>3D web application</strong> that lets users explore the orbits of over <strong>40,000 asteroids and planets</strong> in real-time.
 Built with <a href="https://threejs.org/" target="_blank">Three.js</a>, this tool leverages orbital data from
 <strong>NASA's Jet Propulsion Laboratory Small-Body Database</strong> to provide a physics-accurate space simulation.
 </p>
