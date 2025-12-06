@@ -20,8 +20,7 @@ function CameraControlsMenu() {
   const { rotate, zoom, dolly } = useCameraControls();
   return (
     <TooltipProvider>
-      <span className="text-xs">Camera Controls</span>
-      <div className="flex space-x-4 items-center z-50 px-5 ">
+      <div className="flex space-x-2 items-center z-50 p-3">
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
