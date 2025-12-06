@@ -9,7 +9,7 @@ import { ObjectCreatorPanel } from "@/components/panel/scene/object-creator-pane
 import { AsteroidsPanel } from "@/components/panel/scene/asteroid-panel";
 import { ObjectInfoPanel } from "@/components/panel/scene/object-info-panel";
 import { WelcomeTutorial } from "@/components/panel/welcome-tutorial";
-
+import CameraControlsMenu from "@/components/panel/camera-controls-menu";
 export default function MainContent() {
   const { selectedPlanet } = useSelectedPlanet();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -32,7 +32,12 @@ export default function MainContent() {
 
           <div className="flex flex-1 ">
             <SolarSystem />
+            <div className="absolute bottom-0 right-0">
+                    <CameraControlsMenu/>
+
+            </div>
           </div>
+
         </div>
       </div>
     </div>
