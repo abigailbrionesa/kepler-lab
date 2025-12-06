@@ -26,7 +26,6 @@ export default function MainContent() {
 
           {selectedPlanet && <SelectedPlanetHeader />}
           {<AsteroidsPanel dragConstraints={containerRef} />}
-          {<GeneralControlsPanel dragConstraints={containerRef} />}
           {<ObjectCreatorPanel dragConstraints={containerRef} />}
           {selectedPlanet && <ObjectInfoPanel dragConstraints={containerRef} />}
 
