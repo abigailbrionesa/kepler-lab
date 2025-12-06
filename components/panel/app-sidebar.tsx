@@ -17,19 +17,19 @@ import Link from "next/link";
 const spaceResources = [
   {
     label: "NASA Solar System Overview",
-    url: "https://solarsystem.nasa.gov/planets/overview/",
+    url: "https://science.nasa.gov/solar-system/",
   },
   {
-    label: "NASA Asteroids Overview",
-    url: "https://solarsystem.nasa.gov/asteroids-comets-and-meteors/asteroids/overview/",
+    label: "Formulae for using the Keplerian elements",
+    url: "https://ssd.jpl.nasa.gov/planets/approx_pos.html",
   },
   {
-    label: "ESA - Solar System Science",
-    url: "https://www.esa.int/Science_Exploration/Space_Science/Solar_System",
+    label: "What does SSD do?",
+    url: "https://ssd.jpl.nasa.gov/about/",
   },
   {
-    label: "DIY: Make an Asteroid Model",
-    url: "https://www.jpl.nasa.gov/edu/learn/project/make-a-model-of-an-asteroid/",
+    label: "NASA 3D Resources",
+    url: "https://science.nasa.gov/3d-resources/",
   },
   {
     label: "NASA Space Place (for students)",
@@ -49,7 +49,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             >
               <Link href="/" className="!no-underline !underline-offset-4">
                 <span className="text-base font-semibold">
-                  ☀️ Space!
+                  ☀️ KeplerLab
                 </span>
               </Link>
             </SidebarMenuButton>
