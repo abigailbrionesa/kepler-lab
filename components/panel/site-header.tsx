@@ -5,7 +5,7 @@ import type React from "react";
 import { Separator } from "@/components/ui/shadcn/separator";
 import { SidebarTrigger } from "@/components/ui/shadcn/sidebar";
 import { useViewConfig } from "@/context/scene/view-config-context";
-import { Settings2Icon, TagIcon } from "lucide-react";
+import { Bolt, TagIcon } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,7 +16,6 @@ import {
 } from "@/components/ui/shadcn/dropdown-menu";
 import { Button } from "@/components/ui/shadcn/button";
 import { ThemeToggle } from "./theme-toggle";
-import CameraControlsMenu from "./camera-controls-menu";
 
 const CustomOrbitIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -52,20 +51,14 @@ export function SiteHeader() {
             orientation="vertical"
             className="mx-2 data-[orientation=vertical]:h-4"
           />
-          <h1 className="text-base font-medium flex items-center">
-            Celestial Dashboard
-          </h1>
         </div>
 
         <div className="flex items-center gap-2">
-          <CameraControlsMenu />
-
           <>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm" className="gap-1.5">
-                  <Settings2Icon className="h-4 w-4" />
-                  <span>Config</span>
+                  <Bolt className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
