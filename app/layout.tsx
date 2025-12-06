@@ -10,7 +10,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Abi's Solar System",
+  title: "KeplerLab",
   description: "Explore space",
 };
 
