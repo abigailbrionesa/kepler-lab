@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/shadcn/dropdown-menu";
 import { Button } from "@/components/ui/shadcn/button";
 import { ThemeToggle } from "./theme-toggle";
-
+import DateSelector from "./scene/date-selector";
 const CustomOrbitIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -51,8 +51,8 @@ export function SiteHeader() {
             orientation="vertical"
             className="mx-2 data-[orientation=vertical]:h-4"
           />
+          <DateSelector />
         </div>
-
         <div className="flex items-center gap-2">
           <>
             <DropdownMenu>
