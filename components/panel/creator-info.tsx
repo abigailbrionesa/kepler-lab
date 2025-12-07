@@ -4,14 +4,14 @@ import { Separator } from "@/components/ui/shadcn/separator";
 
 export function CreatorInfo() {
   return (
-    <div className="px-4 py-3 text-xs  border-sidebar-border">
+    <div className="py-3 text-xs  border-sidebar-border">
       <div className="flex flex-col space-y-2">
         <div>
           <h4 className="font-medium">Made by <a target="_blank" href="https://www.linkedin.com/in/abigailbrionesaranda/">Abigail Briones</a> </h4>
-          <p className="text-muted-foreground"></p>
+          <a className="text-muted-foreground" href="https://libguides.lib.rochester.edu/data-bloom" target="_blank">Data Bloom 2025</a>
         </div>
         <Separator className="my-1" />
-        <div className="flex items-center justify-between">
+        <div className="flex items-center ">
           <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
             <a
               href="https://github.com/abigailbrionesa"
