@@ -38,7 +38,7 @@ export function WelcomeTutorial() {
 
       <DialogContent
         onKeyDown={handleKeyDown}
-        className="max-w-md rounded-2xl shadow-xl bg-background"
+        className="max-w-md rounded-2xl shadow-xl bg-background border-border"
         aria-labelledby="welcome-tutorial-title"
         aria-describedby="welcome-tutorial-desc"
         role="dialog"
