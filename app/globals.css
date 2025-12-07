@@ -129,16 +129,25 @@ html {
 
 @layer components {
   .custom-border {
-    @apply border-1 border-secondary;
+    @apply border border-secondary;
   }
 
   .star-point {
-    @apply before:content-['✦'] before:mr-2
+    @apply list-none relative pl-5;
+  }
+
+  .star-point::before {
+    @apply content-['✦'] absolute left-0 top-0;
   }
 
   .circle-point {
-    @apply before:content-['•'] before:mr-2
+    @apply list-none relative pl-5;
+  }
+
+  .circle-point::before {
+    @apply content-['•'] absolute left-0 top-0;
   }
 }
+
 
 @plugin 'tailwind-scrollbar';
