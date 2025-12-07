@@ -13,6 +13,7 @@ import { CameraControlProvider } from "@/context/scene/camera-control-context";
 import { SelectedAsteroidSpkidProvider } from "@/context/scene/view-selected-asteroid-spkid";
 import { CustomObjectsProvider } from "@/context/scene/custom-objects-context";
 import { AsteroidProvider } from "@/context/scene/asteroids-context";
+import { TutorialProvider } from "@/context/tutorial-context";
 export default function Page() {
   return (
     <SidebarProvider>
@@ -27,11 +28,13 @@ export default function Page() {
                       <SelectedPlanetProvider>
                         <IsObjectPivotProvider>
                           <CameraControlProvider>
-                            <AppSidebar variant="inset" />
-                            <SidebarInset>
-                              <MainContent />
-                            </SidebarInset>
-                            <RightSidebar />
+                            <TutorialProvider>
+                              <AppSidebar variant="inset" />
+                              <SidebarInset>
+                                <MainContent />
+                              </SidebarInset>
+                              <RightSidebar />
+                            </TutorialProvider>
                           </CameraControlProvider>
                         </IsObjectPivotProvider>
                       </SelectedPlanetProvider>
