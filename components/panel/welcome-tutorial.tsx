@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useTutorial } from "@/context/tutorial-context";
 import { Button } from "@/components/ui/shadcn/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/shadcn/dialog";
 import { X, ChevronRight, ChevronLeft } from "lucide-react";
 
 export function WelcomeTutorial() {
-  const [isOpen, setIsOpen] = useState(true);
+  const { isOpen, setIsOpen } = useTutorial();
   const [step, setStep] = useState(0);
 
   const tutorialSteps = [
@@ -25,6 +26,10 @@ export function WelcomeTutorial() {
 
   const prevStep = () => setStep((s) => Math.max(0, s - 1));
   const skip = () => setIsOpen(false);
+
+  useEffect(() => {
+    if (isOpen) setStep(0);
+  }, [isOpen]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowRight") nextStep();
