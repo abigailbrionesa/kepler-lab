@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/shadcn/dropdown-menu";
 import { Button } from "@/components/ui/shadcn/button";
 import { ThemeToggle } from "./theme-toggle";
+import { useTutorial } from "@/context/tutorial-context";
+import { HelpCircle } from "lucide-react";
 import DateSelector from "./scene/date-selector";
 const CustomOrbitIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -38,6 +40,7 @@ const CustomOrbitIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export function SiteHeader() {
   const { viewConfig, toggleOption } = useViewConfig();
+  const { openTutorial } = useTutorial();
 
   return (
     <header
@@ -57,7 +60,7 @@ export function SiteHeader() {
           <>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="gap-1.5">
+                <Button variant="outline" size="icon" className="gap-1.5">
                   <Bolt className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
@@ -82,7 +85,13 @@ export function SiteHeader() {
             </DropdownMenu>
           </>
 
-          <ThemeToggle />
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="icon" className="gap-1.5" onClick={() => openTutorial()}>
+              <HelpCircle className="h-4 w-4" />
+            </Button>
+
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </header>
