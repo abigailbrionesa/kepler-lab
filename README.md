@@ -5,7 +5,8 @@
 # KeplerLab - Asteroid Creator
 
 <p>
-An interactive, GPU-accelerated <strong>3D web application</strong> that lets users explore the orbits of over <strong>40,000 asteroids and planets</strong> in real-time.
+KeplerLab is an interactive, GPU-accelerated 3D solar system visualization that renders the real-time and time-evolving orbits of planets and over 40,000 asteroids using NASA JPL data. It enables users to explore orbital paths over time, manipulate Keplerian parameters, and inspect small-body characteristics through an integrated spatial viewer and analytical UI, revealing how subtle orbital changes influence Near-Earth Object trajectories.
+</p>
 Built with <a href="https://threejs.org/" target="_blank">Three.js</a>, this tool leverages orbital data from
 <strong>NASA's Jet Propulsion Laboratory Small-Body Database</strong> to provide a physics-accurate space simulation.
 </p>
@@ -14,7 +15,7 @@ Built with <a href="https://threejs.org/" target="_blank">Three.js</a>, this too
 
 ## Topic Rationale
 
-We chose this topic to make complex orbital mechanics accessible and engaging for a non-technical audience. Our goal is to answer the question: "How do small changes in an asteroid's orbit affect its path through the solar system, and what is the potential impact on Earth?" By visualizing these concepts, we hope to foster a greater understanding of planetary defense and the importance of tracking Near-Earth Objects (NEOs).
+I chose this topic to make complex orbital mechanics accessible and engaging for a non-technical audience. By visualizing these concepts, I hope to foster a greater understanding of planetary defense and the importance of tracking Near-Earth Objects (NEOs).
 
 ## 𝙵𝚎𝚊𝚝𝚞𝚛𝚎𝚜
 
