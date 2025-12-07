@@ -4,7 +4,6 @@ import { SiteHeader } from "@/components/panel/site-header";
 import { useRef } from "react";
 import { useSelectedPlanet } from "@/context/scene/view-selected-planet";
 import SelectedPlanetHeader from "@/components/panel/selected-planet-header";
-import GeneralControlsPanel from "@/components/panel/scene/general-controls-panel";
 import { ObjectCreatorPanel } from "@/components/panel/scene/object-creator-panel";
 import { AsteroidsPanel } from "@/components/panel/scene/asteroid-panel";
 import { ObjectInfoPanel } from "@/components/panel/scene/object-info-panel";
