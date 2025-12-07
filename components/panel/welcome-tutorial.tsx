@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useTutorial } from "@/context/tutorial-context";
 import { Button } from "@/components/ui/shadcn/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/shadcn/dialog";
-import { X, ChevronRight, ChevronLeft } from "lucide-react";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 
 export function WelcomeTutorial() {
   const { isOpen, setIsOpen } = useTutorial();

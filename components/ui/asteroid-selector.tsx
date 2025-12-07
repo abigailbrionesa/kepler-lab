@@ -18,7 +18,7 @@ import { Label } from "@/components/ui/shadcn/label";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/shadcn/popover";
 import { cn, getRandomColor } from "@/lib/utils";
 import type { AsteroidRow, AsteroidOption } from "@/lib/types";
-import { useAsteroidSearch, type SearchFilters } from "@/hooks/use-asteroid-search";
+import { useAsteroidSearch } from "@/hooks/use-asteroid-search";
 
 const DEBOUNCE_DELAY = 300;
 const SEARCH_INPUT_PLACEHOLDER = "Search by name...";
@@ -82,7 +82,6 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
     results,
     search,
     fetchAsteroidBySpkid,
-    loading: searchLoading,
     stats,
     count,
   } = useAsteroidSearch();
@@ -90,7 +89,6 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
   const [input, setInput] = useState("");
   const [debouncedInput] = useDebounce(input, DEBOUNCE_DELAY);
   const [options, setOptions] = useState<AsteroidOption[]>([]);
-  const [fetching, setFetching] = useState(false);
   const [filters, setFilters] = useState<FilterState>({});
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [debouncedFilters] = useDebounce(filters, DEBOUNCE_DELAY);
@@ -149,7 +147,7 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
         return;
       }
 
-      setFetching(true);
+      
       try {
         const asteroidData = await fetchAsteroidBySpkid(spkid);
         if (asteroidData) {
@@ -161,7 +159,6 @@ export function AsteroidSelector({ className }: AsteroidSelectorProps) {
           );
         }
       } finally {
-        setFetching(false);
       }
     },
     [ready, fetchAsteroidBySpkid, addAsteroid, setSelectedAsteroidSpkid]

@@ -84,7 +84,7 @@ export const SpaceControls = () => {
         true,
       );
     }
-  }, [selectedPlanet, planetPosition, targetCameraPosition]);
+  }, [selectedPlanet, planetPosition, targetCameraPosition, cameraControlsRef]);
 
   useEffect(() => {
     if (!cameraControlsRef.current) return;
@@ -98,7 +98,7 @@ export const SpaceControls = () => {
     } else {
       controls.minDistance = 900;
     }
-  }, [isObjectPivot, planetPosition]);
+  }, [isObjectPivot, planetPosition, cameraControlsRef]);
 
   return (
     <>
