@@ -57,7 +57,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <p className="text-sm p-2">
+        <p className="text-sm p-2 text-muted-foreground">
           Welcome! <br /> Explore the planets and asteroids in our Solar System.{" "}
           <br />
           Orbital and physical parameters are generated from{" "}
@@ -74,7 +74,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenu>
               <h3 className="font-semibold mb-2">Helpful Resources</h3>
 
-              <ul className="space-y-2 ">
+              <ul className="space-y-2 text-muted-foreground ">
                 {spaceResources.map((resource, index) => (
                   <li key={index} className="star-point">
                     <a
